@@ -1,7 +1,6 @@
 var events = {
 
     1: [
-
         {
             flavor:"You learned to recognize faces.",
             prob: 0.8,
@@ -52,9 +51,7 @@ export default function performEvent(playerState, updatePlayerState, updateRecen
     const player = {...playerState}
     const recentEvents = []
 
-
     player.age += 1
-
 
 
     if (player.age in events) events[player.age].forEach( e=> {
