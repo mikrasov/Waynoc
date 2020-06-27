@@ -55,15 +55,6 @@ module.exports = {
       options: {},
     },
     {
-      resolve: `gatsby-plugin-google-analytics`,
-      options: {
-        trackingId: "",
-        head: true,
-      },
-    },
-
-
-    {
       resolve: `gatsby-source-filesystem`,
       options: {
         name: `images`,
