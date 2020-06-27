@@ -1,5 +1,7 @@
 import Layout from "../components/layout";
+import PlayerStats from "../components/player_stats"
 import React, { useState } from "react";
+import {Row, Col, Button} from "react-bootstrap"
 
 const initialPlayer = {
     name: "George",
@@ -39,50 +41,14 @@ export default function(props) {
 
     return <Layout>
 
+        <Row>
+            <Col lg={6} sm={12}>
+                <PlayerStats player={player} />
+                <Button type="button" onClick={()=>{updatePlayer(timePasses(player))} } >Next Season</Button>
+                <Button type="button" variant="danger" onClick={()=>{updatePlayer(initialPlayer)}}>Restart</Button>
+            </Col>
+        </Row>
 
-        <table className="table table-striped table-borderless table-hover table-sm">
-            <tbody>
-            <tr>
-                <td>Int: {player.intelligence}</td>
-            </tr>
-            <tr>
-                <td>Per: {player.perception}</td>
-            </tr>
-            <tr>
-                <td>Str: {player.strength}</td>
-            </tr>
-            <tr>
-                <td>Sta: {player.stamina}</td>
-            </tr>
-            <tr>
-                <td>Prs: {player.presence}</td>
-            </tr>
-            <tr>
-                <td>Com: {player.communication}</td>
-            </tr>
-            <tr>
-                <td>Dex: {player.dexterity}</td>
-            </tr>
-            <tr>
-                <td>Qik: {player.quickness}</td>
-            </tr>
-            </tbody>
-        </table>
 
-        <button type="submit" name="action" value="advance"
-                className="btn btn-secondary" onClick={function(){updatePlayer(timePasses(player))} }>Next Season
-        </button>
-        <button type="submit" name="action" value="restart"
-                className="btn btn-secondary" onClick={function(){updatePlayer(initialPlayer)}}> Reset
-        </button>
-
-        <table className="table table-borderless table-sm">
-            <tbody>
-            <tr>
-                <td><h5>Name: {player.name}</h5></td>
-                <td><h5>Age: {player.age}</h5></td>
-            </tr>
-            </tbody>
-        </table>
     </Layout>
 }
