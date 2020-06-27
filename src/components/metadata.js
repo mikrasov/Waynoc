@@ -9,7 +9,6 @@ const Metadata = (props) => (
         site {
           siteMetadata {
             title
-            twitterUsername
             siteUrl
           }
         }
@@ -27,7 +26,7 @@ const Metadata = (props) => (
           <meta name="description"        content={props.description} />
           <meta name="twitter:card"       content={props.pageType} />
           <meta name="twitter:site"       content={meta.siteUrl} />
-          <meta name="twitter:creator"    content={"@"+meta.twitterUsername} />
+          <meta name="twitter:creator"    content={"@mikrasov"} />
           <meta property="twitter:title"  content={title} />
           <meta property="og:site_name"   content={props.siteName} />
           <meta property="og:url"         content={meta.siteUrl+props.pageUrl} />

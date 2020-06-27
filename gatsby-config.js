@@ -12,7 +12,7 @@ const siteUrl = isNetlifyProduction ? NETLIFY_SITE_URL : NETLIFY_DEPLOY_URL;
 module.exports = {
   siteMetadata: {
     title: 'Waynoc',
-    siteUrl
+    siteUrl: 'https://waynoc.netlify.app'
   },
   plugins: [
     'gatsby-plugin-react-helmet',
