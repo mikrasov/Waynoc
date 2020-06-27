@@ -1,5 +1,5 @@
 import Layout from "../components/layout";
-import React, { useState, useEffect } from "react";
+import React, { useState } from "react";
 
 const initialPlayer = {
     name: "George",
@@ -35,26 +35,9 @@ function timePasses(playerState){
 
 export default function(props) {
     const [player, updatePlayer] = useState(initialPlayer)
-    const [time, setTime] = useState("Loading..")
-    useEffect(() => {
 
-        window.setInterval(function(){
-
-            fetch(`http://worldtimeapi.org/api/timezone/America/Los_Angeles`)
-                .then(response => response.json()) // parse JSON from request
-                .then(resultData => {
-                    setTime(resultData.datetime)
-
-                })
-
-        }, 1000);
-    }, [])
 
     return <Layout>
-
-
-        <h1>This time is: </h1>
-        {time}
 
 
         <table className="table table-striped table-borderless table-hover table-sm">
