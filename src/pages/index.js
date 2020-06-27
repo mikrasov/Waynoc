@@ -1,7 +1,9 @@
 import Layout from "../components/layout";
 import PlayerStats from "../components/player_stats"
+import EventLog from "../components/event_log"
 import React, { useState } from "react";
 import {Row, Col, Button} from "react-bootstrap"
+import performEvent from "../util/events"
 
 const initialPlayer = {
     name: "George",
@@ -16,27 +18,13 @@ const initialPlayer = {
     quickness: 0
 }
 
-function timePasses(playerState){
 
-    return {
-        name: playerState.name,
-        age: playerState.age + 1,
-        intelligence: playerState.intelligence + Math.floor(Math.random() * 2) ,
-        perception: playerState.perception + Math.floor(Math.random() * 2),
-        strength: playerState.strength + Math.floor(Math.random() * 2),
-        stamina: playerState.stamina + Math.floor(Math.random() * 2),
-        presence: playerState.presence + Math.floor(Math.random() * 2),
-        communication: playerState.communication + Math.floor(Math.random() * 2),
-        dexterity: playerState.dexterity + Math.floor(Math.random() * 2),
-        quickness: playerState.quickness + Math.floor(Math.random() * 2)
-    }
-
-}
 
 
 
 export default function(props) {
     const [player, updatePlayer] = useState(initialPlayer)
+    const [recentEvents, updateRecentEvents] = useState([])
 
 
     return <Layout>
@@ -44,8 +32,12 @@ export default function(props) {
         <Row>
             <Col lg={6} sm={12}>
                 <PlayerStats player={player} />
-                <Button type="button" onClick={()=>{updatePlayer(timePasses(player))} } >Next Season</Button>
+                <Button type="button" onClick={()=>{    performEvent(player,updatePlayer,updateRecentEvents)} } >Next Season</Button>
                 <Button type="button" variant="danger" onClick={()=>{updatePlayer(initialPlayer)}}>Restart</Button>
+            </Col>
+
+            <Col lg={6} sm={12}>
+                <EventLog events={recentEvents}/>
             </Col>
         </Row>
 
