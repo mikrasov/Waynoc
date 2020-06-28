@@ -20,7 +20,7 @@ export default function(props) {
             <Col lg={6} sm={12}>
                 <PlayerStats player={player} />
                 <Button type="button" onClick={()=>{performEvent(player,updatePlayer,updateRecentEvents)}}>Next Season</Button>
-                <Button type="button" variant="danger" onClick={()=>{updatePlayer(initialPlayer)}}>Restart</Button>
+                <Button type="button" variant="danger" onClick={()=>{updatePlayer(new Player())}}>Restart</Button>
             </Col>
 
             <Col lg={6} sm={12}>

@@ -29,7 +29,7 @@ export default class {
     }
 
     increase_stamina() {
-        this.intelligence += 1
+        this.stamina += 1
         return "+1 Sta"
     }
 
