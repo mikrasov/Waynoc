@@ -9,7 +9,7 @@ import Player from "../player"
 
 export default function(props) {
     const [player, updatePlayer] = useState(new Player())
-    const [recentEvents, updateRecentEvents] = useState([])
+    const [recentEvents, updateRecentEvents] = useState([{flavor_text: "You are born.", effect_text: "Happy Birthday!"}])
 
 
     return (

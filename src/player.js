@@ -13,6 +13,11 @@ export default class {
         this.quickness = -10
     }
 
+    change_name(name){
+        this.name = name
+        return "Your name is " + name
+    }
+
     increase_intelligence() {
         this.intelligence += 1
         return "+1 Int"
