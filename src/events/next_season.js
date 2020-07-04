@@ -1,6 +1,4 @@
-import performEvent from "./events"
-
-let events = {
+let age_events = {
 
     .25: [
         {
@@ -42,8 +40,15 @@ let events = {
 export default function(player, updatePlayer, updateRecentEvents) {
     player.age += .25
 
-
-    if (player.age in events) {
-        performEvent(events[player.age], player, updatePlayer, updateRecentEvents)
+    const events = []
+    if (player.age in age_events) {
+        age_events[player.age].forEach(event => {
+            events.push({
+                flavor_text: event.flavor,
+                effect_text: event.effect(player)
+            })
+        })
     }
+    updatePlayer(player)
+    updateRecentEvents(events)
 }
