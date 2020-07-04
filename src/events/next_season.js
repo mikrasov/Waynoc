@@ -85,7 +85,7 @@ let age_events = {
     ],
 }
 
-export default function(player, updatePlayer, updateRecentEvents) {
+export default function(player, updateRecentEvents) {
     const events = []
 
     player.age += .25
@@ -98,5 +98,4 @@ export default function(player, updatePlayer, updateRecentEvents) {
         })
     }
     updateRecentEvents(events)
-    updatePlayer(player)
 }

@@ -18,7 +18,7 @@ export default function(props) {
             <Row>
                 <Col lg={6} sm={12}>
                     <PlayerStats player={player} />
-                    <Button type="button" onClick={()=>{nextSeason(player, updatePlayer, updateRecentEvents)}}>Next Season</Button>
+                    <Button type="button" onClick={()=>{nextSeason(player, updateRecentEvents)}}>Next Season</Button>
                     <Button type="button" variant="danger" onClick={()=>{updatePlayer(new Player())}}>Restart</Button>
                 </Col>
 
