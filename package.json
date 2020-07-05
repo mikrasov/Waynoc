@@ -17,12 +17,13 @@
     "gatsby-plugin-sitemap": "^2.x",
     "gatsby-source-filesystem": "^2.3.x",
     "gatsby-transformer-sharp": "^2.5.x",
+    "logrocket": "^1.0.9",
+    "logrocket-react": "^4.0.1",
     "react": "^16.13.x",
     "react-bootstrap": "^1.0.1",
     "react-dom": "^16.13.x",
     "react-helmet": "^6.x",
-    "react-icons": "^3.x",
-    "react-youtube": "^7.x"
+    "react-icons": "^3.x"
   },
   "keywords": [
     "Game"
@@ -44,6 +45,6 @@
   },
   "repository": {
     "type": "git",
-    "url": ""
+    "url": "https://github.com/mikrasov/Waynoc"
   }
 }

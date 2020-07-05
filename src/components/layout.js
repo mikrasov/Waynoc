@@ -3,6 +3,10 @@ import {Nav, Navbar} from 'react-bootstrap'
 import Metadata from "./metadata";
 import './bootstrap.min.css'
 import './layout.css'
+import LogRocket from 'logrocket';
+import setupLogRocketReact from 'logrocket-react'
+LogRocket.init('ewoekj/waynoc');
+setupLogRocketReact(LogRocket);
 
 export default (props) => (
   <>
