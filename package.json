@@ -23,7 +23,9 @@
     "react-bootstrap": "^1.0.1",
     "react-dom": "^16.13.x",
     "react-helmet": "^6.x",
-    "react-icons": "^3.x"
+    "react-icons": "^3.x",
+    "react-redux": "^7.2.0",
+    "redux": "^4.0.5"
   },
   "keywords": [
     "Game"

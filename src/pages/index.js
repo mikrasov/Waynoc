@@ -1,14 +1,18 @@
+import React, {useState} from "react";
+import { connect } from 'react-redux';
+import {Row, Col, Button} from "react-bootstrap"
+
 import Layout from "../components/layout";
 import PlayerStats from "../components/player_stats"
 import EventLog from "../components/event_log"
 import Choice from "../components/choice"
-import React, {useState} from "react";
-import {Row, Col, Button} from "react-bootstrap"
 import nextSeason from "../events/next_season"
 import Player from "../player"
 
+import { toggleDarkMode } from '../state/app';
 
-export default function(props) {
+
+function IndexPage({isDarkMode, dispatch}) {
     const [player, updatePlayer] = useState(new Player())
     const [recentEvents, updateRecentEvents] = useState([{flavor_text: "You are born.", effect_text: "Happy Birthday!"}])
 
@@ -25,6 +29,8 @@ export default function(props) {
         <Layout>
             <Choice event={activeChoice} onClose={()=>{updateActiveChoice(null)} } />
 
+
+
             <Row>
                 <Col lg={6} sm={12}>
                     <PlayerStats player={player} />
@@ -39,6 +45,19 @@ export default function(props) {
                     <EventLog events={recentEvents}/>
                 </Col>
             </Row>
+
+
+            <br/><br/>
+            Redux example: We can move player into redux and handle state changes globally through it <br/>
+            <button
+                style={isDarkMode ? { background: 'black', color: 'white' } : null}
+                onClick={() => dispatch(toggleDarkMode(!isDarkMode))}>Dark mode {isDarkMode ? 'on' : 'off'}
+            </button>
         </Layout>
     )
 }
+
+
+export default connect(state => ({
+    isDarkMode: state.app.isDarkMode
+}), null)(IndexPage)
