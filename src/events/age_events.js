@@ -64,39 +64,23 @@ let ageEvents = {
             effect: (player) => player.increase_intelligence()
         },
         {
-            flavor: "To look for hidden things.",
-            effect: (player) => player.increase_perception()
-        },
-        {
             flavor: "To stand while holding on to something.",
             effect: (player) => player.increase_strength()
         },
         {
-            flavor: "To understand simple sentences, make many sounds and simple gestures.",
+            flavor: "To understand simple sentences.",
             effect: (player) => player.increase_communication()
-        },
-        {
-            flavor: "To pick things up and move them between your hands.",
-            effect: (player) => player.increase_dexterity(),
         }
     ],
 
-    1.00: [
-        {
-            flavor: "You learned to help with dressing yourself.",
-            effect: (player) => player.increase_dexterity()
-        },
+    1.0: [
         {
             flavor: "To explore things, by shaking, banging or throwing them.",
             effect: (player) => player.increase_intelligence()
         },
         {
-            flavor: "To stand on your own.",
-            effect: (player) => player.increase_stamina()
-        },
-        {
             flavor: "To walk while holding on to furniture.",
-            effect: (player) => player.increase_strength()
+            effect: (player) => player.increase_stamina()
         }
     ],
 
@@ -104,6 +88,139 @@ let ageEvents = {
         {
             flavor: "You learned to throw tantrums",
             effect: (player) => player.increase_presence()
+        },
+        {
+            flavor: "To walk alone",
+            effect: (player) => player.increase_strength()
+        }
+    ],
+
+    1.5: [
+        {
+            flavor: "You learned to run.",
+            effect: (player) => player.increase_quickness()
+        },
+        {
+            flavor: "To say simple words, like \"No.\"",
+            effect: (player) => player.increase_communication()
+        },
+    ],
+
+    1.75: [
+        {
+            flavor: "You learned to be defiant.",
+            effect: (player) => player.increase_presence()
+        },
+        {
+            flavor: "To find things even behind multiple covers.",
+            effect: (player) => player.increase_perception()
+        }
+    ],
+
+    2.0: [
+        {
+            flavor: "You learned to speak in sentences.",
+            effect: (player) => player.increase_communication()
+        },
+        {
+            flavor: "To stand on tiptoe",
+            effect: (player) => player.increase_stamina()
+        }
+    ],
+
+    2.25: [
+        {
+            flavor: "You learned to show concern.",
+            effect: (player) => player.increase_presence()
+        },
+        {
+            flavor: "To walk on stairs, one foot per step.",
+            effect: (player) => player.increase_dexterity()
+        }
+    ],
+
+    2.5: [
+        {
+            flavor: "You learned to understand possession of objects",
+            effect: (player) => player.increase_intelligence()
+        },
+        {
+            flavor: "To play make-believe with objects",
+            effect: (player) => player.increase_perception()
+        }
+    ],
+
+    2.75: [
+        {
+            flavor: "You learned to climb well.",
+            effect: (player) => player.increase_stamina()
+        },
+        {
+            flavor: "You learned to pedal a tricycle.",
+            effect: (player) => player.increase_quickness()
+        }
+    ],
+
+    3.0: [
+        {
+            flavor: "You learned to screw and unscrew jars.",
+            effect: (player) => player.increase_dexterity()
+        }
+    ],
+
+    3.25: [
+        {
+            flavor: "You learned to cooperate to solve problems.",
+            effect: (player) => player.increase_presence()
+        }
+    ],
+
+    3.5: [
+        {
+            flavor: "You learned to tell coherent stories.",
+            effect: (player) => player.increase_communication()
+        }
+    ],
+
+    3.75: [
+        {
+            flavor: "You learned to pour, cut, and mash your food.",
+            effect: (player) => player.increase_dexterity()
+        }
+    ],
+
+    4.0: [
+        {
+            flavor: "You learned to count.",
+            effect: (player) => player.increase_intelligence()
+        }
+    ],
+
+    4.25: [
+        {
+            flavor: "You learned to hop and skip.",
+            effect: (player) => player.increase_strength()
+        }
+    ],
+
+    4.5: [
+        {
+            flavor: "You learned to stand on one foot for 10 seconds.",
+            effect: (player) => player.increase_stamina()
+        }
+    ],
+
+    4.75: [
+        {
+            flavor: "You learned to do a somersault.",
+            effect: (player) => player.increase_quickness()
+        }
+    ],
+
+    5.0: [
+        {
+            flavor: "You become aware of gender.",
+            effect: (player) => player.increase_perception()
         }
     ]
 }
