@@ -1,5 +1,3 @@
-export default ageEvents
-
 let ageEvents = {
 
     .25: [
@@ -51,10 +49,6 @@ let ageEvents = {
             effect: (player) => player.increase_strength()
         },
         {
-            flavor: "To cry in different ways.",
-            effect: (player) => player.increase_communication()
-        },
-        {
             flavor: "To reach for things.",
             effect: (player) => player.increase_dexterity()
         },
@@ -89,28 +83,29 @@ let ageEvents = {
 
     1.00: [
         {
-            flavor: "You learned many ways of getting attention.",
-            effect: (player) => player.increase_presence()
-        },
-        {
-            flavor: "To help with dressing yourself.",
+            flavor: "You learned to help with dressing yourself.",
             effect: (player) => player.increase_dexterity()
-        },
-        {
-            flavor: "To use simple gestures, such as shaking your head and waving.",
-            effect: (player) => player.increase_communication()
         },
         {
             flavor: "To explore things, by shaking, banging or throwing them.",
             effect: (player) => player.increase_intelligence()
         },
         {
-            flavor: "To sit and stand on your own.",
+            flavor: "To stand on your own.",
             effect: (player) => player.increase_stamina()
         },
         {
             flavor: "To walk while holding on to furniture.",
             effect: (player) => player.increase_strength()
         }
+    ],
+
+    1.25: [
+        {
+            flavor: "You learned to throw tantrums",
+            effect: (player) => player.increase_presence()
+        }
     ]
 }
+
+export default ageEvents
