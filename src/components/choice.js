@@ -1,8 +1,8 @@
 import React from "react";
 import {Modal, Button} from "react-bootstrap"
+import {connect} from "react-redux";
 
-export default function(props) {
-    const event = props.event
+function ChoiceModal({player, dispatch, event, onClose}) {
 
     return (
         <Modal
@@ -14,20 +14,21 @@ export default function(props) {
             keyboard={false}
         >
             <Modal.Header>
-                <Modal.Title>{event?.flavor_text}</Modal.Title>
+                <Modal.Title>{event?.flavor}</Modal.Title>
             </Modal.Header>
             <Modal.Body>{event?.body}</Modal.Body>
             <Modal.Footer>
                 {event?.controls && event.controls.map((control)=>
 
-                    <Button key={control.label} variant="primary" onClick={(e)=>{control.action(); props.onClose();}}>{control.label}</Button>
+                    <Button key={control.label} variant="primary" onClick={(e)=>{ dispatch( control.action() ); onClose();}}>{control.label}</Button>
                 )}
 
             </Modal.Footer>
         </Modal>
     )
-
-
-
 }
 
+
+export default connect(state => ({
+    player: state.player
+}), null)(ChoiceModal)

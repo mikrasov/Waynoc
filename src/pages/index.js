@@ -7,37 +7,26 @@ import PlayerStats from "../components/player_stats"
 import EventLog from "../components/event_log"
 import Choice from "../components/choice"
 import nextSeason from "../events/next_season"
-import Player from "../player"
 
-import { toggleDarkMode } from '../state/app';
+import { resetPlayer} from '../state/player'
 
 
-function IndexPage({isDarkMode, dispatch}) {
-    const [player, updatePlayer] = useState(new Player())
+function IndexPage({player, dispatch}) {
+    const [activeEvent, updateActiveEvent] = useState(null)
     const [recentEvents, updateRecentEvents] = useState([{flavor_text: "You are born.", effect_text: "Happy Birthday!"}])
-
-    const [activeChoice, updateActiveChoice] = useState({
-        flavor_text: "You learned your name",
-        body:<p>You realized that your parents were calling you <strong>George</strong> all along.</p>,
-        controls:[
-            {label: "Accept Your Fate!", action: ()=>{ console.log("You agreed to be called George")} }
-        ]
-    })
-
 
     return (
         <Layout>
-            <Choice event={activeChoice} onClose={()=>{updateActiveChoice(null)} } />
 
-
+            <Choice event={activeEvent} onClose={()=>{updateActiveEvent(null)} } />
 
             <Row>
                 <Col lg={6} sm={12}>
                     <PlayerStats player={player} />
-                    <Button type="button" onClick={()=>{nextSeason(player, updateRecentEvents)}}>Next Season</Button>
+                    <Button type="button" onClick={()=>{nextSeason(player, dispatch, updateRecentEvents, updateActiveEvent)}}>Next Season</Button>
                     <Button type="button" variant="danger" onClick={()=>{
-                        updatePlayer(new Player())
-                        updateRecentEvents([{flavor_text: "You are born. Again.", effect_text: "Happy Birthday?"}])
+                        dispatch(resetPlayer())
+                        updateRecentEvents([{flavor_text: "You are born... Again!", effect_text: "Happy Birthday?"}])
                     }}>Restart</Button>
                 </Col>
 
@@ -46,18 +35,11 @@ function IndexPage({isDarkMode, dispatch}) {
                 </Col>
             </Row>
 
-
-            <br/><br/>
-            Redux example: We can move player into redux and handle state changes globally through it <br/>
-            <button
-                style={isDarkMode ? { background: 'black', color: 'white' } : null}
-                onClick={() => dispatch(toggleDarkMode(!isDarkMode))}>Dark mode {isDarkMode ? 'on' : 'off'}
-            </button>
         </Layout>
     )
 }
 
 
 export default connect(state => ({
-    isDarkMode: state.app.isDarkMode
-}), null)(IndexPage)
+        player: state.player
+    }), null)(IndexPage)
