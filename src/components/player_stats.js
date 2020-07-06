@@ -1,5 +1,6 @@
 import React from "react";
 import {Table} from "react-bootstrap";
+import {GiEyeTarget, GiMuscleUp, GiLungs, GiBeamsAura, GiBrain, GiBowman, GiAwareness, GiRun} from "react-icons/gi"
 
 export default (props) => (
     <>
@@ -11,28 +12,28 @@ export default (props) => (
 
             <tbody>
             <tr>
-                <td>Int: {props.player.intelligence}</td>
+                <td><GiBrain/> Int: {props.player.intelligence}</td>
             </tr>
             <tr>
-                <td>Per: {props.player.perception}</td>
+                <td><GiEyeTarget /> Per: {props.player.perception}</td>
             </tr>
             <tr>
-                <td>Str: {props.player.strength}</td>
+                <td><GiMuscleUp /> Str: {props.player.strength}</td>
             </tr>
             <tr>
-                <td>Sta: {props.player.stamina}</td>
+                <td><GiLungs/> Sta: {props.player.stamina}</td>
             </tr>
             <tr>
-                <td>Prs: {props.player.presence}</td>
+                <td><GiBeamsAura/> Prs: {props.player.presence}</td>
             </tr>
             <tr>
-                <td>Com: {props.player.communication}</td>
+                <td><GiAwareness /> Com: {props.player.communication}</td>
             </tr>
             <tr>
-                <td>Dex: {props.player.dexterity}</td>
+                <td><GiBowman/> Dex: {props.player.dexterity}</td>
             </tr>
             <tr>
-                <td>Qik: {props.player.quickness}</td>
+                <td><GiRun/> Qik: {props.player.quickness}</td>
             </tr>
             </tbody>
         </Table>
