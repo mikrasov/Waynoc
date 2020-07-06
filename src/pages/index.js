@@ -8,10 +8,9 @@ import Layout from "../components/layout";
 import PlayerStats from "../components/player_stats"
 import EventLog from "../components/event_log"
 import Choice from "../components/choice"
-import nextSeason from "../events/next_season"
 
+import nextSeason from "../events/next_season"
 import { resetPlayer} from '../state/player'
-import season from "../components/season";
 
 
 function IndexPage({data, player, dispatch}) {

@@ -1,5 +1,5 @@
-import React from "react";
-import {Table} from "react-bootstrap";
+import React from "react"
+import {Table} from "react-bootstrap"
 import {GiEyeTarget, GiMuscleUp, GiLungs, GiBeamsAura, GiBrain, GiBowman, GiAwareness, GiRun} from "react-icons/gi"
 
 export default ({player}) => (

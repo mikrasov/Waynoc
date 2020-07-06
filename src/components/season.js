@@ -1,11 +1,6 @@
 import React from "react";
 import {graphql, StaticQuery} from "gatsby"
-import BackgroundImage from "gatsby-background-image"
-import Img from "gatsby-image";
-import Layout from "./layout";
-
-
-
+import Img from "gatsby-image"
 
 
 export default (props) => <StaticQuery

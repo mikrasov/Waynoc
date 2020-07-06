@@ -1,19 +1,17 @@
 import React from 'react'
 import { graphql, StaticQuery } from 'gatsby'
 import {Nav, Navbar} from 'react-bootstrap'
-
+import { CookiesProvider } from 'react-cookie'
 import BackgroundImage from 'gatsby-background-image'
-import Metadata from "./metadata";
+
+import Metadata from "./metadata"
 import './bootstrap.min.css'
 import './layout.css'
 
-import { CookiesProvider } from 'react-cookie'
-
-import LogRocket from 'logrocket';
+import LogRocket from 'logrocket'
 import setupLogRocketReact from 'logrocket-react'
 LogRocket.init('ewoekj/waynoc')
 setupLogRocketReact(LogRocket)
-
 
 export default (props) => <StaticQuery
     query={graphql`{
