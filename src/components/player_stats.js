@@ -2,38 +2,38 @@ import React from "react";
 import {Table} from "react-bootstrap";
 import {GiEyeTarget, GiMuscleUp, GiLungs, GiBeamsAura, GiBrain, GiBowman, GiAwareness, GiRun} from "react-icons/gi"
 
-export default (props) => (
+export default ({player}) => (
     <>
-        <div>Name: {props.player.name}</div>
-        <div>Age: {props.player.age}</div>
+        <div>Name: {player.name}</div>
+        <div>Age: {Math.floor(player.age)} years {(player.age % 1) * 12} months</div>
 
 
         <Table striped bordered hover>
 
             <tbody>
             <tr>
-                <td><GiBrain/> Int: {props.player.intelligence}</td>
+                <td><GiBrain/> Int: {player.intelligence}</td>
             </tr>
             <tr>
-                <td><GiEyeTarget /> Per: {props.player.perception}</td>
+                <td><GiEyeTarget /> Per: {player.perception}</td>
             </tr>
             <tr>
-                <td><GiMuscleUp /> Str: {props.player.strength}</td>
+                <td><GiMuscleUp /> Str: {player.strength}</td>
             </tr>
             <tr>
-                <td><GiLungs/> Sta: {props.player.stamina}</td>
+                <td><GiLungs/> Sta: {player.stamina}</td>
             </tr>
             <tr>
-                <td><GiBeamsAura/> Prs: {props.player.presence}</td>
+                <td><GiBeamsAura/> Prs: {player.presence}</td>
             </tr>
             <tr>
-                <td><GiAwareness /> Com: {props.player.communication}</td>
+                <td><GiAwareness /> Com: {player.communication}</td>
             </tr>
             <tr>
-                <td><GiBowman/> Dex: {props.player.dexterity}</td>
+                <td><GiBowman/> Dex: {player.dexterity}</td>
             </tr>
             <tr>
-                <td><GiRun/> Qik: {props.player.quickness}</td>
+                <td><GiRun/> Qik: {player.quickness}</td>
             </tr>
             </tbody>
         </Table>

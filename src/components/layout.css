@@ -677,3 +677,10 @@ pre tt:after {
   cursor: pointer;
 }
 
+
+.season {
+  position: relative;
+  top: -150px;
+  float: right;
+  transition: transform 200ms;
+}

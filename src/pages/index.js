@@ -1,7 +1,9 @@
-import React, {useState} from "react";
-import { connect } from 'react-redux';
+import React, {useState} from "react"
+import { connect } from 'react-redux'
 import {Row, Col, Button} from "react-bootstrap"
 
+
+import Season from "../components/season";
 import Layout from "../components/layout";
 import PlayerStats from "../components/player_stats"
 import EventLog from "../components/event_log"
@@ -9,15 +11,19 @@ import Choice from "../components/choice"
 import nextSeason from "../events/next_season"
 
 import { resetPlayer} from '../state/player'
+import season from "../components/season";
 
 
-function IndexPage({player, dispatch}) {
+function IndexPage({data, player, dispatch}) {
     const [activeEvent, updateActiveEvent] = useState(null)
     const [recentEvents, updateRecentEvents] = useState([{flavor_text: "You are born.", effect_text: "Happy Birthday!"}])
+
 
     return (
         <Layout>
 
+
+            <Season season={player.age  * 4}/>
             <Choice event={activeEvent} onClose={()=>{updateActiveEvent(null)} } />
 
             <Row>
@@ -43,3 +49,4 @@ function IndexPage({player, dispatch}) {
 export default connect(state => ({
         player: state.player
     }), null)(IndexPage)
+
