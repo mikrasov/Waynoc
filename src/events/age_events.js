@@ -1,6 +1,5 @@
 import { STAT, increaseStat, changeName} from '../state/player'
 import React from "react";
-import ReactDOM from 'react-dom';
 import {Form} from "react-bootstrap"
 
 let ageEvents = {
