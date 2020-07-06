@@ -7,6 +7,13 @@ export default function(player, dispatch, updateRecentEvents, updateActiveEvent)
     if (player.age in ageEvents) {
         ageEvents[player.age].forEach(event => {
 
+            event.resolved = (text) =>{
+                events.push({
+                    flavor_text: event.flavor,
+                    effect_text: text
+                })
+                updateRecentEvents(events)
+            }
 
             let effect = ""
 
@@ -16,13 +23,11 @@ export default function(player, dispatch, updateRecentEvents, updateActiveEvent)
             if(event?.effect){
                 effect = event.effect()
                 dispatch(effect)
+                event.resolved(effect.effect_text)
             }
 
-            events.push({
-                flavor_text: event.flavor,
-                effect_text: effect.effect_text
-            })
+
         })
     }
-    updateRecentEvents(events)
+
 }

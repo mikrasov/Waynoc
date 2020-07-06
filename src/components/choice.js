@@ -1,8 +1,17 @@
 import React from "react";
 import {Modal, Button} from "react-bootstrap"
-import {connect} from "react-redux";
+import {connect} from "react-redux"
+
 
 function ChoiceModal({player, dispatch, event, onClose}) {
+
+    function selectChoice(control){
+        const effect =  control.action()
+        event.resolved(effect.effect_text)
+        dispatch(effect)
+        onClose()
+    }
+
 
     return (
         <Modal
@@ -20,13 +29,14 @@ function ChoiceModal({player, dispatch, event, onClose}) {
             <Modal.Footer>
                 {event?.controls && event.controls.map((control)=>
 
-                    <Button key={control.label} variant="primary" onClick={(e)=>{ dispatch( control.action() ); onClose();}}>{control.label}</Button>
+                    <Button key={control.label} variant="primary" onClick={(e)=>{ selectChoice(control) }}>{control.label}</Button>
                 )}
 
             </Modal.Footer>
         </Modal>
     )
 }
+
 
 
 export default connect(state => ({

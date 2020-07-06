@@ -54,10 +54,13 @@ export default (state = initialState, action) => {
             const updatedState = { ...state} //copy last state
             updatedState[action.stat]+= action.value
             return updatedState
+
         case CHANGE_NAME:
             return { ...state, name: action.value }
+
         case RESET_PLAYER:
             return initialState
+
         default:
             return state
     }
