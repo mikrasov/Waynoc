@@ -1,33 +1,24 @@
 import ageEvents from "./age_events"
+import {nextGameSeason} from "../state";
 
-export default function(player, dispatch, updateRecentEvents, updateActiveEvent) {
-    const events = []
+export default function(player, dispatch) {
+    dispatch(nextGameSeason())
 
-    player.age += .25
-    if (player.age in ageEvents) {
-        ageEvents[player.age].forEach(event => {
+    const age = player.age + 0.25
 
-            event.resolved = (text) =>{
-                events.push({
-                    flavor_text: event.flavor,
-                    effect_text: text
-                })
-                updateRecentEvents(events)
-            }
+    if (age in ageEvents) {
+        ageEvents[age].forEach(event => {
 
             let effect = ""
-
-            //Execute event
-            if(event.hasChoice) updateActiveEvent(event)
-
             if(event?.effect){
                 effect = event.effect()
+                effect.flavor_text = event.flavor
                 dispatch(effect)
-                event.resolved(effect.effect_text)
             }
 
 
         })
     }
+
 
 }

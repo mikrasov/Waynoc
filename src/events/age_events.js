@@ -1,6 +1,7 @@
-import { STAT, increaseStat, changeName} from '../state/player'
+
 import React from "react";
 import {Form} from "react-bootstrap"
+import { STAT, increaseStat, changeName} from '../state/player'
 
 let ageEvents = {
 

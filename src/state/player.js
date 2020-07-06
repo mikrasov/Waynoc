@@ -1,3 +1,5 @@
+import {ACTIONS} from '.'
+
 const initialState = {
     name: "Baby",
     age: 0,
@@ -25,15 +27,12 @@ export const STAT = {
 
 }
 
-const RESET_PLAYER = "Reset Game";
-const INCREASE_STAT = "Increase Stat";
-const CHANGE_NAME = "New Name";
 
 
 
 export function increaseStat(stat, value=1){
     return  {
-        type: INCREASE_STAT,
+        type: ACTIONS.PLAYER_INCREASE_STAT,
         stat,
         value,
         effect_text: (value>0?"+":"-")+value+" "+stat.substring(0,3).toUpperCase()
@@ -41,24 +40,25 @@ export function increaseStat(stat, value=1){
 }
 
 export function changeName(value){
-    return  {type: CHANGE_NAME, value, effect_text: value}
+    return  {type: ACTIONS.PLAYER_CHANGE_NAME, value, effect_text: value}
 }
 
-export function resetPlayer(){
-    return  {type: RESET_PLAYER}
-}
 
 export default (state = initialState, action) => {
     switch (action.type) {
-        case INCREASE_STAT:
+        case ACTIONS.PLAYER_INCREASE_STAT:
             const updatedState = { ...state} //copy last state
             updatedState[action.stat]+= action.value
             return updatedState
 
-        case CHANGE_NAME:
+        case ACTIONS.PLAYER_CHANGE_NAME:
             return { ...state, name: action.value }
 
-        case RESET_PLAYER:
+        case ACTIONS.GAME_NEXT_SEASON:
+            return { ...state, age: state.age + .25 }
+
+
+        case ACTIONS.GAME_RESET:
             return initialState
 
         default:

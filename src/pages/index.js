@@ -1,4 +1,4 @@
-import React, {useState} from "react"
+import React  from "react"
 import { connect } from 'react-redux'
 import {Row, Col, Button} from "react-bootstrap"
 
@@ -10,33 +10,29 @@ import EventLog from "../components/event_log"
 import Choice from "../components/choice"
 
 import nextSeason from "../events/next_season"
-import { resetPlayer} from '../state/player'
+import { resetGame} from '../state/'
 
 
-function IndexPage({data, player, dispatch}) {
-    const [activeEvent, updateActiveEvent] = useState(null)
-    const [recentEvents, updateRecentEvents] = useState([{flavor_text: "You are born.", effect_text: "Happy Birthday!"}])
-
+function IndexPage({player, events, dispatch}) {
 
     return (
         <Layout>
 
 
             <Season season={player.age  * 4}/>
-            <Choice event={activeEvent} onClose={()=>{updateActiveEvent(null)} } />
+            <Choice event={events.activeEvent} onClose={()=>{} } />
 
             <Row>
                 <Col lg={6} sm={12}>
                     <PlayerStats player={player} />
-                    <Button type="button" onClick={()=>{nextSeason(player, dispatch, updateRecentEvents, updateActiveEvent)}}>Next Season</Button>
+                    <Button type="button" onClick={()=>{nextSeason(player, dispatch)}}>Next Season</Button>
                     <Button type="button" variant="danger" onClick={()=>{
-                        dispatch(resetPlayer())
-                        updateRecentEvents([{flavor_text: "You are born... Again!", effect_text: "Happy Birthday?"}])
+                        dispatch(resetGame())
                     }}>Restart</Button>
                 </Col>
 
                 <Col lg={6} sm={12}>
-                    <EventLog events={recentEvents}/>
+                    <EventLog events={events.recentEvents}/>
                 </Col>
             </Row>
 
@@ -46,6 +42,7 @@ function IndexPage({data, player, dispatch}) {
 
 
 export default connect(state => ({
-        player: state.player
+        player: state.player,
+        events: state.events
     }), null)(IndexPage)
 
