@@ -28,7 +28,8 @@
     "react-icons": "^3.x",
     "react-redux": "^7.x",
     "redux": "^4.x",
-    "redux-localstorage": "^0.4.1"
+    "redux-localstorage": "^0.4.1",
+    "redux-persist": "^6.0.0"
   },
   "keywords": [
     "Game"
@@ -42,9 +43,9 @@
     "clean": "rm -rf public && rm -rf .cache"
   },
   "devDependencies": {
-    "eslint": "^7.x",
-    "eslint-plugin-import": "^2.x",
-    "eslint-plugin-react": "^7.x",
+    "eslint": "^7.4.x",
+    "eslint-plugin-import": "^2.22.x",
+    "eslint-plugin-react": "^7.20.x",
     "prettier": "^2.x"
   },
   "repository": {

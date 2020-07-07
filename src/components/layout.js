@@ -1,7 +1,6 @@
 import React from 'react'
 import { graphql, StaticQuery } from 'gatsby'
 import {Nav, Navbar} from 'react-bootstrap'
-import { CookiesProvider } from 'react-cookie'
 import BackgroundImage from 'gatsby-background-image'
 
 
@@ -24,9 +23,6 @@ export default (props) => <StaticQuery
       }
     `}
     render={data => <>
-        <CookiesProvider>
-
-
         <BackgroundImage
             fluid={data.background.childImageSharp.fluid}
             backgroundColor={`#1e6f00`}
@@ -46,7 +42,7 @@ export default (props) => <StaticQuery
                 <div id='content' className={props.className}>{props.children}</div>
             </div>
         </BackgroundImage>
-        </CookiesProvider>
+
     </>
     }
 />
