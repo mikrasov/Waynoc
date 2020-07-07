@@ -4,6 +4,7 @@ import {Nav, Navbar} from 'react-bootstrap'
 import { CookiesProvider } from 'react-cookie'
 import BackgroundImage from 'gatsby-background-image'
 
+
 import Metadata from "./metadata"
 import './bootstrap.min.css'
 import './layout.css'
@@ -18,10 +19,14 @@ export default (props) => <StaticQuery
               }
             }
           }
+         
+  
       }
     `}
     render={data => <>
         <CookiesProvider>
+
+
         <BackgroundImage
             fluid={data.background.childImageSharp.fluid}
             backgroundColor={`#1e6f00`}
