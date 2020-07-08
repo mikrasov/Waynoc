@@ -1,6 +1,3 @@
-
-import React from "react";
-import {Form} from "react-bootstrap"
 import { STAT, increaseStat, changeName} from '../state/player'
 
 let ageEvents = {
@@ -43,11 +40,7 @@ let ageEvents = {
     0.5: [
         {
             flavor: "You learned your name.",
-            hasChoice: true,
-            body:<p>You realized that your parents were calling you  <Form.Control  type="text"  placeholder="Your Name" id="choice_player_name" defaultValue={"George"} /> all along.</p>,
-            controls:[
-                {label: "Accept Your Fate!", action: ()=>  {return changeName(document.getElementById("choice_player_name").value)} }
-            ]
+            effect: () => changeName("George")
         },
         {
             flavor: "You learned to put things in your mouth.",

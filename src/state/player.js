@@ -1,7 +1,7 @@
 import {ACTIONS} from '.'
 
 const initialState = {
-    name: "Baby",
+    name: "",
     age: 0,
     intelligence: -10,
     perception: -10,
@@ -14,7 +14,6 @@ const initialState = {
 
 }
 
-
 export const STAT = {
     INTELLIGENCE: "intelligence",
     PERCEPTION: "perception",
@@ -26,8 +25,6 @@ export const STAT = {
     QUICKNESS: "quickness"
 
 }
-
-
 
 
 export function increaseStat(stat, value=1){
@@ -56,7 +53,6 @@ export default (state = initialState, action) => {
 
         case ACTIONS.GAME_NEXT_SEASON:
             return { ...state, age: state.age + .25 }
-
 
         case ACTIONS.GAME_RESET:
             return initialState

@@ -3,40 +3,34 @@ import { connect } from 'react-redux'
 import {Row, Col, Button} from "react-bootstrap"
 import { graphql } from 'gatsby'
 import { MDXProvider, MDXRenderer } from 'gatsby-plugin-mdx'
+import {Nav, Navbar} from 'react-bootstrap'
 
-
-import Season from "../components/season";
-import Layout from "../components/layout";
-import PlayerStats from "../components/player_stats"
-import EventLog from "../components/event_log"
-import Choice from "../components/choice"
+import Season from "../components/season"
+import Layout from "../components/layout"
 
 import nextSeason from "../util/next_season"
-import { resetGame} from '../state/'
 
 
 function IndexPage({data, player, events, dispatch}) {
 
     return (
-        <Layout>
+        <Layout active={"game"}>
 
-            <Season season={player.age  * 4}/>
-            <Choice event={events.activeEvent} onClose={()=>{} } />
-
-            <Row>
-                <Col lg={6} sm={12}>
-                    <PlayerStats player={player} />
-                    <Button type="button" onClick={()=>{nextSeason(player, dispatch)}}>Next Season</Button>
-                    <Button type="button" variant="danger" onClick={()=>{
-                        dispatch(resetGame())
-                    }}>Restart</Button>
-                </Col>
-
-                <Col lg={6} sm={12}>
-                    <EventLog events={events.recentEvents}/>
+            <Season season={player?.age  * 4}/>
+            <div className={'container'}>
                     <MDXRenderer>{data.events.nodes[0].body}</MDXRenderer>
-                </Col>
-            </Row>
+            </div>
+
+            <div className="footer">
+                <div className="gamecontrols">
+                    <Row>
+                        <Col lg={3} sm={6}></Col>
+                        <Col lg={3} sm={6}></Col>
+                        <Col lg={3} sm={6}></Col>
+                        <Col lg={3} sm={6}><Button type="button"  size="lg"  onClick={ ()=>{nextSeason(player, dispatch)} }>Next Season</Button></Col>
+                    </Row>
+                </div>
+            </div>
 
         </Layout>
     )
@@ -47,10 +41,8 @@ export const query = graphql`{
         nodes {
           frontmatter {
             title
-            
           }
-          body
-          
+          body 
         }
     }
 }`

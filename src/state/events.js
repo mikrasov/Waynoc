@@ -10,10 +10,6 @@ const resetState = {
     activeEvent: null
 }
 
-const blankState = {
-    recentEvents: [],
-    activeEvent: null
-}
 
 export default (state = initialState, action) => {
 
@@ -23,7 +19,9 @@ export default (state = initialState, action) => {
             return resetState
 
         case ACTIONS.GAME_NEXT_SEASON:
-            return blankState
+            const prevRecentEvents = [...state.recentEvents]
+            prevRecentEvents.push({flavor_text: "", effect_text:"A Season Passes"})
+            return {...state, recentEvents: prevRecentEvents}
 
         default:
             if (action.flavor_text) {

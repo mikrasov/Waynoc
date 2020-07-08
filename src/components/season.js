@@ -1,7 +1,6 @@
-import React from "react";
+import React from "react"
 import {graphql, StaticQuery} from "gatsby"
 import Img from "gatsby-image"
-
 
 export default (props) => <StaticQuery
     query={graphql`{
@@ -14,6 +13,7 @@ export default (props) => <StaticQuery
           }
       }
     `}
+
     render={data => <>
 
         <Img
