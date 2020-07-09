@@ -7,7 +7,7 @@ export default (props) => <StaticQuery
  seasons: file(relativePath: { eq: "seasons.png" }) {
             childImageSharp {
               fixed (width: 200) {
-                ...GatsbyImageSharpFixed
+                ...GatsbyImageSharpFixed_noBase64
               }
             }
           }

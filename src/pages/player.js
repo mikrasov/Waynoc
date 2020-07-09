@@ -1,6 +1,6 @@
 import React  from "react"
 import { connect } from 'react-redux'
-import {Row, Col, Button, Table} from "react-bootstrap"
+import {Row, Col, Table} from "react-bootstrap"
 import PageLayout from "../components/page_layout"
 import {GiAwareness, GiBeamsAura, GiBowman, GiBrain, GiEyeTarget, GiLungs, GiMuscleUp, GiRun} from "react-icons/gi"
 

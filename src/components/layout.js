@@ -1,16 +1,13 @@
 import React, {useState} from 'react'
-import {graphql, navigate, StaticQuery} from 'gatsby'
+import {graphql, StaticQuery} from 'gatsby'
 import {connect} from "react-redux"
-import {Button, Col, Modal, Nav, Navbar} from 'react-bootstrap'
+import {Button, Modal, Nav, Navbar} from 'react-bootstrap'
 import BackgroundImage from 'gatsby-background-image'
 
 import Metadata from "./metadata"
 import {resetGame} from "../state"
 import '../css/bootstrap.min.css'
 import '../css/layout.css'
-import nextSeason from "../util/next_season"
-
-
 
 
 function Layout({dispatch, player, active, className, children}) {
@@ -35,11 +32,15 @@ function Layout({dispatch, player, active, className, children}) {
       }
     `}
         render={data => <>
+            <Metadata/>
+
             <BackgroundImage
                 fluid={data.background.childImageSharp.fluid}
+                className={"background-image"}
                 backgroundColor={`#1e6f00`}
+
+
             >
-                <Metadata/>
                 <Navbar className="navbar-dark sticky-top" expand="sm" style={{backgroundColor: "#5e4523"}}>
                     <Navbar.Brand href="/">Waynoc</Navbar.Brand>
                     <Navbar.Toggle aria-controls="basic-navbar-nav"/>
@@ -53,7 +54,7 @@ function Layout({dispatch, player, active, className, children}) {
                         </Nav>
 
 
-                        <span className="game-time"  onClick={()=>{nextSeason(player, dispatch)} }>{Math.floor(player.age)} years {(player.age % 1) * 12} months</span>
+                        <span className="game-time">{Math.floor(player.age)} years {(player.age % 1) * 12} months</span>
                     </Navbar.Collapse>
                 </Navbar>
 

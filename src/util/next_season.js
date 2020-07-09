@@ -2,8 +2,10 @@ import ageEvents from "./age_events"
 import {nextGameSeason} from "../state";
 
 
-export default function(player, dispatch) {
+export default function(player, events, dispatch) {
     dispatch(nextGameSeason())
+
+    console.log(events)
 
     const age = player.age + 0.25
 

@@ -671,3 +671,7 @@ pre tt:after {
   margin-left: 30px;
   margin-right: 10px;
 }
+
+.background-image{
+  background-attachment: fixed;
+}

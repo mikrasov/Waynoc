@@ -1,24 +1,42 @@
 import React  from "react"
 import { connect } from 'react-redux'
 import {Row, Col, Button} from "react-bootstrap"
-import { graphql } from 'gatsby'
-import { MDXProvider, MDXRenderer } from 'gatsby-plugin-mdx'
-import {Nav, Navbar} from 'react-bootstrap'
+import { useStaticQuery, graphql } from 'gatsby'
+
 
 import Season from "../components/season"
 import Layout from "../components/layout"
 
 import nextSeason from "../util/next_season"
 
+function IndexPage(props) {
 
-function IndexPage({data, player, events, dispatch}) {
+    const   {player, dispatch} = props
+
+
+    const data  = useStaticQuery(
+        graphql`
+             query {
+               events: allMarkdownRemark {
+                nodes {
+                  html
+                  frontmatter {
+                    title
+                    age
+                  }
+                  
+                }
+              }
+        }
+    `
+    )
 
     return (
         <Layout active={"game"}>
 
             <Season season={player?.age  * 4}/>
             <div className={'container'}>
-                    <MDXRenderer>{data.events.nodes[0].body}</MDXRenderer>
+                    Event goes here
             </div>
 
             <div className="footer">
@@ -27,7 +45,7 @@ function IndexPage({data, player, events, dispatch}) {
                         <Col lg={3} sm={6}></Col>
                         <Col lg={3} sm={6}></Col>
                         <Col lg={3} sm={6}></Col>
-                        <Col lg={3} sm={6}><Button type="button"  size="lg"  onClick={ ()=>{nextSeason(player, dispatch)} }>Next Season</Button></Col>
+                        <Col lg={3} sm={6}><Button type="button"  size="lg"  onClick={ ()=>{nextSeason(player, data.events, dispatch)} }>Next Season</Button></Col>
                     </Row>
                 </div>
             </div>
@@ -36,19 +54,7 @@ function IndexPage({data, player, events, dispatch}) {
     )
 }
 
-export const query = graphql`{
-    events: allMdx {
-        nodes {
-          frontmatter {
-            title
-          }
-          body 
-        }
-    }
-}`
-
 export default connect(state => ({
         player: state.player,
-        events: state.events
     }), null)(IndexPage)
 
