@@ -14,22 +14,7 @@ function IndexPage(props) {
     const   {player, dispatch} = props
 
 
-    const data  = useStaticQuery(
-        graphql`
-             query {
-               events: allMarkdownRemark {
-                nodes {
-                  html
-                  frontmatter {
-                    title
-                    age
-                  }
-                  
-                }
-              }
-        }
-    `
-    )
+    const events = []
 
     return (
         <Layout active={"game"}>
@@ -45,7 +30,7 @@ function IndexPage(props) {
                         <Col lg={3} sm={6}></Col>
                         <Col lg={3} sm={6}></Col>
                         <Col lg={3} sm={6}></Col>
-                        <Col lg={3} sm={6}><Button type="button"  size="lg"  onClick={ ()=>{nextSeason(player, data.events, dispatch)} }>Next Season</Button></Col>
+                        <Col lg={3} sm={6}><Button type="button"  size="lg"  onClick={ ()=>{nextSeason(player, events, dispatch)} }>Next Season</Button></Col>
                     </Row>
                 </div>
             </div>

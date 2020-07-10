@@ -1,6 +1,6 @@
 const {
   NODE_ENV,
-  URL: NETLIFY_SITE_URL = '',
+  URL: NETLIFY_SITE_URL = 'https://waynoc.netlify.app',
   DEPLOY_PRIME_URL: NETLIFY_DEPLOY_URL = NETLIFY_SITE_URL,
   CONTEXT: NETLIFY_ENV = NODE_ENV
 } = process.env;
@@ -12,7 +12,7 @@ const siteUrl = isNetlifyProduction ? NETLIFY_SITE_URL : NETLIFY_DEPLOY_URL;
 module.exports = {
   siteMetadata: {
     title: 'Waynoc',
-    siteUrl: 'https://waynoc.netlify.app'
+    siteUrl
   },
   plugins: [
     'gatsby-plugin-react-helmet',
