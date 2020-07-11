@@ -1,5 +1,38 @@
+const ACTIONS = require('./actions')
 
-const effects = []
+const STATS_MAP = {
+    INT: "intelligence",
+    PER: "perception",
+    STR: "strength",
+    STA: "stamina",
+    PRE: "presence",
+    COM: "communication",
+    DEX: "dexterity",
+    QUI: "quickness"
+
+}
+
+
+let effects = []
+
+
+function increaseStat(stat, value=1){
+
+    stat = stat.toUpperCase().substr(0,3)
+
+
+    effect = {
+        type: ACTIONS.PLAYER_INCREASE_STAT,
+        stat:STATS_MAP[stat],
+        value,
+    }
+
+    console.log(JSON.stringify(effect))
+    effects.push(effect)
+    return basicHtmlText("(+"+value+" "+STATS_MAP[stat]+")", "strong")
+}
+
+
 
 function basicHtmlText(value ="", tag = ""){
 
@@ -19,43 +52,46 @@ function basicHtmlText(value ="", tag = ""){
 }
 
 function replaceAstNode(node){
+    let props = node.properties
 
-    if(node.tagName === "increasestat"){
-        const effect =  {
-            type: "redux action here",
-            stat:node.properties.stat,
-            value: 1,
-        }
+    //note all nodes are lowercase
+    switch (node.tagName) {
+        case "increasestat":
+            return increaseStat(props.stat, props.value)
 
-        return basicHtmlText("+1 "+node.properties.stat, "strong")
+        default:
+            return node
     }
 
-    return node
 }
 
-function findAndReplaceAstNodes(ast, prefix=""){
-
+/*
+ * Depth first search of markdown AST
+ * - Allows replacement of custom tags with state modifiers
+ */
+function findAndReplaceAstNodes(ast){
     if(ast.children) ast.children.forEach((node,index)=>{
-        //console.log(prefix+index + " "+ JSON.stringify(node))
-
         //Replace node if needed
         if(node.type === "element" ) node = replaceAstNode(node)
 
         //Go Deeper in the tree
-        node = findAndReplaceAstNodes(node, prefix+"-")
+        node = findAndReplaceAstNodes(node)
 
         //Update actual tree
         ast.children[index] = node
     })
-
-
     return ast
 }
 
 
+/*
+ * Builds and return the final event node to be stored in static final json file
+ */
 function construct(node){
 
-    //console.log("--"+node.frontmatter.title+"--")
+    effects = []
+
+    console.log("--"+node.frontmatter.title+"--")
     const eventData = {
         id: node.id,
         htmlAst: findAndReplaceAstNodes(node.htmlAst),

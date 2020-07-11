@@ -25,6 +25,7 @@ export default function(player, events, dispatch) {
             .then(data => {
                 data.html = convertAST(data.htmlAst)
                 dispatch(setActiveEvent(data))
+                data.effects.forEach((e)=>{dispatch(e)})
             })
     }
 

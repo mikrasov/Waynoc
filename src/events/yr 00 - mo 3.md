@@ -3,19 +3,19 @@ title: First Months of Life
 age: 0.25
 ---
 
-You learned to recognize faces. <IncreaseStat stat="STAT.INTELLIGENCE"></IncreaseStat>
+You learned to recognize faces. <IncreaseStat stat="INTELLIGENCE"/>
 
-To look around. <IncreaseStat stat="STAT.PERCEPTION"></IncreaseStat>
+To look around. <IncreaseStat stat="PERCEPTION"/>
 
-To lift your head. <IncreaseStat stat="STAT.STRENGTH"></IncreaseStat>
+To lift your head. <IncreaseStat stat="STRENGTH"/>
 
-To hold your head steady. <IncreaseStat stat="STAT.STAMINA"></IncreaseStat>
+To hold your head steady. <IncreaseStat stat="STAMINA"/>
 
-To smile at people. <IncreaseStat stat="STAT.PRESENCE"></IncreaseStat>
+To smile at people. <IncreaseStat stat="PRESENCE"/>
 
-To coo and babble.  <IncreaseStat stat="STAT.COMMUNICATION"></IncreaseStat>
+To coo and babble.  <IncreaseStat stat="COMMUNICATION"/>
 
-To suck on your hand. <IncreaseStat stat="STAT.DEXTERITY"></IncreaseStat>
+To suck on your hand. <IncreaseStat stat="DEXTERITY"/>
 
-To swing at dangling toys. <IncreaseStat stat="STAT.QUICKNESS"></IncreaseStat>
+To swing at dangling toys. <IncreaseStat stat="QUICKNESS"/>
 

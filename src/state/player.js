@@ -1,4 +1,4 @@
-import {ACTIONS} from '.'
+const ACTIONS = require('./actions')
 
 const initialState = {
     name: "",
@@ -12,32 +12,6 @@ const initialState = {
     dexterity: -10,
     quickness: -10,
 
-}
-
-export const STAT = {
-    INTELLIGENCE: "intelligence",
-    PERCEPTION: "perception",
-    STRENGTH: "strength",
-    STAMINA: "stamina",
-    PRESENCE: "presence",
-    COMMUNICATION: "communication",
-    DEXTERITY: "dexterity",
-    QUICKNESS: "quickness"
-
-}
-
-
-export function increaseStat(stat, value=1){
-    return  {
-        type: ACTIONS.PLAYER_INCREASE_STAT,
-        stat,
-        value,
-        effect_text: (value>0?"+":"-")+value+" "+stat.substring(0,3).toUpperCase()
-    }
-}
-
-export function changeName(value){
-    return  {type: ACTIONS.PLAYER_CHANGE_NAME, value, effect_text: value}
 }
 
 

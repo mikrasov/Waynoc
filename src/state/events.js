@@ -1,4 +1,4 @@
-import {ACTIONS} from "./index";
+const ACTIONS = require('./actions')
 
 const firstEvent = {
     id: "",
