@@ -1,5 +1,6 @@
 import React from "react"
 import {increaseStat} from "../state/player"
+import {connect} from "react-redux";
 
 
 export function Choice({title, effect, children: resolution})  {

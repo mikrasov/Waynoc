@@ -1,5 +1,19 @@
-import {nextGameSeason, setActiveEvent, gameOver} from "../state";
+import React  from "react"
+import rehypeReact from "rehype-react"
+import {IncreaseStat} from "../components/event_actions"
+import {nextGameSeason, setActiveEvent, gameOver} from "../state"
 
+
+function convertAST(htmlAst){
+
+
+    const renderAst = new rehypeReact({
+        createElement: React.createElement,
+        components: {  },
+    }).Compiler
+
+    return renderAst(htmlAst)
+}
 
 export default function(player, events, dispatch) {
     dispatch(nextGameSeason())
@@ -11,8 +25,10 @@ export default function(player, events, dispatch) {
     if(currentEventID) {
         fetch('/static/event-data/'+currentEventID+".json")
             .then(response => response.json())
-            .then(data => { dispatch(setActiveEvent(data))}
-            )
+            .then(data => {
+                data.html = convertAST(data.htmlAst)
+                dispatch(setActiveEvent(data))
+            })
     }
 
     else{

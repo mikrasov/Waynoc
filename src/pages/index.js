@@ -24,7 +24,7 @@ function IndexPage({player, events, dispatch} ) {
         }
     }`)
 
-    const currentEvent = events.activeEvent;
+    const currentEvent = events.activeEvent
 
     return (
         <Layout active={"game"}>
@@ -32,9 +32,7 @@ function IndexPage({player, events, dispatch} ) {
             <Season season={player?.age  * 4}/>
             <div className={'container'}>
                 <h1>{currentEvent.title}</h1>
-                <div dangerouslySetInnerHTML={{
-                        __html: currentEvent.html
-                    }} />
+                {currentEvent.html}
 
             </div>
 
