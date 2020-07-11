@@ -7,10 +7,11 @@ function getEvent(events){
     const eventList = []
 
     for (const [index, e] of events.entries()) {
-        if(e.flavor_text)
-            eventList.push(<li key={index}>{e.flavor_text} <b>({e.effect_text})</b></li>)
-        else
-            eventList.push(<li key={index}><b>({e.effect_text})</b></li>)
+            eventList.push(<li key={index}>
+                {e.flavor_text}
+                {e.effect_text?<b>({e.effect_text})</b>:<></>}
+            </li>)
+
     }
 
     return eventList

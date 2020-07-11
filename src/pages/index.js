@@ -9,19 +9,33 @@ import Layout from "../components/layout"
 
 import nextSeason from "../util/next_season"
 
-function IndexPage(props) {
+function IndexPage({player, events, dispatch} ) {
 
-    const   {player, dispatch} = props
+    const data  = useStaticQuery( graphql`{
+        events: allMarkdownRemark(
+            sort: {
+              fields: [frontmatter___age]
+              order: ASC
+            }
+        ){
+            nodes {
+                id
+            }
+        }
+    }`)
 
-
-    const events = []
+    const currentEvent = events.activeEvent;
 
     return (
         <Layout active={"game"}>
 
             <Season season={player?.age  * 4}/>
             <div className={'container'}>
-                    Event goes here
+                <h1>{currentEvent.title}</h1>
+                <div dangerouslySetInnerHTML={{
+                        __html: currentEvent.html
+                    }} />
+
             </div>
 
             <div className="footer">
@@ -30,7 +44,7 @@ function IndexPage(props) {
                         <Col lg={3} sm={6}></Col>
                         <Col lg={3} sm={6}></Col>
                         <Col lg={3} sm={6}></Col>
-                        <Col lg={3} sm={6}><Button type="button"  size="lg"  onClick={ ()=>{nextSeason(player, events, dispatch)} }>Next Season</Button></Col>
+                        <Col lg={3} sm={6}><Button type="button"  size="lg"  onClick={ ()=>{nextSeason(player, data.events.nodes, dispatch)} }>Next Season</Button></Col>
                     </Row>
                 </div>
             </div>
@@ -40,6 +54,7 @@ function IndexPage(props) {
 }
 
 export default connect(state => ({
+        events: state.events,
         player: state.player,
     }), null)(IndexPage)
 

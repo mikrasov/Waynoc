@@ -19,6 +19,7 @@ exports.createPages = ({ graphql, actions }) => {
               node {
                 id
                 html
+                htmlAst
                 frontmatter {
                   title
                   age
@@ -36,7 +37,13 @@ exports.createPages = ({ graphql, actions }) => {
         // Create Event data files
         result.data.allMarkdownRemark.edges.forEach(({node}) => {
 
-            const eventData = JSON.stringify(node)
+
+            const eventData = JSON.stringify({
+                ...node,
+                age: node.frontmatter.age,
+                title: node.frontmatter.title,
+                frontmatter: null
+            })
 
             fs.writeFile(baseDir + node.id + ".json", eventData, {flag: "w"}, function (err) {
                 if (err) return console.log("Error Writing EVENT: " + node.id);

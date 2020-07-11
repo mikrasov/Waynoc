@@ -1,23 +1,22 @@
-import ageEvents from "./age_events"
-import {nextGameSeason} from "../state";
+import {nextGameSeason, setActiveEvent, gameOver} from "../state";
 
 
 export default function(player, events, dispatch) {
     dispatch(nextGameSeason())
 
-    console.log(events)
 
-    const age = player.age + 0.25
 
-    if (age in ageEvents) {
-        ageEvents[age].forEach(event => {
-            let effect = ""
-            if(event?.effect){
-                effect = event.effect()
-                effect.flavor_text = event.flavor
-                dispatch(effect)
-            }
-        })
+    const currentEventID = events[player.age/0.25]?.id
+
+    if(currentEventID) {
+        fetch('/static/event-data/'+currentEventID+".json")
+            .then(response => response.json())
+            .then(data => { dispatch(setActiveEvent(data))}
+            )
+    }
+
+    else{
+        dispatch( gameOver() )
     }
 
 
