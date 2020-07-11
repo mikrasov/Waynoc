@@ -20,14 +20,12 @@ function increaseStat(stat, value=1){
 
     stat = stat.toUpperCase().substr(0,3)
 
-
     effect = {
         type: ACTIONS.PLAYER_INCREASE_STAT,
         stat:STATS_MAP[stat],
         value,
     }
 
-    console.log(JSON.stringify(effect))
     effects.push(effect)
     return basicHtmlText("(+"+value+" "+STATS_MAP[stat]+")", "strong")
 }
@@ -91,7 +89,7 @@ function construct(node){
 
     effects = []
 
-    console.log("--"+node.frontmatter.title+"--")
+    //console.log("--"+node.frontmatter.title+"--")
     const eventData = {
         id: node.id,
         htmlAst: findAndReplaceAstNodes(node.htmlAst),
