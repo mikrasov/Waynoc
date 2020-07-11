@@ -1,6 +1,5 @@
 import React  from "react"
 import rehypeReact from "rehype-react"
-import {IncreaseStat} from "../components/event_actions"
 import {nextGameSeason, setActiveEvent, gameOver} from "../state"
 
 
@@ -17,8 +16,6 @@ function convertAST(htmlAst){
 
 export default function(player, events, dispatch) {
     dispatch(nextGameSeason())
-
-
 
     const currentEventID = events[player.age/0.25]?.id
 

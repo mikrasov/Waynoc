@@ -15,7 +15,7 @@ const persistConfig = {
 
 const persistedReducer = persistReducer(persistConfig, rootReducer)
 
-export default ({ element }) => {
+export const persistentStore = ({ element }) => {
     let store = createStore(persistedReducer)
     let persistor = persistStore(store)
 
@@ -23,5 +23,14 @@ export default ({ element }) => {
         <PersistGate loading={null} persistor={persistor}>
             {element}
         </PersistGate>
+    </Provider>
+}
+
+export const temporaryStore = ({ element }) => {
+    let store = createStore(rootReducer)
+
+
+    return <Provider store={store}>
+            {element}
     </Provider>
 }

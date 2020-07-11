@@ -4,4 +4,5 @@
  * See: https://www.gatsbyjs.org/docs/browser-apis/
  */
 
-export { default as wrapRootElement } from './src/state/ReduxWrapper'
+//Swap with persistentStore to
+export { temporaryStore as wrapRootElement } from './src/state/ReduxWrapper'
