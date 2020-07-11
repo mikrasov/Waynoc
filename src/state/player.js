@@ -11,27 +11,37 @@ const initialState = {
     communication: -10,
     dexterity: -10,
     quickness: -10,
-
+    skills: {},
 }
 
 
-export default (state = initialState, action) => {
+export default (player = initialState, action) => {
+    const updatedPlayer = { ...player}
     switch (action.type) {
         case ACTIONS.PLAYER_INCREASE_STAT:
-            const updatedState = { ...state} //copy last state
-            updatedState[action.stat]+= action.value
-            return updatedState
+            updatedPlayer[action.stat] += action.value
+            return updatedPlayer
+
+        case ACTIONS.PLAYER_INCREASE_SKILL:
+            updatedPlayer.skills = { ...player.skills}
+            if (!updatedPlayer.skills[action.stat]) {
+                updatedPlayer.skills[action.stat] = action.value
+            }
+            else {
+                updatedPlayer.skills[action.stat] += action.value
+            }
+            return updatedPlayer
 
         case ACTIONS.PLAYER_CHANGE_NAME:
-            return { ...state, name: action.value }
+            return { ...player, name: action.value }
 
         case ACTIONS.GAME_NEXT_SEASON:
-            return { ...state, age: state.age + .25 }
+            return { ...player, age: player.age + .25 }
 
         case ACTIONS.GAME_RESET:
             return initialState
 
         default:
-            return state
+            return player
     }
 }
