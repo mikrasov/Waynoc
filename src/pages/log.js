@@ -1,30 +1,16 @@
 import React  from "react"
 import { connect } from 'react-redux'
-import PageLayout from "../components/page_layout"
+import Layout from "../components/layout"
 
-
-function getEvent(events){
-    const eventList = []
-
-    for (const [index, e] of events.entries()) {
-            eventList.push(<li key={index}>
-                {e.flavor_text}
-                {e.effect_text?<b>({e.effect_text})</b>:<></>}
-            </li>)
-
-    }
-
-    return eventList
-}
 
 function LogPage({events, dispatch}) {
 
     return (
-        <PageLayout active={"log"}>
+        <Layout active={"log"}>
             <ul>
-                {getEvent(events.recentEvents)}
+                { events.recentEvents.map((event,index) => <li  key={index}> {event.flavor_text}</li>)}
             </ul>
-        </PageLayout>
+        </Layout>
     )
 }
 

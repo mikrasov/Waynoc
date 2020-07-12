@@ -49,12 +49,12 @@ a:hover {
 }
 abbr[title] {
   border-bottom: none;
-  text-decoration: underline;
+
   text-decoration: underline dotted;
 }
 b,
 strong {
-  font-weight: inherit;
+
   font-weight: bolder;
 }
 dfn {
@@ -408,7 +408,6 @@ pre {
   border-radius: 3px;
   overflow: auto;
   word-wrap: normal;
-  padding: 1.45rem;
 }
 table {
   margin-left: 0;
@@ -636,22 +635,21 @@ pre tt:after {
 @media (min-width:1200px){.container{padding: 30px 100px}}
 
 
-.footer{
-  position: absolute;
-  width: 100%;
-  bottom: 0;
-}
-
-@media (min-width: 576px){.gamecontrols {max-width: 540px;}}
-@media (min-width: 768px){.gamecontrols {max-width: 720px;}}
-@media (min-width: 992px){.gamecontrols {max-width: 960px;}}
-@media (min-width: 1200px){.gamecontrols {max-width: 1140px;}}
 
 .gamecontrols{
+  position: absolute;
+  bottom: 0;
   background-color: #5e4523;
-  margin: 0 auto;
   padding: 15px;
+  width: 100%;
+  margin: 0 -17px;
 }
+
+@media (min-width: 576px){.gamecontrols {max-width: 540px; margin: 0 -7px;}}
+@media (min-width: 768px){.gamecontrols {max-width: 720px; margin: 0 -22px;}}
+@media (min-width: 992px){.gamecontrols {max-width: 960px; margin: 0 -52px}}
+@media (min-width: 1200px){.gamecontrols {max-width: 1140px; margin: 0 -102px}}
+
 
 .navbar{
   -webkit-box-shadow: 0 1px 10px -6px rgba(0,0,0,.42), 0 1px 10px 0 rgba(0,0,0,.12), 0 4px 5px -2px rgba(0,0,0,.1);

@@ -4,10 +4,13 @@ import {connect} from "react-redux"
 import {Button, Modal, Nav, Navbar} from 'react-bootstrap'
 import BackgroundImage from 'gatsby-background-image'
 
-import Metadata from "./metadata"
-import {resetGame} from "../state"
 import '../css/bootstrap.min.css'
 import '../css/layout.css'
+
+import Metadata from "./metadata"
+import {resetGame} from "../state"
+import Season from "./season"
+import AgeYMD from "./player/age_ymd"
 
 
 function Layout({dispatch, player, active, className, children}) {
@@ -50,11 +53,9 @@ function Layout({dispatch, player, active, className, children}) {
                             <Nav.Link href="/player" className={(active === "player") ? "active" : ""}>{player?.name?player.name:"Player"}</Nav.Link>
                             <Nav.Link href="/log" className={(active === "log") ? "active" : ""}>Log</Nav.Link>
                             <Nav.Link onClick={()=>setShowReset(true)}>Reset</Nav.Link>
-
                         </Nav>
 
-
-                        <span className="game-time">{Math.floor(player.age)} years {(player.age % 1) * 12} months</span>
+                        <AgeYMD age={player.age} className="game-time"/>
                     </Navbar.Collapse>
                 </Navbar>
 
@@ -69,7 +70,11 @@ function Layout({dispatch, player, active, className, children}) {
                     </Modal.Footer>
                 </Modal>
 
-                <div id='content' className={className}>{children}</div>
+                <Season season={player?.age  * 4}/>
+
+                <div className={'container'}>
+                    <div id='content' className={className}>{children}</div>
+                </div>
 
             </BackgroundImage>
 

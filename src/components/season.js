@@ -19,7 +19,7 @@ export default (props) => <StaticQuery
         <Img
             fadeIn={true}
             fixed={data.seasons.childImageSharp.fixed}
-            className={"season"}
+            className={"season d-none d-sm-block"}
             style={{transform: "rotate("+(props.season * 90)+"deg)"}}
         />
         </>

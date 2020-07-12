@@ -1,6 +1,6 @@
 const ACTIONS = require('./actions')
 
-const init_relationship = 50
+
 const initialState = {
     name: "",
     age: 0,
@@ -13,7 +13,10 @@ const initialState = {
     dexterity: -10,
     quickness: -10,
     skills: {},
-    relationships: {}
+    relationships: {
+        Mom: 80,
+        Dad: 80
+    }
 }
 
 
@@ -38,7 +41,7 @@ export default (player = initialState, action) => {
         case ACTIONS.PLAYER_INCREASE_RELATIONSHIP:
             updatedPlayer.relationships = { ...player.relationships}
             if (!updatedPlayer.relationships[action.stat]) {
-                updatedPlayer.relationships[action.stat] = init_relationship + action.value
+                updatedPlayer.relationships[action.stat] =  action.value
             }
             else {
                 updatedPlayer.relationships[action.stat] += action.value
