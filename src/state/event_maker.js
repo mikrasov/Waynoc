@@ -14,21 +14,7 @@ const STATS_MAP = {
 
 
 let effects = []
-
-
-function increaseStat(stat, value=1){
-
-    stat = stat.toUpperCase().substr(0,3)
-
-    effect = {
-        type: ACTIONS.PLAYER_INCREASE_STAT,
-        stat:STATS_MAP[stat],
-        value,
-    }
-
-    effects.push(effect)
-    return basicHtmlText("(+"+value+" "+STATS_MAP[stat]+")", "strong")
-}
+let choices = []
 
 
 
@@ -49,6 +35,36 @@ function basicHtmlText(value ="", tag = ""){
 
 }
 
+function increaseStat(stat, value=1){
+
+    stat = stat.toUpperCase().substr(0,3)
+
+    effect = {
+        type: ACTIONS.PLAYER_INCREASE_STAT,
+        stat:STATS_MAP[stat],
+        value,
+    }
+
+    effects.push(effect)
+    return basicHtmlText("(+"+value+" "+STATS_MAP[stat]+")", "strong")
+}
+
+
+function availableChoice(title, children){
+
+    choice = {
+        title,
+        resolution: "Some Resolution",
+        effects: []
+    }
+
+    choices.push(choice)
+    return basicHtmlText()
+}
+
+
+
+
 function replaceAstNode(node){
     let props = node.properties
 
@@ -56,6 +72,9 @@ function replaceAstNode(node){
     switch (node.tagName) {
         case "increasestat":
             return increaseStat(props.stat, props.value)
+
+        case "choice":
+            return availableChoice(props.title, node.children)
 
         default:
             return node
@@ -88,6 +107,7 @@ function findAndReplaceAstNodes(ast){
 function construct(node){
 
     effects = []
+    choices = []
 
     //console.log("--"+node.frontmatter.title+"--")
     const eventData = {
@@ -95,13 +115,15 @@ function construct(node){
         htmlAst: findAndReplaceAstNodes(node.htmlAst),
         age: node.frontmatter.age,
         title: node.frontmatter.title,
-        effects:effects
+        effects,
+        choices
     }
 
     //console.log("UPDATED AST: "+ JSON.stringify(eventData.htmlAst) )
     return eventData
 }
 
+//Export to Non ES6 Sections of code like gatsby-node.js :(
 module.exports = {
     construct: construct
 }

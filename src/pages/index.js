@@ -26,6 +26,17 @@ function IndexPage({player, events, dispatch} ) {
 
     const currentEvent = events.activeEvent
 
+    let nextSeasonControl = <>
+        <Col lg={9} sm={6}/>
+        <Col lg={3} sm={6}><Button type="button"  size="lg"  onClick={ ()=>{nextSeason(player, data.events.nodes, dispatch)} }>Next Season</Button></Col>
+    </>
+
+    if(currentEvent?.choices?.length){
+        nextSeasonControl = currentEvent.choices.map((choice,index) => <>
+            <Col lg={3} sm={6} key={index}><Button type="button"  size="lg"  onClick={ ()=>{nextSeason(player, data.events.nodes, dispatch)} } >{choice.title}</Button></Col>
+        </>)
+    }
+
     return (
         <Layout active={"game"}>
 
@@ -38,12 +49,7 @@ function IndexPage({player, events, dispatch} ) {
 
             <div className="footer">
                 <div className="gamecontrols">
-                    <Row>
-                        <Col lg={3} sm={6}></Col>
-                        <Col lg={3} sm={6}></Col>
-                        <Col lg={3} sm={6}></Col>
-                        <Col lg={3} sm={6}><Button type="button"  size="lg"  onClick={ ()=>{nextSeason(player, data.events.nodes, dispatch)} }>Next Season</Button></Col>
-                    </Row>
+                    <Row>{nextSeasonControl}</Row>
                 </div>
             </div>
 

@@ -40,7 +40,8 @@ export default (state = initialState, action) => {
 
 
         case ACTIONS.GAME_SET_EVENT:
-            console.log("Active event ["+action.event.age+"]: "+action.event.id)
+            console.log("Active event ["+action.event.age+"]: "+action.event.id+"\n")
+
             prevRecentEvents.push({flavor_text: action.event.title, effect_text:""})
             return {...state, activeEvent: action.event, recentEvents: prevRecentEvents}
 

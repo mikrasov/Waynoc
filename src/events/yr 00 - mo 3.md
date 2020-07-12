@@ -19,3 +19,4 @@ To suck on your hand. <IncreaseStat stat="DEXTERITY"/>
 
 To swing at dangling toys. <IncreaseStat stat="QUICKNESS"/>
 
+You learned your name. (George)
