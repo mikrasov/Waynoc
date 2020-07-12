@@ -3,11 +3,12 @@
 module.exports = {
     GAME_RESET: "game/reset",
     GAME_OVER: "game/loose",
-    GAME_NEXT_SEASON: "game/next-season",
-    GAME_SET_EVENT: "game/set-active",
-    PLAYER_INCREASE_STAT: "player/increase-stat",
-    PLAYER_INCREASE_SKILL: "player/increase-skill",
-    PLAYER_INCREASE_RELATIONSHIP: "player/increase-relationship",
+    NEXT_SEASON: "game/next-season",
+    SET_EVENT: "event/set-active",
+    RESOLVE_EVENT: "event/resolve",
+    PLAYER_MOD_STAT: "player/mod-stat",
+    PLAYER_MOD_SKILL: "player/mod-skill",
+    PLAYER_MOD_RELATIONSHIP: "player/mod-relationship",
     PLAYER_CHANGE_NAME: "player/new-name",
 }
 

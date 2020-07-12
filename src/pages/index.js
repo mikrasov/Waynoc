@@ -4,7 +4,8 @@ import {Row, Col, Button} from "react-bootstrap"
 import { useStaticQuery, graphql } from 'gatsby'
 
 import Layout from "../components/layout"
-import nextSeason from "../util/next_season"
+import {nextSeason, makeChoice, convertAST} from "../util/event_director"
+
 
 function IndexPage({player, events, dispatch} ) {
 
@@ -29,16 +30,17 @@ function IndexPage({player, events, dispatch} ) {
     </>
 
     if(currentEvent?.choices?.length){
-        nextSeasonControl = currentEvent.choices.map((choice,index) => <>
-            <Col lg={3} sm={6} key={index}><Button type="button"  size="lg"  onClick={ ()=>{nextSeason(player, data.events.nodes, dispatch)} } >{choice.title}</Button></Col>
-        </>)
+        nextSeasonControl = currentEvent.choices.map((choice,index) => <Col lg={3} sm={6} key={index}>
+            <Button type="button"  size="lg"  onClick={ ()=>{makeChoice(currentEvent,index,dispatch)} } >{choice.title}</Button>
+        </Col>
+        )
     }
 
     return (
         <Layout active={"game"}>
 
             <h1>{currentEvent.title}</h1>
-            {currentEvent.html}
+            {convertAST(currentEvent.htmlAst)}
             <div className="gamecontrols">
                 <Row>{nextSeasonControl}</Row>
             </div>

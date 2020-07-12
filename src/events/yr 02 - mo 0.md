@@ -2,6 +2,6 @@
 title: Learning to Speak
 age: 2
 ---
-You learned to speak in sentences. (+1 COM)
+You learned to speak in sentences. <Mod stat="COM"></Mod>
 
-To stand on tiptoe (+1 STA)
+To stand on tiptoe <Mod stat="STA"></Mod>

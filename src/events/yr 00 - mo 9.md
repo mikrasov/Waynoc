@@ -2,8 +2,8 @@
 title: Learning to Stand
 age: 0.75
 ---
-You learned to fear strangers. (+1 INT)
+You learned to fear strangers. <Mod stat="INT"></Mod>
 
-To stand while holding on to something. (+1 STR)
+To stand while holding on to something. <Mod stat="STR"></Mod>
 
-To understand simple sentences. (+1 COM)
+To understand simple sentences. <Mod stat="COM"></Mod>

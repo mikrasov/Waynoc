@@ -3,20 +3,20 @@ title: First Months of Life
 age: 0.25
 ---
 
-You learned to recognize faces. <IncreaseStat stat="INTELLIGENCE"/>
+You learned to recognize faces. <Mod stat="INTELLIGENCE"></Mod>
 
-To look around. <IncreaseStat stat="PERCEPTION"/>
+To look around. <Mod stat="PERCEPTION"></Mod>
 
-To lift your head. <IncreaseStat stat="STRENGTH"/>
+To lift your head. <Mod stat="STRENGTH"></Mod>
 
-To hold your head steady. <IncreaseStat stat="STAMINA"/>
+To hold your head steady. <Mod stat="STAMINA"></Mod>
 
-To smile at people. <IncreaseStat stat="PRESENCE"/>
+To smile at people. <Mod stat="PRESENCE"></Mod>
 
-To coo and babble.  <IncreaseStat stat="COMMUNICATION"/>
+To coo and babble.  <Mod stat="COMMUNICATION"></Mod>
 
-To suck on your hand. <IncreaseStat stat="DEXTERITY"/>
+To suck on your hand. <Mod stat="DEXTERITY"></Mod>
 
-To swing at dangling toys. <IncreaseStat stat="QUICKNESS"/>
+To swing at dangling toys. <Mod stat="QUICKNESS"></Mod>
 
 You learned your name. (George)

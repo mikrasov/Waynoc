@@ -14,8 +14,8 @@ const initialState = {
     quickness: -10,
     skills: {},
     relationships: {
-        Mom: 80,
-        Dad: 80
+        mom: 80,
+        dad: 80
     }
 }
 
@@ -23,11 +23,11 @@ const initialState = {
 export default (player = initialState, action) => {
     const updatedPlayer = { ...player}
     switch (action.type) {
-        case ACTIONS.PLAYER_INCREASE_STAT:
+        case ACTIONS.PLAYER_MOD_STAT:
             updatedPlayer[action.stat] += action.value
             return updatedPlayer
 
-        case ACTIONS.PLAYER_INCREASE_SKILL:
+        case ACTIONS.PLAYER_MOD_SKILL:
             updatedPlayer.skills = { ...player.skills}
             if (!updatedPlayer.skills[action.stat]) {
                 updatedPlayer.skills[action.stat] = action.value
@@ -38,7 +38,7 @@ export default (player = initialState, action) => {
             return updatedPlayer
 
 
-        case ACTIONS.PLAYER_INCREASE_RELATIONSHIP:
+        case ACTIONS.PLAYER_MOD_RELATIONSHIP:
             updatedPlayer.relationships = { ...player.relationships}
             if (!updatedPlayer.relationships[action.stat]) {
                 updatedPlayer.relationships[action.stat] =  action.value
@@ -52,7 +52,7 @@ export default (player = initialState, action) => {
         case ACTIONS.PLAYER_CHANGE_NAME:
             return { ...player, name: action.value }
 
-        case ACTIONS.GAME_NEXT_SEASON:
+        case ACTIONS.NEXT_SEASON:
             return { ...player, age: player.age + .25 }
 
         case ACTIONS.GAME_RESET:

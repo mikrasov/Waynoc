@@ -1,10 +1,9 @@
 import React  from "react"
 import rehypeReact from "rehype-react"
-import {nextGameSeason, setActiveEvent, gameOver} from "../state"
+import {nextGameSeason, setActiveEvent, gameOver, resolveActiveEvent} from "../state"
 
 
-function convertAST(htmlAst){
-
+export function convertAST(htmlAst){
 
     const renderAst = new rehypeReact({
         createElement: React.createElement,
@@ -14,7 +13,7 @@ function convertAST(htmlAst){
     return renderAst(htmlAst)
 }
 
-export default function(player, events, dispatch) {
+export function nextSeason(player, events, dispatch) {
     dispatch(nextGameSeason())
 
     const currentEventID = events[player.age/0.25]?.id
@@ -23,7 +22,6 @@ export default function(player, events, dispatch) {
         fetch('/static/event-data/'+currentEventID+".json")
             .then(response => response.json())
             .then(data => {
-                data.html = convertAST(data.htmlAst)
                 dispatch(setActiveEvent(data))
                 data.effects.forEach((e)=>{dispatch(e)})
             })
@@ -32,6 +30,12 @@ export default function(player, events, dispatch) {
     else{
         dispatch( gameOver() )
     }
+}
+
+
+export function makeChoice(activeEvent, choice, dispatch) {
+    activeEvent.choices[choice].effects.forEach((e)=>{dispatch(e)})
+    dispatch(resolveActiveEvent(choice))
 
 
 }

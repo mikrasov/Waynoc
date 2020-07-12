@@ -1,12 +1,10 @@
-
-
 /**
  * Implement Gatsby's Node APIs in this file.
  *
  * See: https://www.gatsbyjs.org/docs/node-apis/
  */
 const fs = require('fs')
-const event_maker = require('./src/state/event_maker')
+const event_compiler = require('./src/state/event_compiler')
 
 
 //This is where we create files
@@ -40,7 +38,7 @@ exports.createPages = ({ graphql, actions }) => {
         // Create Event data files
         result.data.allMarkdownRemark.edges.forEach(({node}) => {
 
-            const eventData = event_maker.construct(node)
+            const eventData = event_compiler.construct(node)
 
             fs.writeFile(baseDir + node.id + ".json", JSON.stringify(eventData), {flag: "w"}, function (err) {
                 if (err) return console.log("Error Writing EVENT: " + node.id);
