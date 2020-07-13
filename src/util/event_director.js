@@ -7,11 +7,9 @@ export function nextSeason(player, events, dispatch) {
     const currentEventID = events[player.age/0.25]?.id
 
     if(currentEventID) {
-        fetch('/static/event-data/'+currentEventID+".json")
-            .then(response => {                console.log(response); return response.json()})
+        fetch('/static/event_data/'+currentEventID+".json")
+            .then(response => {return response.json()})
             .then(data => {
-                console.log('/static/event-data/'+currentEventID+".json")
-
                 console.log(data)
                 const event =  compile(data)
                 dispatch(setActiveEvent(event))

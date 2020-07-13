@@ -7,7 +7,7 @@ const fs = require('fs')
 
 //This is where we create files
 exports.createPages = ({ graphql, actions }) => {
-    const baseDir = "./public/static/event-data/"
+    const baseDir = "./public/static/event_data/"
 
 
     // Create Parent dir if does not exist
