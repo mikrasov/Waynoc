@@ -1,5 +1,5 @@
 import {ACTIONS} from './'
-import {resolveEvent} from '../compiler'
+import {resolveChoice} from '../compiler'
 
 const firstEvent = {
     id: "",
@@ -45,11 +45,6 @@ export default (state = initialState, action) => {
 
             prevRecentEvents.push({flavor_text: action.event.title, effect_text:""})
             return {...state, activeEvent: action.event, recentEvents: prevRecentEvents}
-
-
-
-        case ACTIONS.RESOLVE_EVENT:
-            return {...state, activeEvent: resolveEvent(state.activeEvent, action.choice)}
 
 
         default:

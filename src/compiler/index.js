@@ -1,15 +1,8 @@
-import React from "react"
-import rehypeReact from "rehype-react"
+import {generateHtml} from "./ast_util"
 import Mod from "./mod"
-import Choice from "./choice";
-
-const clone = require("lodash.clonedeep")
-
-
-const generateHtml = new rehypeReact({
-    createElement: React.createElement,
-    components: {  },
-}).Compiler
+import Choice from "./choice"
+import Prompt from "./prompt"
+import Input from "./input"
 
 
 function replaceAstNode(node, scope){
@@ -19,6 +12,10 @@ function replaceAstNode(node, scope){
             return Mod(node, scope)
         case "choice":
             return Choice(scope, node)
+        case "prompt":
+            return Prompt(scope, node)
+        case "input":
+            return Input(scope, node)
         default:
             return node
     }
@@ -51,7 +48,7 @@ function findAndReplaceAstNodes(ast, scope){
  */
 
 export function compile(rawEvent){
-    const scope = {effects:[], choices:[]}
+    const scope = {prompt:null, effects:[], choices:[]}
     const ast = findAndReplaceAstNodes(rawEvent.ast, scope)
 
     const event = {
@@ -59,19 +56,28 @@ export function compile(rawEvent){
         ...scope,
         parts: [generateHtml(ast)]
     }
+    delete event.ast //no longer need the AST
 
     return event
-
 }
 
 
-export function resolveEvent(originalEvent, choiceNum){
-    const event = clone(originalEvent)
-    const choice = compile(event.choices[choiceNum])
+export function resolveChoice(originalEvent, choiceNum){
 
-    event.effects = choice.effects
-    event.choices = choice.choices
-    event.parts.push(choice.parts[0]) //add HTML from choice
+    const choice = compile(originalEvent.choices[choiceNum])
 
-    return event
+    return {
+        ...originalEvent,
+        ...choice,
+        parts: [...originalEvent.parts, choice.parts]
+    }
+}
+
+export function resolveInput(originalEvent, resolution){
+    return {
+        ...originalEvent,
+        input:null,
+        prompt:null,
+        parts: [...originalEvent.parts, resolution]
+    }
 }

@@ -1,5 +1,5 @@
 import {nextGameSeason, setActiveEvent, gameOver} from "../state"
-import {compile, resolveEvent} from "../compiler"
+import {compile, resolveChoice} from "../compiler"
 
 
 export function nextSeason(player, events, dispatch) {
@@ -24,7 +24,7 @@ export function nextSeason(player, events, dispatch) {
 
 
 export function makeChoice(activeEvent, choice, dispatch) {
-    const event = resolveEvent(activeEvent, choice)
+    const event = resolveChoice(activeEvent, choice)
     dispatch(setActiveEvent(event))
     event.effects.forEach((e)=>{dispatch(e)})
 }

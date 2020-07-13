@@ -4,7 +4,7 @@ export default function Choice(scope, node){
     const props = node.properties
 
     scope.choices.push({
-        title: props.title,
+        label: props.title,
         ast: {
             type: "root",
             children: node.children,

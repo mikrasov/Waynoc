@@ -17,5 +17,6 @@ export function gameOver(){ return  {type: ACTIONS.GAME_OVER} }
 export function resetGame(){ return  {type: ACTIONS.GAME_RESET} }
 export function nextGameSeason(){ return  {type: ACTIONS.NEXT_SEASON} }
 export function setActiveEvent(event){return  {type: ACTIONS.SET_EVENT, event}}
+export function changePlayerName(name){return  {type: ACTIONS.PLAYER_CHANGE_NAME, value: name}}
 
 export default combineReducers({ player, events })

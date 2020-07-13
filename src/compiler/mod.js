@@ -66,6 +66,6 @@ export default function Mod (node, scope) {
     if(props.person)
         return modRelationship(scope, props.person, props.value)
 
-    console.log("Warning! Unknown tag: "+node)
+    console.log("Warning! Unknown MOD target: ", node)
     return basicAstNode()
 }

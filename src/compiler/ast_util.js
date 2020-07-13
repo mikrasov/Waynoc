@@ -1,3 +1,5 @@
+import rehypeReact from "rehype-react"
+import React from "react"
 
 
 export function basicAstNode(value ="", tag = ""){
@@ -17,13 +19,17 @@ export function basicAstNode(value ="", tag = ""){
 
 }
 
-export function basicAstTree(value, tag){
+export function wrapIntoTree(children){
 
     return {
         type: "root",
-        children: [basicAstNode(value,tag)],
+        children,
         data: { quirksMode: false}
-
     }
 
 }
+
+export const generateHtml = new rehypeReact({
+    createElement: React.createElement,
+    components: {    },
+}).Compiler
