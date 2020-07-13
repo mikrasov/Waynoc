@@ -1,4 +1,4 @@
-const ACTIONS = require('./actions')
+import {ACTIONS} from "./"
 
 
 const initialState = {

@@ -1,16 +1,16 @@
-const ACTIONS = require('./actions')
-const {resolveEvent, basicAstTree} = require('./event_compiler')
+import {ACTIONS} from './'
+import {resolveEvent} from '../compiler'
 
 const firstEvent = {
     id: "",
-    htmlAst: basicAstTree("Your are born. It is only downhill from here."),
+    parts: ["Your are born. It is only downhill from here."],
     title: "Welcome to Waynoc",
     age: 0
 }
 
 const lastEvent = {
     id: "",
-    htmlAst: basicAstTree("This is how far we built this thing"),
+    parts: ["This is how far we built this thing"],
     title: "Game Over",
     age: 100
 
