@@ -8,8 +8,11 @@ export function nextSeason(player, events, dispatch) {
 
     if(currentEventID) {
         fetch('/static/event-data/'+currentEventID+".json")
-            .then(response => response.json())
+            .then(response => {                console.log(response); return response.json()})
             .then(data => {
+                console.log('/static/event-data/'+currentEventID+".json")
+
+                console.log(data)
                 const event =  compile(data)
                 dispatch(setActiveEvent(event))
                 event.effects.forEach((e)=>{dispatch(e)})
