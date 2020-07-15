@@ -1,5 +1,4 @@
 import {ACTIONS} from './'
-import {resolveChoice} from '../compiler'
 
 const firstEvent = {
     id: "",

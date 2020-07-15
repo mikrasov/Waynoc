@@ -1,5 +1,4 @@
-import {basicAstNode} from "./ast_util"
-
+const {basicAstNode} = require("../ast_util")
 
 export default function Input(scope, node){
     const props = node.properties

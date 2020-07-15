@@ -1,17 +1,6 @@
-import {basicAstNode} from "./ast_util"
-import {ACTIONS} from "../state"
-
-const STATS_MAP = {
-    INT: "intelligence",
-    PER: "perception",
-    STR: "strength",
-    STA: "stamina",
-    PRE: "presence",
-    COM: "communication",
-    DEX: "dexterity",
-    QUI: "quickness"
-
-}
+import {ACTIONS} from "../../state"
+import {STATS_MAP} from "../attr_maps"
+const {basicAstNode} = require("../ast_util")
 
 
 function modStat(scope, stat, value=1){
@@ -41,16 +30,16 @@ function modSkill(scope, skill, value=5){
     return basicAstNode(`( ${sign}${value} in ${skill} )`, "strong")
 }
 
-function modRelationship(scope, person, value=5){
+function modRelationship(scope, relationsip, value=5){
     const sign = value>0?"+":""
-    person = person.toLowerCase()
+    relationsip = relationsip.toLowerCase()
 
     scope.effects.push({
         type: ACTIONS.PLAYER_MOD_RELATIONSHIP,
-        stat: person,
+        stat: relationsip,
         value: parseInt(value)
     })
-    return basicAstNode(`( ${sign}${value}  relationship with ${person} )`, "strong")
+    return basicAstNode(`( ${sign}${value}  relationship with ${relationsip} )`, "strong")
 }
 
 
@@ -63,8 +52,8 @@ export default function Mod (node, scope) {
     if(props.skill)
         return modSkill(scope, props.skill, props.value)
 
-    if(props.person)
-        return modRelationship(scope, props.person, props.value)
+    if(props.relation)
+        return modRelationship(scope, props.relation, props.value)
 
     console.log("Warning! Unknown MOD target: ", node)
     return basicAstNode()

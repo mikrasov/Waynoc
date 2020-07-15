@@ -1,8 +1,10 @@
-import rehypeReact from "rehype-react"
-import React from "react"
+/*
+ *  Note these helper functions for AST construction that should be accessible from lower down code that may not be
+ *  ES6 compatible
+ */
 
 
-export function basicAstNode(value ="", tag = ""){
+function basicAstNode(value ="", tag = ""){
 
     if(tag) return {
         type: "element",
@@ -19,7 +21,7 @@ export function basicAstNode(value ="", tag = ""){
 
 }
 
-export function wrapIntoTree(children){
+function wrapIntoTree(children){
 
     return {
         type: "root",
@@ -29,7 +31,7 @@ export function wrapIntoTree(children){
 
 }
 
-export const generateHtml = new rehypeReact({
-    createElement: React.createElement,
-    components: {    },
-}).Compiler
+module.exports = {
+    wrapIntoTree: wrapIntoTree,
+    basicAstNode: basicAstNode
+}

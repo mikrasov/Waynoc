@@ -34,7 +34,7 @@ function GameControls({dispatch, events, player}) {
     }
     else if(activeEvent?.choices?.length){
         nextSeasonControl = activeEvent.choices.map((choice,index) => <Col lg={3} sm={6} key={index}>
-                <Button type="button"  size="lg"  onClick={ ()=>{makeChoice(activeEvent,index,dispatch)} } >{choice.label}</Button>
+                <Button type="button"  size="lg"  onClick={ ()=>{makeChoice(player, activeEvent,index,dispatch)} } >{choice.label}</Button>
             </Col>
         )
     }

@@ -1,17 +1,28 @@
-import {generateHtml} from "./ast_util"
-import Mod from "./mod"
-import Choice from "./choice"
-import Prompt from "./prompt"
-import Input from "./input"
+import Mod from "./tags/mod"
+import Choice from "./tags/choice"
+import Check from "./tags/check"
+import Prompt from "./tags/prompt"
+import Input from "./tags/input"
+
+import rehypeReact from "rehype-react"
+import React from "react"
+
+export const generateHtml = new rehypeReact({
+    createElement: React.createElement,
+    components: {    },
+}).Compiler
 
 
-function replaceAstNode(node, scope){
+
+function replaceAstNode(node, scope, player){
     //note all nodes are lowercase
     switch (node.tagName) {
+        case "check":
+            return Check(scope, node, player)
         case "mod":
             return Mod(node, scope)
         case "choice":
-            return Choice(scope, node)
+            return Choice(scope, node, player)
         case "prompt":
             return Prompt(scope, node)
         case "input":
@@ -26,15 +37,14 @@ function replaceAstNode(node, scope){
  * Depth first search of markdown AST
  * - Allows replacement of custom tags with state modifiers
  */
-function findAndReplaceAstNodes(ast, scope){
-
+function findAndReplaceAstNodes(ast, scope, player){
 
     if(ast.children) ast.children.forEach((node,index)=>{
         //Replace node if needed
-        if(node.type === "element" ) node = replaceAstNode(node, scope)
+        if(node.type === "element" ) node = replaceAstNode(node, scope, player)
 
         //Go Deeper in the tree
-        node = findAndReplaceAstNodes(node, scope)
+        node = findAndReplaceAstNodes(node, scope, player)
 
         //Update actual tree
         ast.children[index] = node
@@ -47,9 +57,9 @@ function findAndReplaceAstNodes(ast, scope){
  * Transforms HTML AST into React Component
  */
 
-export function compile(rawEvent){
-    const scope = {prompt:null, effects:[], choices:[]}
-    const ast = findAndReplaceAstNodes(rawEvent.ast, scope)
+export function compile(player, rawEvent){
+    const scope = {prompt:null, effects:[], choices:[], lastBranch:null}
+    const ast = findAndReplaceAstNodes(rawEvent.ast, scope, player)
 
     const event = {
         ...rawEvent,
@@ -57,14 +67,14 @@ export function compile(rawEvent){
         parts: [generateHtml(ast)]
     }
     delete event.ast //no longer need the AST
+    delete event.lastBranch // also no longer needed
 
     return event
 }
 
 
-export function resolveChoice(originalEvent, choiceNum){
-
-    const choice = compile(originalEvent.choices[choiceNum])
+export function resolveChoice(player, originalEvent, choiceNum){
+    const choice = compile(player, originalEvent.choices[choiceNum])
 
     return {
         ...originalEvent,

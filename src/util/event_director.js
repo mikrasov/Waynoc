@@ -11,7 +11,7 @@ export function nextSeason(player, events, dispatch) {
             .then(response => {return response.json()})
             .then(data => {
                 console.log(data)
-                const event =  compile(data)
+                const event =  compile(player, data)
                 dispatch(setActiveEvent(event))
                 event.effects.forEach((e)=>{dispatch(e)})
                 dispatch(nextGameSeason())
@@ -24,8 +24,8 @@ export function nextSeason(player, events, dispatch) {
 }
 
 
-export function makeChoice(activeEvent, choice, dispatch) {
-    const event = resolveChoice(activeEvent, choice)
+export function makeChoice(player, activeEvent, choice, dispatch) {
+    const event = resolveChoice(player, activeEvent, choice)
     dispatch(setActiveEvent(event))
     event.effects.forEach((e)=>{dispatch(e)})
 }
