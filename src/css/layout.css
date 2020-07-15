@@ -624,16 +624,28 @@ pre tt:after {
 
 .container {
   background-color: #F9F8F4;
-  min-height:94vh;
+  min-height:100vh;
   border-right-style: solid;
   border-left-style: solid;
   border-color: #CCC;
 }
 
-@media (min-width:576px){.container{padding: 5px}}
-@media (min-width:768px){.container{padding: 20px}}
-@media (min-width:992px){.container{padding: 20px 50px}}
-@media (min-width:1200px){.container{padding: 30px 100px}}
+.content{
+  overflow-y: auto;
+  padding-top: 80px;
+}
+
+.navbar{
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+
+}
+@media (min-width:576px){.content{padding: 80px 5px 5px 5px}}
+@media (min-width:768px){.content{padding: 80px 20px 20px 20px}}
+@media (min-width:992px){.content{padding: 80px 20px 50px 20px}}
+@media (min-width:1200px){.content{padding: 80px 30px 50px 20px}}
 
 
 
@@ -651,10 +663,10 @@ pre tt:after {
   font-size: 1.3rem;
 }
 
-@media (min-width: 576px){.gamecontrols {max-width: 540px; margin: 0 -7px;}}
-@media (min-width: 768px){.gamecontrols {max-width: 720px; margin: 0 -22px;}}
-@media (min-width: 992px){.gamecontrols {max-width: 960px; margin: 0 -52px}}
-@media (min-width: 1200px){.gamecontrols {max-width: 1140px; margin: 0 -102px}}
+@media (min-width: 576px){.gamecontrols {max-width: 540px; margin: 0 -22px;}}
+@media (min-width: 768px){.gamecontrols {max-width: 720px; margin: 0 -37px;}}
+@media (min-width: 992px){.gamecontrols {max-width: 960px; margin: 0 -37px}}
+@media (min-width: 1200px){.gamecontrols {max-width: 1140px; margin: 0 -37px}}
 
 
 .navbar{
@@ -665,7 +677,7 @@ pre tt:after {
 
 .season {
   position: relative;
-  top: -120px;
+  top: -55px;
   float: right;
   transition: transform 200ms;
 }

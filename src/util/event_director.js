@@ -1,6 +1,9 @@
 import {nextGameSeason, setActiveEvent, gameOver} from "../state"
 import {compile, resolveChoice} from "../compiler"
 
+function rollDice() {
+    return (1 + Math.floor(Math.random()*6) ) +  (1 + Math.floor(Math.random()*6) )
+}
 
 export function nextSeason(player, events, dispatch) {
 
@@ -11,7 +14,10 @@ export function nextSeason(player, events, dispatch) {
             .then(response => {return response.json()})
             .then(data => {
                 console.log(data)
-                const event =  compile(player, data)
+                const event =  {
+                    ...data,
+                    ...compile(player, data.ast)
+                }
                 dispatch(setActiveEvent(event))
                 event.effects.forEach((e)=>{dispatch(e)})
                 dispatch(nextGameSeason())
@@ -25,7 +31,12 @@ export function nextSeason(player, events, dispatch) {
 
 
 export function makeChoice(player, activeEvent, choice, dispatch) {
-    const event = resolveChoice(player, activeEvent, choice)
+    const diceRoll = rollDice()
+    console.log("Rolled a "+diceRoll)
+    const event = {
+        ...activeEvent,
+        ...resolveChoice(player, activeEvent, choice, diceRoll)
+    }
     dispatch(setActiveEvent(event))
     event.effects.forEach((e)=>{dispatch(e)})
 }

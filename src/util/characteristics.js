@@ -40,7 +40,6 @@ export function getCharacteristicPath(props) {
     if(props.relationship)
         return "relationships."+props.relationship.toLowerCase()
 
-    console.log("WARNING: Unable to construct path from props ", props)
     return ""
 }
 

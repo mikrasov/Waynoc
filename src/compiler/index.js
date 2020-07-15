@@ -1,11 +1,13 @@
+import rehypeReact from "rehype-react"
+import React from "react"
+
 import Mod from "./tags/mod"
 import Choice from "./tags/choice"
 import Check from "./tags/check"
 import Prompt from "./tags/prompt"
 import Input from "./tags/input"
 
-import rehypeReact from "rehype-react"
-import React from "react"
+import {getCharacteristic} from "../util/characteristics"
 
 export const generateHtml = new rehypeReact({
     createElement: React.createElement,
@@ -57,29 +59,42 @@ function findAndReplaceAstNodes(ast, scope, player){
  * Transforms HTML AST into React Component
  */
 
-export function compile(player, rawEvent){
+export function compile(player, ast){
     const scope = {prompt:null, effects:[], choices:[]}
-    const ast = findAndReplaceAstNodes(rawEvent.ast, scope, player)
+    const modifiedAst = findAndReplaceAstNodes(ast, scope, player)
 
-    const event = {
-        ...rawEvent,
+    return {
         ...scope,
-        parts: [generateHtml(ast)]
+        parts: [generateHtml(modifiedAst)]
     }
-    delete event.ast //no longer need the AST
-
-    return event
 }
 
 
-export function resolveChoice(player, originalEvent, choiceNum){
-    const choice = compile(player, originalEvent.choices[choiceNum])
+export function resolveChoice(player, originalEvent, choiceNum, roll){
+    const choice = originalEvent.choices[choiceNum]
+    console.log(choice)
 
-    return {
-        ...originalEvent,
-        ...choice,
-        parts: [...originalEvent.parts, choice.parts]
+    const passed = !choice.requires || (getCharacteristic(player, choice.requires.path) + roll >= choice.requires.value)
+
+    if(passed){
+        console.log("PASSED")
+        const resolution = compile(player, choice.ast )
+        return {
+            ...originalEvent,
+            ...resolution,
+            parts: [...originalEvent.parts, resolution.parts]
+        }
     }
+
+    console.log("FAILED")
+    return {
+        originalEvent,
+        prompt:null,
+        choices:[],
+        effects:[],
+        parts: [...originalEvent.parts, <p>Failed.</p>]
+    }
+
 }
 
 export function resolveInput(originalEvent, resolution){

@@ -37,3 +37,9 @@ Right from birth your interests are clear.    <Mod skill="Arcana"  value="5"></M
 Meanwhile in the back your parents smirk, envious. <Mod relationship="dad" value="-5"></Mod> <Mod relationship="mom" value="-5"></Mod>
 
 </Choice>
+<Choice title="Greetings" stat="COM" value="1">
+
+# Your first word was "Greetings"!
+Your parents are shocked! <Mod relationship="mom" value="5"></Mod> <Mod relationship="dad" value="5"></Mod>
+    
+</Choice>

@@ -44,36 +44,37 @@ function Layout({dispatch, player, active, className, children}) {
 
 
             >
-                <Navbar className="navbar-dark sticky-top" expand="sm" style={{backgroundColor: "#5e4523"}}>
-                    <Navbar.Brand href="/">Waynoc</Navbar.Brand>
-                    <Navbar.Toggle aria-controls="basic-navbar-nav"/>
-                    <Navbar.Collapse id="basic-navbar-nav" className="justify-content-end">
-                        <Nav className="mr-auto">
-                            <Nav.Link href="/" className={(active === "game") ? "active" : ""}>Game</Nav.Link>
-                            <Nav.Link href="/player" className={(active === "player") ? "active" : ""}>{player?.name?player.name:"Player"}</Nav.Link>
-                            <Nav.Link href="/log" className={(active === "log") ? "active" : ""}>Log</Nav.Link>
-                            <Nav.Link onClick={()=>setShowReset(true)}>Reset</Nav.Link>
-                        </Nav>
+                <div className={'container'}>
+                    <Navbar className="navbar-dark sticky-top" expand="sm" style={{backgroundColor: "#5e4523"}}>
+                        <Navbar.Brand href="/">Waynoc</Navbar.Brand>
+                        <Navbar.Toggle aria-controls="basic-navbar-nav"/>
+                        <Navbar.Collapse id="basic-navbar-nav" className="justify-content-end">
+                            <Nav className="mr-auto">
+                                <Nav.Link href="/" className={(active === "game") ? "active" : ""}>Game</Nav.Link>
+                                <Nav.Link href="/player" className={(active === "player") ? "active" : ""}>{player?.name?player.name:"Player"}</Nav.Link>
+                                <Nav.Link href="/log" className={(active === "log") ? "active" : ""}>Log</Nav.Link>
+                                <Nav.Link onClick={()=>setShowReset(true)}>Reset</Nav.Link>
+                            </Nav>
 
-                        <AgeYMD age={player.age} className="game-time"/>
-                    </Navbar.Collapse>
-                </Navbar>
+                            <AgeYMD age={player.age} className="game-time"/>
+                        </Navbar.Collapse>
+                    </Navbar>
 
-                <Modal show={showReset} onHide={()=>setShowReset(false)} >
-                    <Modal.Header closeButton>
-                        <Modal.Title>Restart the game?</Modal.Title>
-                    </Modal.Header>
-                    <Modal.Body>Warning! This is not reversable!</Modal.Body>
-                    <Modal.Footer>
-                        <Button type="button" variant="danger" size="lg" onClick={triggerReset}>Restart</Button>
-                        <Button type="button" variant="primary" size="lg" onClick={()=>setShowReset(false)}>Cancel</Button>
-                    </Modal.Footer>
-                </Modal>
+                    <Modal show={showReset} onHide={()=>setShowReset(false)} >
+                        <Modal.Header closeButton>
+                            <Modal.Title>Restart the game?</Modal.Title>
+                        </Modal.Header>
+                        <Modal.Body>Warning! This is not reversable!</Modal.Body>
+                        <Modal.Footer>
+                            <Button type="button" variant="danger" size="lg" onClick={triggerReset}>Restart</Button>
+                            <Button type="button" variant="primary" size="lg" onClick={()=>setShowReset(false)}>Cancel</Button>
+                        </Modal.Footer>
+                    </Modal>
 
                 <Season season={player?.age  * 4}/>
-
-                <div className={'container'}>
-                    <div id='content' className={className}>{children}</div>
+                    <div className='content'>
+                        <div  className={className}>{children}</div>
+                    </div>
                 </div>
 
             </BackgroundImage>
