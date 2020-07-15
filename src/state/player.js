@@ -1,5 +1,5 @@
 import {ACTIONS} from "./"
-
+import {modCharacteristic} from "../util/characteristics"
 
 const initialState = {
     name: "",
@@ -21,33 +21,11 @@ const initialState = {
 
 
 export default (player = initialState, action) => {
-    const updatedPlayer = { ...player}
+
     switch (action.type) {
-        case ACTIONS.PLAYER_MOD_STAT:
-            updatedPlayer[action.stat] += action.value
-            return updatedPlayer
 
-        case ACTIONS.PLAYER_MOD_SKILL:
-            updatedPlayer.skills = { ...player.skills}
-            if (!updatedPlayer.skills[action.stat]) {
-                updatedPlayer.skills[action.stat] = action.value
-            }
-            else {
-                updatedPlayer.skills[action.stat] += action.value
-            }
-            return updatedPlayer
-
-
-        case ACTIONS.PLAYER_MOD_RELATIONSHIP:
-            updatedPlayer.relationships = { ...player.relationships}
-            if (!updatedPlayer.relationships[action.stat]) {
-                updatedPlayer.relationships[action.stat] =  action.value
-            }
-            else {
-                updatedPlayer.relationships[action.stat] += action.value
-            }
-            return updatedPlayer
-
+        case ACTIONS.PLAYER_MOD:
+            return modCharacteristic(player, action.path, action.value)
 
         case ACTIONS.PLAYER_CHANGE_NAME:
             return { ...player, name: action.value }

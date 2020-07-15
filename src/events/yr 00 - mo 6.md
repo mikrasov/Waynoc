@@ -16,24 +16,24 @@ To crawl. <Mod stat="QUI"></Mod>
 <Choice title="Ma-Ma">
 
 # Your first word was "Ma-Ma"!
-Your mom looks at you with loving eyes. <Mod relationsip="mom" value="5"></Mod>
+Your mom looks at you with loving eyes. <Mod relationship="mom" value="5"></Mod>
     
-Meanwhile in the back your dad looks down, envious. <Mod relationsip="dad" value="-5"></Mod>
+Meanwhile in the back your dad looks down, envious. <Mod relationship="dad" value="-5"></Mod>
     
 </Choice>
 <Choice title="Da-Da">
 
 # Your first word was "Da-Da"!
-Your dad looks at you with loving eyes.  <Mod relationsip="mom" value="5"></Mod>
+Your dad looks at you with loving eyes.  <Mod relationship="mom" value="5"></Mod>
 
-Meanwhile in the back your mom smirks, envious. <Mod relationsip="dad" value="-5"></Mod>
+Meanwhile in the back your mom smirks, envious. <Mod relationship="dad" value="-5"></Mod>
 
 </Choice>
 <Choice title="Ma-Gik">
 
 # Your first word was "Ma-Gik"!
-Right from birth your interests are clear.    <Mod skill="Arcana"></Mod>
+Right from birth your interests are clear.    <Mod skill="Arcana"  value="5"></Mod>
 
-Meanwhile in the back your parents smirk, envious. <Mod relationsip="dad" value="-5"></Mod> <Mod relationsip="mom" value="-5"></Mod>
+Meanwhile in the back your parents smirk, envious. <Mod relationship="dad" value="-5"></Mod> <Mod relationship="mom" value="-5"></Mod>
 
 </Choice>

@@ -1,60 +1,21 @@
 import {ACTIONS} from "../../state"
-import {STATS_MAP} from "../attr_maps"
+import {getCharacteristicPath, getCharacteristicHuman} from "../../util/characteristics"
 const {basicAstNode} = require("../ast_util")
-
-
-function modStat(scope, stat, value=1){
-
-    const sign = value>0?"+":""
-    stat = stat.toUpperCase().substr(0,3)
-
-    scope.effects.push({
-        type: ACTIONS.PLAYER_MOD_STAT,
-        stat:STATS_MAP[stat],
-        value: parseInt(value)
-    })
-
-
-    return basicAstNode(`( ${sign}${value} ${STATS_MAP[stat]} )`, "strong")
-}
-
-function modSkill(scope, skill, value=5){
-    const sign = value>0?"+":""
-    skill = skill.toLowerCase()
-
-    scope.effects.push({
-        type: ACTIONS.PLAYER_MOD_SKILL,
-        stat: skill,
-        value: parseInt(value)
-    })
-    return basicAstNode(`( ${sign}${value} in ${skill} )`, "strong")
-}
-
-function modRelationship(scope, relationsip, value=5){
-    const sign = value>0?"+":""
-    relationsip = relationsip.toLowerCase()
-
-    scope.effects.push({
-        type: ACTIONS.PLAYER_MOD_RELATIONSHIP,
-        stat: relationsip,
-        value: parseInt(value)
-    })
-    return basicAstNode(`( ${sign}${value}  relationship with ${relationsip} )`, "strong")
-}
 
 
 export default function Mod (node, scope) {
     const props = node.properties
+    props.value = props.value?props.value:1
 
-    if(props.stat)
-        return modStat(scope, props.stat, props.value)
+    scope.effects.push({
+        type: ACTIONS.PLAYER_MOD,
+        path: getCharacteristicPath(props),
+        value: parseInt(props.value)
+    })
 
-    if(props.skill)
-        return modSkill(scope, props.skill, props.value)
+    const sign = props.value>0?"+":""
+    const text = getCharacteristicHuman(props)
 
-    if(props.relation)
-        return modRelationship(scope, props.relation, props.value)
+    return basicAstNode(`( ${sign}${props.value} ${text} )`, "strong")
 
-    console.log("Warning! Unknown MOD target: ", node)
-    return basicAstNode()
 }

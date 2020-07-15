@@ -7,9 +7,7 @@ export const ACTIONS = {
     GAME_OVER: "game/loose",
     NEXT_SEASON: "game/next-season",
     SET_EVENT: "event/set-active",
-    PLAYER_MOD_STAT: "player/mod-stat",
-    PLAYER_MOD_SKILL: "player/mod-skill",
-    PLAYER_MOD_RELATIONSHIP: "player/mod-relationship",
+    PLAYER_MOD: "player/mod-characteristic",
     PLAYER_CHANGE_NAME: "player/new-name",
 }
 

@@ -58,7 +58,7 @@ function findAndReplaceAstNodes(ast, scope, player){
  */
 
 export function compile(player, rawEvent){
-    const scope = {prompt:null, effects:[], choices:[], lastBranch:null}
+    const scope = {prompt:null, effects:[], choices:[]}
     const ast = findAndReplaceAstNodes(rawEvent.ast, scope, player)
 
     const event = {
@@ -67,7 +67,6 @@ export function compile(player, rawEvent){
         parts: [generateHtml(ast)]
     }
     delete event.ast //no longer need the AST
-    delete event.lastBranch // also no longer needed
 
     return event
 }
