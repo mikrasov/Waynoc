@@ -6,8 +6,12 @@
 const fs = require('fs')
 const pre_compiler = require("./src/compiler/pre_compile")
 
+
+
+
+
 //This is where we create files
-exports.createPages = ({ graphql, actions }) => {
+exports.createPages = ({ graphql, actions, createContentDigest  }) => {
     const baseDir = "./public/static/event_data/"
 
     // Create Parent dir if does not exist
@@ -35,12 +39,12 @@ exports.createPages = ({ graphql, actions }) => {
         result.data.allMarkdownRemark.edges.forEach(({node}) => {
             try {
 
+                const results = pre_compiler.compile(node.htmlAst)
                 const eventData = {
-                    id: node.id,
+                    id: node.id+"_EVT",
                     ...node.frontmatter,
-                    ...pre_compiler.compile(node.htmlAst)
+                    ...results,
                 }
-
                 fs.writeFile(baseDir + node.id + ".json", JSON.stringify(eventData), {flag: "w"}, function (err) {
                     if (err) throw "Error Writing EVENT "
                 });

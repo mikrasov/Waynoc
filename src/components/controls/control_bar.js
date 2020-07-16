@@ -1,5 +1,5 @@
 import React  from "react"
-import { Button, Col, Row} from "react-bootstrap"
+import { Button} from "react-bootstrap"
 import {connect} from "react-redux"
 import {makeChoice, nextSeason} from "../../util/event_director"
 import ChangeName from "./change_name";
@@ -23,26 +23,22 @@ function GameControls({dispatch, events, player}) {
 
     const activeEvent = events.activeEvent
 
-    let nextSeasonControl = <>
-        <Col lg={9} sm={6}/>
-        <Col lg={3} sm={6}><Button type="button"  size="lg"  onClick={ ()=>{nextSeason(player, data.events.nodes, dispatch)} }>Next Season</Button></Col>
-    </>
+    let nextSeasonControl = <Button type="button"  className={"nextseason"} size="lg"  onClick={ ()=>{nextSeason(player, data.events.nodes, dispatch)} }>Next Season</Button>
 
 
     if(activeEvent?.input === "name"){
         nextSeasonControl = <ChangeName/>
     }
     else if(activeEvent?.choices?.length){
-        nextSeasonControl = activeEvent.choices.map((choice,index) => <Col lg={3} sm={6} key={index}>
-                <Button type="button"  size="lg"  onClick={ ()=>{makeChoice(player, activeEvent,index,dispatch)} } >{choice.label}</Button>
-            </Col>
+        nextSeasonControl = activeEvent.choices.map((choice,index) =>
+            <Button type="button"  key={index} size="lg"  onClick={ ()=>{makeChoice(player, activeEvent,index,dispatch)} } >{choice.label}</Button>
         )
     }
 
     return <div className="gamecontrols">
         {activeEvent.prompt && <h3>{activeEvent.prompt}</h3>}
 
-        <Row>{nextSeasonControl}</Row>
+        {nextSeasonControl}
     </div>
 }
 export default connect(state => ({ events: state.events, player: state.player,}), null)(GameControls)

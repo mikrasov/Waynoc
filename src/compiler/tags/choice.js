@@ -11,7 +11,7 @@ export default function Choice(scope, node, player){
     }
 
     scope.choices.push({
-        label: props.title,
+        label: props.label,
         requires,
         ast: wrapIntoTree(node.children),
         otherwise: wrapIntoTree(node.otherwise)
