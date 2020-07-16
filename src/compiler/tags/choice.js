@@ -13,7 +13,8 @@ export default function Choice(scope, node, player){
     scope.choices.push({
         label: props.title,
         requires,
-        ast: wrapIntoTree(node.children)
+        ast: wrapIntoTree(node.children),
+        otherwise: wrapIntoTree(node.otherwise)
     })
     return basicAstNode()
 }

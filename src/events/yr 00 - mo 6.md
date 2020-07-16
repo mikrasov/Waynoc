@@ -40,6 +40,16 @@ Meanwhile in the back your parents smirk, envious. <Mod relationship="dad" value
 <Choice title="Greetings" stat="COM" value="1">
 
 # Your first word was "Greetings"!
-Your parents are shocked! <Mod relationship="mom" value="5"></Mod> <Mod relationship="dad" value="5"></Mod>
+Your parents are shocked at how eloquent you are at such a young age! 
+
+<Mod relationship="mom" value="5"></Mod> 
+
+<Mod relationship="dad" value="5"></Mod>
     
 </Choice>
+<Else>
+
+# Your first word was "Goooooga"!
+Your parents laugh. Nice try, maybe next week.
+
+</Else>

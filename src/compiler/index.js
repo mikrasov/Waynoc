@@ -58,7 +58,6 @@ function findAndReplaceAstNodes(ast, scope, player){
 /*
  * Transforms HTML AST into React Component
  */
-
 export function compile(player, ast){
     const scope = {prompt:null, effects:[], choices:[]}
     const modifiedAst = findAndReplaceAstNodes(ast, scope, player)
@@ -85,8 +84,15 @@ export function resolveChoice(player, originalEvent, choiceNum, roll){
             parts: [...originalEvent.parts, resolution.parts]
         }
     }
+    else if(choice.otherwise){
+        const resolution = compile(player, choice.otherwise )
+        return {
+            ...originalEvent,
+            ...resolution,
+            parts: [...originalEvent.parts, resolution.parts]
+        }
+    }
 
-    console.log("FAILED")
     return {
         originalEvent,
         prompt:null,

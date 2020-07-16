@@ -6,14 +6,19 @@ export default function Check(scope, node, player){
     const charPath = getCharacteristicPath(props)
     const passed = getCharacteristic(player, charPath) >= props.value
 
-    console.log(node)
-    console.log(charPath, getCharacteristic(player, charPath))
     if(passed)    return {
         ...node,
         tagName: "div",
         properties: {},
     }
 
-    else return basicAstNode()
+    else if(node.otherwise) return {
+        ...node,
+        tagName: "div",
+        properties: {},
+        children: node.otherwise
+    }
+
+    return basicAstNode()
 
 }

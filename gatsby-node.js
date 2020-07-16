@@ -4,11 +4,11 @@
  * See: https://www.gatsbyjs.org/docs/node-apis/
  */
 const fs = require('fs')
+const pre_compiler = require("./src/compiler/pre_compile")
 
 //This is where we create files
 exports.createPages = ({ graphql, actions }) => {
     const baseDir = "./public/static/event_data/"
-
 
     // Create Parent dir if does not exist
     if (!fs.existsSync(baseDir)) fs.mkdirSync(baseDir)
@@ -19,6 +19,7 @@ exports.createPages = ({ graphql, actions }) => {
               node {
                 id
                 htmlAst
+                fileAbsolutePath
                 frontmatter {
                   title
                   age
@@ -28,25 +29,26 @@ exports.createPages = ({ graphql, actions }) => {
           }
         }`).then(result => {
 
-        if (result.errors) {
-            console.log(result.errors)
-            return
-        }
+        if (result.errors) throw result.errors
 
         // Create Event data files
         result.data.allMarkdownRemark.edges.forEach(({node}) => {
+            try {
 
-            const eventData = {
-                id: node.id,
-                ...node.frontmatter,
-                ast: node.htmlAst
+                const eventData = {
+                    id: node.id,
+                    ...node.frontmatter,
+                    ...pre_compiler.compile(node.htmlAst)
+                }
+
+                fs.writeFile(baseDir + node.id + ".json", JSON.stringify(eventData), {flag: "w"}, function (err) {
+                    if (err) throw "Error Writing EVENT "
+                });
             }
-
-
-            fs.writeFile(baseDir + node.id + ".json", JSON.stringify(eventData), {flag: "w"}, function (err) {
-                if (err) console.log("Error Writing EVENT: " + node.id);
-            });
-
+            catch(err) {
+                console.log("WARNING problem parsing file "+node.fileAbsolutePath+" as "+node.id)
+                console.log(err)
+            }
         })
     })
 }

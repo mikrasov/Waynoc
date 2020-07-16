@@ -36,10 +36,10 @@ We extend markdown functionality with some additional tags:
 
 - &lt;**Mod** *[stat] [skill] [relationship] [value]*&gt;&lt;/**Mod**&gt; <br>
  Modifies a specified player characteristic
-    - *stat*: player stat to modify (mutually exclusive with *skill* and *person*)
+    - *stat*: player stat to modify (mutually exclusive with *skill* and *relationship*)
     - *skill*: player skill to modify
     - *relationship*: player relationship to modify
-    - *value*: amount to modify the characteristic by, can be positive or negative. (if not specified defaults to +1 for stat or +5 for skill and relationship)
+    - *value*: amount to modify the characteristic by, can be positive or negative. (defaults to +1)
     
     
 - &lt;**Prompt**&gt;*body*&lt;/**Prompt**&gt; <br>
@@ -51,19 +51,27 @@ Displays text in the user controls.
     
 - &lt;**Check** *[stat] [skill] [relationship] [value]**&gt;*body*&lt;/**Check**&gt; <br>
 Passive characteristic check, used for rendering event
-    - *stat*: player stat to compare to (mutually exclusive with *skill* and *person*)
+    - *stat*: player stat to compare to (mutually exclusive with *skill* and *relationship*)
     - *skill*: player skill to compare to
     - *relationship*: player relationship to compare to
     - *value*: minimum value 
     - *body* if check passes the body is evaluated, otherwise body is skipped
     
 
-- &lt;**Choice** *title*&gt;*body*&lt;/**Choice**&gt; <br>
+- &lt;**Choice** *label [stat] [skill] [relationship] [value]*&gt;*body*&lt;/**Choice**&gt; <br>
 Displays a story choice in the user controls. Body of the choice is only evaluated on click.
     - *title*: Label associated with choice, placed on buttons
-    - *body*: Everything in the body will be evaluated and shown when the choice is selected 
+    - *body*: Everything in the body will be evaluated and shown when the choice is selected <br>
+    If you want a roll the dice skill check
+    - *stat*: player stat to compare to (mutually exclusive with *skill* and *relationship*)
+    - *skill*: player skill to compare to
+    - *relationship*: player relationship to compare to
+    - *value*: minimum value 
+        
+- &lt;**Else**&gt;*body*&lt;/**Else**&gt; <br>
+Evaluated on failing to pass check on branching statments such as **Check** and **Choice**
+    - *body*: Evaluated on failure to pass check
     
-
 - &lt;**Input** *type*&gt;&lt;/**Input**&gt; <br>
 Call for specialized user input such as text input
     - *type*: special user input prompt to show to the user (takes precedence over choice, until resolved)

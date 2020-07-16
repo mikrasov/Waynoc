@@ -3,13 +3,12 @@
  *  ES6 compatible
  */
 
-
 function basicAstNode(value ="", tag = ""){
 
     if(tag) return {
         type: "element",
         tagName: tag,
-        properties: {},
+        properties: { },
         children: [
             {
                 type: "text",
@@ -28,7 +27,6 @@ function wrapIntoTree(children){
         children,
         data: { quirksMode: false}
     }
-
 }
 
 module.exports = {
