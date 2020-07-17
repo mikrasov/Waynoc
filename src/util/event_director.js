@@ -1,42 +1,84 @@
+import rehypeReact from "rehype-react"
+import React from "react"
+import {graphql, useStaticQuery} from "gatsby"
 import {nextGameSeason, setActiveEvent, gameOver} from "../state"
-import {compile, resolveChoice} from "../compiler"
+import {resolveEvent, resolveChoice} from "../transformer"
 
-function rollDice() {
-    return (1 + Math.floor(Math.random()*6) ) +  (1 + Math.floor(Math.random()*6) )
-}
 
-export function nextSeason(player, events, dispatch) {
+export default class EventDirector {
 
-    const currentEventID = events[player.age/0.25]?.id
+    constructor(dispatch, gameState, playerState) {
+        this.dispatch = dispatch
+        this.gameState = gameState
+        this.playerState = playerState
 
-    if(currentEventID) {
-        fetch('/static/event_data/'+currentEventID+".json")
-            .then(response => {return response.json()})
-            .then(data => {
-                console.log(data)
-                const event =  {
-                    ...data,
-                    ...compile(player, data.ast)
+        const data  = useStaticQuery( graphql`{
+            events: allMarkdownRemark(
+                sort: {
+                  fields: [frontmatter___age]
+                  order: ASC
                 }
-                dispatch(setActiveEvent(event))
-                event.effects.forEach((e)=>{dispatch(e)})
-                dispatch(nextGameSeason())
+            ){
+                nodes {
+                    htmlAst
+                    fileAbsolutePath
+                    frontmatter {
+                      title
+                      age
+                    }
+                }
+            }
+        }`)
+        this.events = data.events.nodes
+
+        this.generateHtml = new rehypeReact({
+            createElement: React.createElement,
+            components: {    },
+        }).Compiler
+
+    }
+
+    rollDice() {
+        return (1 + Math.floor(Math.random() * 6)) + (1 + Math.floor(Math.random() * 6))
+    }
+
+
+    nextSeason() {
+        const nextEvent = this.events[this.playerState.age / 0.25]
+        if (nextEvent) {
+            const event = {
+                path: nextEvent.fileAbsolutePath,
+                ...nextEvent.frontmatter,
+                ...resolveEvent(this.playerState, nextEvent.htmlAst, this.generateHtml)
+            }
+
+            console.log(event)
+
+            this.dispatch(setActiveEvent(event))
+            event.effects.forEach((e) => {
+                this.dispatch(e)
             })
+
+            this.dispatch(nextGameSeason())
+
+        } else {
+            this.dispatch(gameOver())
+        }
     }
 
-    else{
-        dispatch( gameOver() )
-    }
-}
 
 
-export function makeChoice(player, activeEvent, choice, dispatch) {
-    const diceRoll = rollDice()
-    console.log("Rolled a "+diceRoll)
-    const event = {
-        ...activeEvent,
-        ...resolveChoice(player, activeEvent, choice, diceRoll)
+    makeChoice(choice) {
+        const diceRoll = this.rollDice()
+        console.log("Rolled a " + diceRoll)
+        const event = {
+            ...this.gameState.activeEvent,
+            ...resolveChoice(this.playerState, this.gameState.activeEvent, choice, diceRoll, this.generateHtml)
+        }
+        this.dispatch(setActiveEvent(event))
+        event.effects.forEach((e) => {
+            this.dispatch(e)
+        })
     }
-    dispatch(setActiveEvent(event))
-    event.effects.forEach((e)=>{dispatch(e)})
+
 }

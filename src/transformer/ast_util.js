@@ -1,9 +1,4 @@
-/*
- *  Note these helper functions for AST construction that should be accessible from lower down code that may not be
- *  ES6 compatible
- */
-
-function basicAstNode(value ="", tag = ""){
+export function basicAstNode(value ="", tag = ""){
 
     if(tag) return {
         type: "element",
@@ -20,7 +15,7 @@ function basicAstNode(value ="", tag = ""){
 
 }
 
-function wrapIntoTree(children){
+export function wrapIntoTree(children){
 
     return {
         type: "root",
@@ -29,7 +24,3 @@ function wrapIntoTree(children){
     }
 }
 
-module.exports = {
-    wrapIntoTree: wrapIntoTree,
-    basicAstNode: basicAstNode
-}

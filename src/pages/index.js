@@ -6,7 +6,6 @@ import GameControls from "../components/controls/control_bar"
 
 function IndexPage({ events, dispatch} ) {
 
-
     return (
         <Layout active={"game"}>
 

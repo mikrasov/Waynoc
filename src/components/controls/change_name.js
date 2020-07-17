@@ -2,7 +2,7 @@ import React, { useState } from "react"
 import {Form, Button} from "react-bootstrap"
 import {connect} from "react-redux"
 import {changePlayerName, setActiveEvent} from "../../state"
-import {resolveInput} from "../../compiler"
+import {resolveInput} from "../../transformer"
 function ChangeName({dispatch, events}) {
 
     const [name,setName] = useState("")

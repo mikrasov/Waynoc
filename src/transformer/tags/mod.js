@@ -1,6 +1,6 @@
 import {ACTIONS} from "../../state"
 import {getCharacteristicPath, getCharacteristicHuman} from "../../util/characteristics"
-const {basicAstNode} = require("../ast_util")
+import {basicAstNode} from "../ast_util"
 
 
 export default function Mod (node, scope) {

@@ -1,5 +1,5 @@
 import {getCharacteristicPath} from "../../util/characteristics"
-const {basicAstNode, wrapIntoTree} = require("../ast_util")
+import {basicAstNode, wrapIntoTree} from "../ast_util"
 
 export default function Choice(scope, node, player){
     const props = node.properties

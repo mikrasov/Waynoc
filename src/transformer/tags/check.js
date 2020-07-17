@@ -1,5 +1,5 @@
 import {getCharacteristicPath, getCharacteristic} from "../../util/characteristics"
-const {basicAstNode} = require("../ast_util")
+import {basicAstNode} from "../ast_util"
 
 export default function Check(scope, node, player){
     const props = node.properties
