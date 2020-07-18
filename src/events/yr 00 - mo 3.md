@@ -45,6 +45,7 @@ You often went camping. <Mod skill="Survival" value="4"> <Mod stat="INT" value="
 You got into fights with other kids. <Mod skill="Brawl" value="4"> <Mod stat=STR value=2>
 You learned to trick them. <Mod skill="Guile" value="4"> <Mod stat=CHA value=2>
 You got very good at avoiding them. <Mod skill="Stealth" value="4"> <Mod stat=DEX value=2>
+
 </Choice>
 <Choice label="Social">
 
