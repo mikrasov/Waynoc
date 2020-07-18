@@ -5,10 +5,10 @@ export const STATS_MAP = {
     PER: "perception",
     STR: "strength",
     STA: "stamina",
-    PRE: "presence",
+    CHA: "charisma",
     COM: "communication",
     DEX: "dexterity",
-    QUI: "quickness"
+    SPD: "speed"
 
 }
 
@@ -32,7 +32,7 @@ export function getCharacteristic(player, path) {
 export function getCharacteristicPath(props) {
 
     if(props.stat)
-        return STATS_MAP[props.stat.toUpperCase().substr(0,3)]
+        return STATS_MAP[props.stat.toUpperCase()]
 
     if(props.skill)
         return "skills."+props.skill.toLowerCase()
@@ -46,7 +46,7 @@ export function getCharacteristicPath(props) {
 export function getCharacteristicHuman(props) {
 
     if(props.stat)
-        return lodash.upperFirst(STATS_MAP[props.stat.toUpperCase().substr(0,3)])
+        return lodash.upperFirst(STATS_MAP[props.stat.toUpperCase()])
 
     if(props.skill)
         return lodash.upperFirst(props.skill.toLowerCase() )+ " Skill"
