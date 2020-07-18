@@ -18,8 +18,3 @@ To coo and babble.  <Mod stat="COMMUNICATION"></Mod>
 To suck on your hand. <Mod stat="DEXTERITY"></Mod>
 
 To swing at dangling toys. <Mod stat="QUICKNESS"></Mod>
-
-You realized that your parents call you a distinct name.
-
-<Prompt>What name did your parents call you?</Prompt>
-<Input type="name"></Input>
