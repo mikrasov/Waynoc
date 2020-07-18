@@ -6,28 +6,28 @@ export default ({className, player}) => <Table striped bordered hover>
 
     <tbody>
     <tr>
-        <td><GiBrain/> INT: {player.intelligence}</td>
+        <td><GiBrain/> Int: {player.intelligence}</td>
     </tr>
     <tr>
-        <td><GiEyeTarget /> PER: {player.perception}</td>
+        <td><GiEyeTarget /> Per: {player.perception}</td>
     </tr>
     <tr>
-        <td><GiMuscleUp /> STR: {player.strength}</td>
+        <td><GiBeamsAura/> Cha: {player.charisma}</td>
     </tr>
     <tr>
-        <td><GiLungs/> STA: {player.stamina}</td>
+        <td><GiAwareness /> Com: {player.communication}</td>
     </tr>
     <tr>
-        <td><GiBeamsAura/> CHA: {player.charisma}</td>
+        <td><GiMuscleUp /> Str: {player.strength}</td>
     </tr>
     <tr>
-        <td><GiAwareness /> COM: {player.communication}</td>
+        <td><GiLungs/> Sta: {player.stamina}</td>
     </tr>
     <tr>
-        <td><GiBowman/> DEX: {player.dexterity}</td>
+        <td><GiBowman/> Dex: {player.dexterity}</td>
     </tr>
     <tr>
-        <td><GiRun/> SPD: {player.speed}</td>
+        <td><GiRun/> Spd: {player.speed}</td>
     </tr>
     </tbody>
 </Table>
