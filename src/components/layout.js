@@ -71,7 +71,7 @@ function Layout({dispatch, player, active, className, children}) {
                         </Modal.Footer>
                     </Modal>
 
-                <Season season={player?.age  * 4}/>
+                    <Season season={player?.age  * 4}/>
                     <div className='content'>
                         <div  className={className}>{children}</div>
                     </div>

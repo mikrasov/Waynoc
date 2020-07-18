@@ -3,17 +3,20 @@ import {Form, Button} from "react-bootstrap"
 import {connect} from "react-redux"
 import {changePlayerName, setActiveEvent} from "../../state"
 import {resolveInput} from "../../transformer"
-function ChangeName({dispatch, events}) {
+
+const {upperFirst} = require('lodash')
+
+function ChangeName({dispatch, game}) {
 
     const [name,setName] = useState("")
 
     function handleChange(e) {
-        setName(e.target.value)
+        setName( upperFirst(e.target.value) )
     }
 
     function submit() {
         dispatch(changePlayerName(name))
-        dispatch(setActiveEvent(resolveInput(events.activeEvent, `Your parents seem to call you ${name}`)))
+        dispatch(setActiveEvent(resolveInput(game.activeEvent, `Your parents seem to call you ${name}`)))
     }
 
     return <Form inline>
@@ -23,4 +26,4 @@ function ChangeName({dispatch, events}) {
     </Form>
 
 }
-export default connect(state => ({ events: state.events}), null)(ChangeName)
+export default connect(state => ({ game: state.game}), null)(ChangeName)

@@ -4,10 +4,10 @@ import {connect} from "react-redux"
 import EventDirector from "../../util/event_director"
 import ChangeName from "./change_name";
 
-function GameControls({dispatch, events, player}) {
+function GameControls({dispatch, game, player}) {
 
-    const director = new EventDirector(dispatch, events, player)
-    const activeEvent = events.activeEvent
+    const director = new EventDirector(dispatch, game, player)
+    const activeEvent = game.activeEvent
 
     let nextSeasonControl = <Button type="button"  className={"nextseason"} size="lg"  onClick={ ()=>{director.nextSeason()} }>Next Season</Button>
 
@@ -27,4 +27,4 @@ function GameControls({dispatch, events, player}) {
     </div>
 
 }
-export default connect(state => ({ events: state.events, player: state.player,}), null)(GameControls)
+export default connect(state => ({ game: state.game, player: state.player,}), null)(GameControls)

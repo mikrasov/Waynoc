@@ -3,12 +3,12 @@ import { connect } from 'react-redux'
 import Layout from "../components/layout"
 
 
-function LogPage({events, dispatch}) {
+function LogPage({log, dispatch}) {
 
     return (
         <Layout active={"log"}>
             <ul>
-                { events.recentEvents.map((event,index) => <li  key={index}> {event.flavor_text}</li>)}
+                { log.map((e,index) => <li  key={index}> {e.title}</li>)}
             </ul>
         </Layout>
     )
@@ -16,6 +16,6 @@ function LogPage({events, dispatch}) {
 
 
 export default connect(state => ({
-        events: state.events
+        log: state.game.log
     }), null)(LogPage)
 

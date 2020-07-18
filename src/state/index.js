@@ -1,6 +1,7 @@
 import { combineReducers } from 'redux'
 import player from './player'
-import events from './events'
+import game from './game'
+
 
 export const ACTIONS = {
     GAME_RESET: "game/reset",
@@ -17,4 +18,4 @@ export function nextGameSeason(){ return  {type: ACTIONS.NEXT_SEASON} }
 export function setActiveEvent(event){return  {type: ACTIONS.SET_EVENT, event}}
 export function changePlayerName(name){return  {type: ACTIONS.PLAYER_CHANGE_NAME, value: name}}
 
-export default combineReducers({ player, events })
+export default combineReducers({ player, game })

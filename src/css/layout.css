@@ -1,6 +1,6 @@
 
 body {
-  font-family: "Book Antiqua","Goudy Old Style",Perpetua;
+  font-family: "Book Antiqua", "Goudy Old Style", Perpetua, serif;
 }
 
 .container {
@@ -13,6 +13,7 @@ body {
 
 .content{
   overflow-y: auto;
+  overflow-x: hidden;
   padding-top: 80px;
 }
 
@@ -64,9 +65,10 @@ body {
 
 
 .season {
-  position: relative;
+  position: absolute !important;
   top: -55px;
-  float: right;
+  right: 0;
+
   transition: transform 200ms;
 }
 

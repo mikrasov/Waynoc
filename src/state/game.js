@@ -17,14 +17,14 @@ const lastEvent = {
 
 
 const initialState = {
-    recentEvents: [{flavor_text: firstEvent.title, effect_text:""}],
-    activeEvent: firstEvent
+    activeEvent: firstEvent,
+    log: [firstEvent],
+    season: 0
 }
 
 
 export default (state = initialState, action) => {
 
-    const prevRecentEvents = [...state.recentEvents]
 
     switch (action.type) {
 
@@ -32,18 +32,28 @@ export default (state = initialState, action) => {
             return initialState
 
         case ACTIONS.GAME_OVER:
-            prevRecentEvents.push({flavor_text: "", effect_text:"Game Over"})
             return {
-                recentEvents: prevRecentEvents,
-                activeEvent: lastEvent
+                ...state,
+                activeEvent: lastEvent,
+                log: [...state.log, lastEvent]
             }
 
 
         case ACTIONS.SET_EVENT:
+
             console.log("Active event ["+action.event.age+"]: "+action.event.path+"\n", action.event)
 
-            prevRecentEvents.push({flavor_text: action.event.title, effect_text:""})
-            return {...state, activeEvent: action.event, recentEvents: prevRecentEvents}
+            const updatedLog = [...state.log]
+
+            if (state.activeEvent.id !== action.event.id){
+                updatedLog.push(action.event)
+            }
+
+
+            return {
+                ...state,
+                activeEvent: action.event,
+                log: updatedLog}
 
 
         default:

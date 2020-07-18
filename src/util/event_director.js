@@ -20,6 +20,7 @@ export default class EventDirector {
                 }
             ){
                 nodes {
+                    id
                     htmlAst
                     fileAbsolutePath
                     frontmatter {
@@ -31,6 +32,7 @@ export default class EventDirector {
         }`)
         this.events = data.events.nodes
 
+        //Can use this to map html tags to ReactComponents
         this.generateHtml = new rehypeReact({
             createElement: React.createElement,
             components: {    },
@@ -47,12 +49,11 @@ export default class EventDirector {
         const nextEvent = this.events[this.playerState.age / 0.25]
         if (nextEvent) {
             const event = {
+                id: nextEvent.id,
                 path: nextEvent.fileAbsolutePath,
                 ...nextEvent.frontmatter,
                 ...resolveEvent(this.playerState, nextEvent.htmlAst, this.generateHtml)
             }
-
-            console.log(event)
 
             this.dispatch(setActiveEvent(event))
             event.effects.forEach((e) => {
