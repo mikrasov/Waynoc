@@ -3,7 +3,7 @@ import {getCharacteristicPath, getCharacteristicHuman} from "../../util/characte
 import {basicAstNode} from "../ast_util"
 
 
-export default function Mod (node, scope) {
+export default function Add (node, scope) {
     const props = node.properties
     props.value = props.value?props.value:1
 

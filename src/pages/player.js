@@ -20,7 +20,7 @@ function PlayerPage({player, dispatch}) {
             </Row>
             <br/>
             <Row>
-                <Col lg={6} sm={12}> <PlayerStats player={player}/> </Col>
+                <Col lg={6} sm={12}> <PlayerStats player={player.stats}/> </Col>
                 <Col lg={6} sm={12}>
                     <h3>Skills:</h3>
                     <PlayerSkills skills={player.skills}/>

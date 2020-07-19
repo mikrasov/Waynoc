@@ -3,13 +3,13 @@ title: Learning Your Name
 age: 0.50
 ---
 
-You learned to put things in your mouth. <Mod stat="CHA"></Mod>
+You learned to put things in your mouth. <Add stat="CHA"></Add>
 
-To sit and roll over. <Mod stat="STR"></Mod>
+To sit and roll over. <Add stat="STR"></Add>
 
-To reach for things. <Mod stat="DEX"></Mod>
+To reach for things. <Add stat="DEX"></Add>
 
-To crawl. <Mod stat="SPD"></Mod>
+To crawl. <Add stat="SPD"></Add>
 
 You realized that your parents call you a distinct name.
 

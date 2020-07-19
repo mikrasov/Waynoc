@@ -4,19 +4,32 @@ import {modCharacteristic} from "../util/characteristics"
 const initialState = {
     name: "",
     age: 0,
-    intelligence: 0,
-    perception: 0,
-    strength: 0,
-    stamina: 0,
-    charisma: 0,
-    communication: 0,
-    dexterity: 0,
-    speed: 0,
-    skills: {},
+    actions: 0,
+    money: 0,
+    morale: 50,
+    stats: {
+        intelligence: 0,
+        perception: 0,
+        strength: 0,
+        stamina: 0,
+        charisma: 0,
+        communication: 0,
+        dexterity: 0,
+        speed: 0,
+    },
     relationships: {
-        mom: 80,
-        dad: 80
-    }
+        mom: {
+            closeness: 80
+        },
+        dad: {
+            closeness: 80
+        }
+    },
+    skills: {},
+    items: {},
+    tags: {},
+    jobs: {},
+    flags: {}
 }
 
 

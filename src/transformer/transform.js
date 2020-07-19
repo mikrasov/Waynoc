@@ -2,7 +2,7 @@ import Check from "./tags/check"
 import Choice from "./tags/choice"
 import Else from "./tags/else"
 import Input from "./tags/input"
-import Mod from "./tags/mod"
+import Add from "./tags/add"
 import Prompt from "./tags/prompt"
 
 function firstPassReplacer(node, scope){
@@ -26,8 +26,8 @@ function secondPassReplacer(node, scope, player){
     switch (node.tagName) {
         case "check":
             return Check(scope, node, player)
-        case "mod":
-            return Mod(node, scope)
+        case "add":
+            return Add(node, scope)
         case "choice":
             return Choice(scope, node, player)
         case "prompt":

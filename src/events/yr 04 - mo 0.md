@@ -2,4 +2,4 @@
 title: Counter
 age: 4
 ---
-You learned to count. <Mod stat="INT"></Mod>
+You learned to count. <Add stat="INT"></Add>

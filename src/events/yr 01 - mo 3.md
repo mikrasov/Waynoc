@@ -14,7 +14,7 @@ During a terrible tantrum a book on the book case falls, seemingly on its own.
 When your parents try to console you with a book you throw it across the room.
     
 </Else>
-<Mod stat="CHA"></Mod>
+<Add stat="CHA"></Add>
 
 
-To walk alone <Mod stat="STR"></Mod>
+To walk alone <Add stat="STR"></Add>

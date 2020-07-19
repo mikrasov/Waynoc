@@ -10,7 +10,7 @@ export default ({className, relationships}) => {
         <tbody>
 
             {Object.entries(relationships).map(([key, value]) =>
-                <tr key={key}><td>{key}: {value}</td></tr>
+                <tr key={key}><td>{key}: {value.closeness}</td></tr>
             )}
 
         </tbody>

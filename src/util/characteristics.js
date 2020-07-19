@@ -31,14 +31,32 @@ export function getCharacteristic(player, path) {
 
 export function getCharacteristicPath(props) {
 
+    if("money" in props)
+        return "money"
+
+    if("morale" in props)
+        return "morale"
+
     if(props.stat)
-        return STATS_MAP[props.stat.toUpperCase()]
+        return "stats."+STATS_MAP[props.stat.toUpperCase()]
 
     if(props.skill)
         return "skills."+props.skill.toLowerCase()
 
     if(props.relationship)
-        return "relationships."+props.relationship.toLowerCase()
+        return "relationships."+props.relationship.toLowerCase()+"closeness"
+
+    if(props.item)
+        return "items."+props.item.toLowerCase()
+
+    if(props.tag)
+        return "tags."+props.tag.toLowerCase()
+
+    if(props.flag)
+        return "flags."+props.flag.toLowerCase()
+
+    if(props.job)
+        return "jobs."+props.job.toLowerCase()
 
     return ""
 }

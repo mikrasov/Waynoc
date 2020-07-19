@@ -2,53 +2,53 @@
 title: Learning to Stand
 age: 0.75
 ---
-You learned to fear strangers. <Mod stat="INT"></Mod>
+You learned to fear strangers. <Add stat="INT"></Add>
 
-To stand while holding on to something. <Mod stat="STR"></Mod>
+To stand while holding on to something. <Add stat="STR"></Add>
 
-To understand simple sentences. <Mod stat="COM"></Mod>
+To understand simple sentences. <Add stat="COM"></Add>
 
 <Prompt> What language are your parents speaking? </Prompt>
 
 <Choice label="Mandarin">
 
 # Mandarin
-你好! <Mod skill="Mandarin" value="5"></Mod>
+你好! <Add skill="Mandarin" value="5"></Add>
 
 </Choice>
 <Choice label="Spanish">
 
 # Spanish
-Hola! <Mod skill="Spanish" value="5"></Mod>
+Hola! <Add skill="Spanish" value="5"></Add>
 
 </Choice>
 <Choice label="English">
 
 # English
-Hello! <Mod skill="English" value="5"></Mod>
+Hello! <Add skill="English" value="5"></Add>
 
 </Choice>
 <Choice label="Hindi">
 
 # Hindi
-हैलो! <Mod skill="Hindi" value="5"></Mod>
+हैलो! <Add skill="Hindi" value="5"></Add>
 
 </Choice>
 <Choice label="Russian">
 
 # Russian
-Привет! <Mod skill="Russian" value="5"></Mod>
+Привет! <Add skill="Russian" value="5"></Add>
 
 </Choice>
 <Choice label="Korean">
 
 # Korean
-여보세요! <Mod skill="Korean" value="5"></Mod>
+여보세요! <Add skill="Korean" value="5"></Add>
 
 </Choice>
 <Choice label="French">
 
 # French
-Bonjour! <Mod skill="French" value="5"></Mod>
+Bonjour! <Add skill="French" value="5"></Add>
 
 </Choice>
