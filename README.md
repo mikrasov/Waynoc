@@ -67,14 +67,19 @@ This supports all the [usual syntax of markdown](https://www.markdownguide.org/b
 
 We extend markdown functionality with some additional tags:
 
-- &lt;**Mod** *[stat] [skill] [relationship] [value]*&gt;&lt;/**Mod**&gt; <br>
- Modifies a specified player characteristic
-    - *stat*: player stat to modify (mutually exclusive with *skill* and *relationship*)
-    - *skill*: player skill to modify
-    - *relationship*: player relationship to modify
-    - *value*: amount to modify the characteristic by, can be positive or negative. (defaults to +1)
+- &lt;**Add** *[money|morale|stat|skill|relationship|item|tag|flag|job] [value]*&gt;&lt;/**Mod**&gt; <br>
+Adds a specified player characteristic
+    - *money and morale*: do not need an argument, just the property
+    - *stat or skill or relationship or item or tag or flag or job*: The stat to modify 
+    - *value*: amount to increase the characteristic by(defaults to +1)
     
-    
+- &lt;**Remove** *[money|morale|stat|skill|relationship|item|tag|flag|job] [value]*&gt;&lt;/**Mod**&gt; <br>
+Removes a specified player characteristic
+    - *money and morale*: do not need an argument, just the property
+    - *stat or skill or relationship or item or tag or flag or job*: The stat to modify 
+    - *value*: amount to decrease the characteristic by. (defaults to -1)
+
+
 - &lt;**Prompt**&gt;*body*&lt;/**Prompt**&gt; <br>
 Displays text in the user controls. 
     - *body*: Everything in the body will be shown to the user in the controls. **But Not Evaluated** (mds tags in this section will be ignored)
@@ -82,23 +87,21 @@ Displays text in the user controls.
     
 
     
-- &lt;**Check** *[stat] [skill] [relationship] [value]**&gt;*body*&lt;/**Check**&gt; <br>
+- &lt;**Check** *[money|morale|stat|skill|relationship|item|tag|flag|job]  [value]**&gt;*body*&lt;/**Check**&gt; <br>
 Passive characteristic check, used for rendering event
-    - *stat*: player stat to compare to (mutually exclusive with *skill* and *relationship*)
-    - *skill*: player skill to compare to
-    - *relationship*: player relationship to compare to
+    - *money and morale*: do not need an argument, just the property
+    - *stat or skill or relationship or item or tag or flag or job*: The stat to check. 
     - *value*: minimum value 
     - *body* if check passes the body is evaluated, otherwise body is skipped
     
 
-- &lt;**Choice** *label [stat] [skill] [relationship] [value]*&gt;*body*&lt;/**Choice**&gt; <br>
+- &lt;**Choice** *label [money|morale|stat|skill|relationship|item|tag|flag|job]  [value]*&gt;*body*&lt;/**Choice**&gt; <br>
 Displays a story choice in the user controls. Body of the choice is only evaluated on click.
     - *title*: Label associated with choice, placed on buttons
     - *body*: Everything in the body will be evaluated and shown when the choice is selected <br>
     If you want a roll the dice skill check
-    - *stat*: player stat to compare to (mutually exclusive with *skill* and *relationship*)
-    - *skill*: player skill to compare to
-    - *relationship*: player relationship to compare to
+    - *money and morale*: do not need an argument, just the property
+    - *stat or skill or relationship or item or tag or flag or job*: The stat to check.
     - *value*: minimum value 
         
 - &lt;**Else**&gt;*body*&lt;/**Else**&gt; <br>

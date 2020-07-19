@@ -13,7 +13,7 @@ To walk while holding on to furniture. <Add stat="STA"></Add>
 # Your first word was "Ma-Ma"!
 Your mom looks at you with loving eyes. <Add relationship="mom" value="5"></Add>
     
-Meanwhile in the back your dad looks down, envious. <Add relationship="dad" value="-5"></Add>
+Meanwhile in the back your dad looks down, envious. <Remove relationship="dad" value="5"></Add>
     
 </Choice>
 <Choice label="Da-Da">
@@ -21,7 +21,7 @@ Meanwhile in the back your dad looks down, envious. <Add relationship="dad" valu
 # Your first word was "Da-Da"!
 Your dad looks at you with loving eyes.  <Add relationship="dad" value="5"></Add>
 
-Meanwhile in the back your mom smirks, envious. <Add relationship="mom" value="-5"></Add>
+Meanwhile in the back your mom smirks, envious. <Remove relationship="mom" value="5"></Add>
 
 </Choice>
 <Choice label="Ma-Gik">
@@ -29,7 +29,7 @@ Meanwhile in the back your mom smirks, envious. <Add relationship="mom" value="-
 # Your first word was "Ma-Gik"!
 Right from birth your interests are clear.    <Add skill="Arcana"  value="5"></Add>
 
-Meanwhile in the back your parents smirk, envious. <Add relationship="dad" value="-5"></Add> <Add relationship="mom" value="-5"></Add>
+Meanwhile in the back your parents smirk, envious. <Remove relationship="dad" value="5"></Add> <Remove relationship="mom" value="5"></Add>
 
 </Choice>
 <Choice label="Greetings" stat="COM" value="1">

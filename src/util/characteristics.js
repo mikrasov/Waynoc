@@ -14,7 +14,15 @@ export const STATS_MAP = {
 
 export function modCharacteristic(player, path, value) {
     const copy = lodash.cloneDeep(player)
-    lodash.set(copy, path, lodash.get(copy, path, 0) + value)
+    const prefix = path.split(".",1)
+    const newVal = lodash.get(copy, path, 0) + value
+
+    if( newVal > 0 || prefix ==="money"|| prefix ==="morale"|| prefix ==="stats"|| prefix ==="relationship"){
+        lodash.set(copy, path, newVal)
+    }
+    else if(lodash.has(copy, path)){
+        lodash.unset(copy,path) // removes the object entirely
+    }
     return copy
 }
 
