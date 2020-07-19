@@ -25,58 +25,58 @@ To swing at dangling toys. <Add stat="SPD"></Add>
 
 # Athletic
 
-You ran around a lot. <Add skill="Athletics" value="4"> </Add> <Add stat="STA" value="2"> </Add>
+You ran around a lot. <Add skill="Athletics" value="15"> </Add> <Add stat="STA" value="2"> </Add>
 
-You got into fights. <Add skill="Brawl" value="4"> </Add> <Add stat="STR" value="2"> </Add>
+You got into fights. <Add skill="Brawl" value="15"> </Add> <Add stat="STR" value="2"> </Add>
 
-You learned to swim. <Add skill="Swim" value="4"> </Add> <Add stat="STA" value="2"> </Add>
+You learned to swim. <Add skill="Swim" value="15"> </Add> <Add stat="STA" value="2"> </Add>
 
 </Choice>
 <Choice label="Exploring">
 
 # Exploring
 
-You learned about the world. <Add skill="Worldliness" value="4"> </Add> <Add stat="INT" value="2"> </Add>
+You learned about the world. <Add skill="Worldliness" value="15"> </Add> <Add stat="INT" value="2"> </Add>
 
-You ran around. <Add skill="Athletics" value="2"> </Add> <Add stat="STA"> </Add>
+You ran around. <Add skill="Athletics" value="5"> </Add> <Add stat="STA"> </Add>
 
-You were startled by animals. <Add skill="Awareness" value="2"> </Add> <Add stat="PER"> </Add>
+You were startled by animals. <Add skill="Awareness" value="5"> </Add> <Add stat="PER"> </Add>
 
-You learned to avoid them. <Add skill="Stealth" value="2"> </Add> <Add stat="DEX"> </Add>
+You learned to avoid them. <Add skill="Stealth" value="5"> </Add> <Add stat="DEX"> </Add>
 
-You often went camping. <Add skill="Survival" value="4"> </Add> <Add stat="INT" value="2"> </Add>
+You often went camping. <Add skill="Survival" value="15"> </Add> <Add stat="INT" value="2"> </Add>
 
 </Choice>
 <Choice label="Mischievous">
 
 # Mischievous
 
-You got into fights with other kids. <Add skill="Brawl" value="4"> </Add> <Add stat=STR value=2> </Add>
+You got into fights with other kids. <Add skill="Brawl" value="15"> </Add> <Add stat=STR value=2> </Add>
 
-You learned to trick them. <Add skill="Guile" value="4"> </Add> <Add stat=CHA value=2> </Add>
+You learned to trick them. <Add skill="Guile" value="15"> </Add> <Add stat=CHA value=2> </Add>
 
-You got very good at avoiding them. <Add skill="Stealth" value="4"> </Add> <Add stat=DEX value=2> </Add>
+You got very good at avoiding them. <Add skill="Stealth" value="15"> </Add> <Add stat=DEX value=2> </Add>
 
 </Choice>
 <Choice label="Social">
 
 # Social
 
-You made friends easily. <Add skill=Charm value=4> </Add> <Add stat=CHA value=2> </Add>
+You made friends easily. <Add skill=Charm value=15> </Add> <Add stat=CHA value=2> </Add>
 
-You learned about them. <Add skill=Empathy value=4> </Add> <Add stat=COM value=2> </Add>
+You learned about them. <Add skill=Empathy value=15> </Add> <Add stat=COM value=2> </Add>
 
-You learned to trick them. <Add skill="Guile" value="4"> </Add> <Add stat=CHA value=2> </Add>
+You learned to trick them. <Add skill="Guile" value=15> </Add> <Add stat=CHA value=2> </Add>
 
 </Choice>
 <Choice label=Travelling>
 
 # Travelling
 
-You learned about the world. <Add skill="Worldliness" value="4"> </Add> <Add stat="INT" value="2"> </Add>
+You learned about the world. <Add skill="Worldliness" value=15> </Add> <Add stat="INT" value="2"> </Add>
 
-You learned about people. <Add skill=Empathy value=4> </Add> <Add stat=COM value=2> </Add>
+You learned about people. <Add skill=Empathy value=15> </Add> <Add stat=COM value=2> </Add>
 
-You often went camping. <Add skill="Survival" value="4"> </Add> <Add stat="INT" value="2"> </Add>
+You often went camping. <Add skill="Survival" value=15> </Add> <Add stat="INT" value="2"> </Add>
 
 </Choice>

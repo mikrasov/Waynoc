@@ -7,11 +7,20 @@ export default function Add (node, scope) {
     const props = node.properties
     props.value = props.value?props.value:1
 
-    scope.effects.push({
-        type: ACTIONS.PLAYER_MOD,
-        path: getCharacteristicPath(props),
-        value: parseInt(props.value)
-    })
+    if (props.skill) {
+        scope.effects.push({
+            type: ACTIONS.PLAYER_MOD_SKILL,
+            name: props.skill.toLowerCase(),
+            xp: parseInt(props.value)
+        })
+    }
+    else {
+        scope.effects.push({
+            type: ACTIONS.PLAYER_MOD,
+            path: getCharacteristicPath(props),
+            value: parseInt(props.value)
+        })
+    }
 
     const sign = props.value>0?"+":""
     const text = getCharacteristicHuman(props)

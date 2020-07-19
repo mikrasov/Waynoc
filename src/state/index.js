@@ -10,6 +10,7 @@ export const ACTIONS = {
     SET_EVENT: "event/set-active",
     PLAYER_MOD: "player/mod-characteristic",
     PLAYER_CHANGE_NAME: "player/new-name",
+    PLAYER_MOD_SKILL: "player/mod-skill",
 }
 
 export function gameOver(){ return  {type: ACTIONS.GAME_OVER} }

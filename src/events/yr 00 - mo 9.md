@@ -13,42 +13,42 @@ To understand simple sentences. <Add stat="COM"></Add>
 <Choice label="Mandarin">
 
 # Mandarin
-你好! <Add skill="Mandarin" value="5"></Add>
+你好! <Add skill="Mandarin" value="75"></Add>
 
 </Choice>
 <Choice label="Spanish">
 
 # Spanish
-Hola! <Add skill="Spanish" value="5"></Add>
+Hola! <Add skill="Spanish" value="75"></Add>
 
 </Choice>
 <Choice label="English">
 
 # English
-Hello! <Add skill="English" value="5"></Add>
+Hello! <Add skill="English" value="75"></Add>
 
 </Choice>
 <Choice label="Hindi">
 
 # Hindi
-हैलो! <Add skill="Hindi" value="5"></Add>
+हैलो! <Add skill="Hindi" value="75"></Add>
 
 </Choice>
 <Choice label="Russian">
 
 # Russian
-Привет! <Add skill="Russian" value="5"></Add>
+Привет! <Add skill="Russian" value="75"></Add>
 
 </Choice>
 <Choice label="Korean">
 
 # Korean
-여보세요! <Add skill="Korean" value="5"></Add>
+여보세요! <Add skill="Korean" value="75"></Add>
 
 </Choice>
 <Choice label="French">
 
 # French
-Bonjour! <Add skill="French" value="5"></Add>
+Bonjour! <Add skill="French" value="75"></Add>
 
 </Choice>

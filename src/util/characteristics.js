@@ -75,7 +75,7 @@ export function getCharacteristicHuman(props) {
         return lodash.upperFirst(STATS_MAP[props.stat.toUpperCase()])
 
     if(props.skill)
-        return lodash.upperFirst(props.skill.toLowerCase() )+ " Skill"
+        return lodash.upperFirst(props.skill.toLowerCase() )+ " XP"
 
     if(props.relationship)
         return "Relationship with " + lodash.upperFirst(props.relationship.toLowerCase() )

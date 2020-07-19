@@ -12,7 +12,7 @@ To walk while holding on to furniture. <Add stat="STA"></Add>
 
 # Your first word was "Ma-Ma"!
 Your mom looks at you with loving eyes. <Add relationship="mom" value="5"></Add>
-    
+
 Meanwhile in the back your dad looks down, envious. <Remove relationship="dad" value="5"></Add>
     
 </Choice>
