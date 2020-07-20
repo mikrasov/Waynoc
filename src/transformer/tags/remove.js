@@ -1,21 +1,23 @@
 import {ACTIONS} from "../../state"
-import {getCharacteristicPath, getCharacteristicHuman} from "../../util/characteristics"
 import {basicAstNode} from "../ast_util"
+import playerMeta from "../../state/player_meta";
 
 
 export default function Remove (node, scope) {
     const props = node.properties
-    props.value = props.value?-props.value:-1
+    const meta =  playerMeta(props)
+
+    props.value = props.value? -props.value: -meta.step
 
     scope.effects.push({
+        ...meta,
         type: ACTIONS.PLAYER_MOD,
-        path: getCharacteristicPath(props),
         value: parseInt(props.value)
     })
 
-    const sign = props.value>0?"+":""
-    const text = getCharacteristicHuman(props)
 
-    return basicAstNode(`( ${sign}${props.value} ${text} )`, "strong")
+    const sign = props.value>0?"+":""
+
+    return basicAstNode(`( ${sign}${props.value} ${meta.field} )`, "strong")
 
 }

@@ -1,4 +1,3 @@
-import {getCharacteristic} from "../util/characteristics"
 import {firstPassTransform, secondPassTransform} from "./transform"
 import {basicAstNode, wrapIntoTree} from "./ast_util"
 
@@ -8,7 +7,7 @@ export function resolveEvent(player, eventAst, generateHtml){
 
 export function resolveChoice(player, originalEvent, choiceNum, roll, generateHtml){
     const choice = originalEvent.choices[choiceNum]
-    const passed = !choice.requires || (getCharacteristic(player, choice.requires.path) + roll >= choice.requires.value)
+    const passed = !choice.requires || (choice.requires.getVal(player) + roll) >= choice.requires.value
 
     if(passed){
         const resolution = secondPassTransform(player, choice.ast, generateHtml)

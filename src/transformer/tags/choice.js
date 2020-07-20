@@ -1,12 +1,12 @@
-import {getCharacteristicPath} from "../../util/characteristics"
 import {basicAstNode, wrapIntoTree} from "../ast_util"
+import playerMeta from "../../state/player_meta"
 
 export default function Choice(scope, node, player){
     const props = node.properties
-    const charPath = getCharacteristicPath(props)
+    const meta =  playerMeta(props)
 
-    const requires = !charPath?null:{
-        path: charPath,
+    const requires = !meta?null:{
+        ...meta,
         value: props.value
     }
 

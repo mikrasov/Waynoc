@@ -5,4 +5,4 @@
  */
 
 //Swap with persistentStore to renable local storage
-export { temporaryStore as wrapRootElement } from './src/state/ReduxWrapper'
+export { temporaryStore as wrapRootElement } from './src/state/redux_wrapper'

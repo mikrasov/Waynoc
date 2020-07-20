@@ -1,10 +1,10 @@
-import {getCharacteristicPath, getCharacteristic} from "../../util/characteristics"
 import {basicAstNode} from "../ast_util"
+import playerMeta from "../../state/player_meta"
 
 export default function Check(scope, node, player){
     const props = node.properties
-    const charPath = getCharacteristicPath(props)
-    const passed = getCharacteristic(player, charPath) >= props.value
+    const meta =  playerMeta(props)
+    const passed = meta.getVal(player) >= props.value
 
     if(passed)    return {
         ...node,
