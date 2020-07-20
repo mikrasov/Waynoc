@@ -28,7 +28,7 @@ Meanwhile in the back your mom smirks, envious. <Remove relationship="mom" value
 # Your first word was "Ma-Gik"!
 Right from birth your interests are clear.    <Add skill="Arcana"  value="5"></Add>
 
-Meanwhile in the back your parents smirk, envious. <Remove relationship="dad" value="5"></Add> <Remove relationship="mom" value="5"></Add>
+Meanwhile in the back your parents smirk, envious. <Remove relationship="dad" value="5"></Remove> <Remove relationship="mom" value="5"></Remove>
 
 </Choice>
 <Choice label="Greetings" stat="COM" value="1">

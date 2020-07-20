@@ -1,17 +1,28 @@
 import React  from "react"
 import { connect } from 'react-redux'
+import {Accordion, Card} from "react-bootstrap"
 import Layout from "../components/layout"
-
+import AgeYMD from "../components/age_ymd"
 
 function LogPage({log, dispatch}) {
 
-    return (
-        <Layout active={"log"}>
-            <ul>
-                { log.map((e,index) => <li  key={index}> {e.title}</li>)}
-            </ul>
-        </Layout>
-    )
+    return <Layout active={"log"}>
+        <Accordion defaultActiveKey={0} className={"event-log"}>
+            { log.map((event,index) => <Card>
+                    <Accordion.Toggle as={Card.Header} eventKey={index}>
+                        {event.title}
+                        <span className={"age-ymd"}> - Age: <AgeYMD age={event.age}/></span>
+                    </Accordion.Toggle>
+                    <Accordion.Collapse eventKey={index}>
+                        <Card.Body className={"event-body"}>
+                            {event.parts.map((part,i) => <div key={i}>{i>0?<hr/>:""}{part}</div> )}
+                        </Card.Body>
+                    </Accordion.Collapse>
+                </Card>
+            )}
+        </Accordion>
+    </Layout>
+
 }
 
 

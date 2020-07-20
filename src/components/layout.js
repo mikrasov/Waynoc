@@ -10,7 +10,7 @@ import '../css/layout.css'
 import Metadata from "./metadata"
 import {resetGame} from "../state"
 import Season from "./season"
-import AgeYMD from "./player/age_ymd"
+import AgeYMD from "./age_ymd"
 
 
 function Layout({dispatch, player, active, className, children}) {
@@ -30,8 +30,6 @@ function Layout({dispatch, player, active, className, children}) {
               }
             }
           }
-         
-  
       }
     `}
         render={data => <>
@@ -41,8 +39,6 @@ function Layout({dispatch, player, active, className, children}) {
                 fluid={data.background.childImageSharp.fluid}
                 className={"background-image"}
                 backgroundColor={`#1e6f00`}
-
-
             >
                 <div className={'container'}>
                     <Navbar className="navbar-dark sticky-top" expand="sm" style={{backgroundColor: "#5e4523"}}>

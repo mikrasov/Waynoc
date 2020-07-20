@@ -1,8 +1,8 @@
 import React from "react"
 import {Table} from "react-bootstrap"
+import Info from "../info"
 
-
-export default ({className, tags}) => {
+export default function ({className, tags}) {
 
     if(!tags || !Object.keys(tags).length)
         return <p className={className}> None</p>
@@ -11,8 +11,8 @@ export default ({className, tags}) => {
 
         <tbody>
 
-            {Object.entries(tags).map(([key, value]) =>
-                <tr key={key}><td>{key}</td></tr>
+            {Object.entries(tags).map(([tag, value]) =>
+                <tr key={tag}><td><Info name="tag" field={tag} /></td></tr>
             )}
 
         </tbody>

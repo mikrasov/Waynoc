@@ -1,5 +1,6 @@
 import React from "react"
 import {Table} from "react-bootstrap"
+import Info from "../info";
 
 export default ({className, relationships}) => {
 
@@ -9,8 +10,8 @@ export default ({className, relationships}) => {
     return <Table className={className} striped bordered hover>
         <tbody>
 
-            {Object.entries(relationships).map(([key, value]) =>
-                <tr key={key}><td>{key}: {value.closeness}</td></tr>
+            {Object.entries(relationships).map(([relationship, value]) =>
+                <tr key={relationship}><td><Info name="relationship" field={relationship} />: {value.closeness}</td></tr>
             )}
 
         </tbody>

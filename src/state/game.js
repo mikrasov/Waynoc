@@ -35,7 +35,7 @@ export default (state = initialState, action) => {
             return {
                 ...state,
                 activeEvent: lastEvent,
-                log: [...state.log, lastEvent]
+                log: [lastEvent, ...state.log]
             }
 
 
@@ -44,9 +44,12 @@ export default (state = initialState, action) => {
             console.log("Active event ["+action.event.age+"]: "+action.event.path+"\n", action.event)
 
             const updatedLog = [...state.log]
-
+            console.log(updatedLog)
             if (state.activeEvent.id !== action.event.id){
-                updatedLog.push(action.event)
+                updatedLog.unshift(action.event)
+            }
+            else {
+                updatedLog[0] = action.event
             }
 
 

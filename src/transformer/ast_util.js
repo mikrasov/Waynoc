@@ -24,3 +24,19 @@ export function wrapIntoTree(children){
     }
 }
 
+export function infoNode(name, field, value, binary){
+
+    return {
+        type: "element",
+        tagName: "info",
+        properties: {
+            name,
+            field,
+            value,
+            binary
+        },
+        children: [ {type: "text",  value: ""} ]
+    }
+
+
+}

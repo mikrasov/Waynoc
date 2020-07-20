@@ -30,6 +30,7 @@ const characteristic = {
     //Note has to be in this notation, arrow notation will cause error when using "this" keyword
     rootPath(){return this.pathPrefix + this.field},
     path(){ return this.pathPrefix+ this.field + this.pathSuffix},
+    isBinary(){return (this.max - this.min) ===1 },
     sideEffect(player, value){},
 
     getVal(player) {return lodash.get(player, this.path(), this.initial)},
@@ -72,7 +73,6 @@ export default function(props) {
         name: "stat",
         field: STATS_MAP[props.stat.toUpperCase()],
         pathPrefix: "stats.",
-        min: -10,
         max: 20
     }
 

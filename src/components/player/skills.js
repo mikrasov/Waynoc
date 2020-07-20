@@ -1,5 +1,6 @@
 import React from "react"
 import {Table} from "react-bootstrap"
+import Info from "../info";
 
 
 export default ({skills}) => {
@@ -8,7 +9,7 @@ export default ({skills}) => {
         <tbody>
 
             {Object.entries(skills).map(([skill, value]) =>
-                <tr key={skill}><td>{skill}: {value.value} ({value.xp})</td></tr>
+                <tr key={skill}><td><Info name="skill" field={skill} />: {value.value} ({value.xp} XP)</td></tr>
             )}
 
         </tbody>

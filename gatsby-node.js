@@ -11,27 +11,21 @@ exports.onCreateNode = ({ node, getNode, actions }) => {
     if (node.internal.type === "MarkdownRemark") {
         const path = createFilePath({ node, getNode }).slice(1,-1).split("/")
 
-        createNodeField({
-            node,
-            name: `type`,
-            value: path[0],
-        })
 
 
         if(path[0] === "events") {
-            createNodeField({
-                node,
-                name: `event-category`,
-                value: path[1],
-            })
+            age_str = path[2].slice(0,4).split("-")
 
-            age_str = path[2].split("-")
-
-            createNodeField({
-                node,
-                name: `age`,
-                value: parseFloat(age_str[0])+parseFloat((age_str[1]-1)*0.25),
-            })
+            createNodeField({node, name: `type`, value: "events" })
+            createNodeField({node, name: `event-category`, value: path[1]  })
+            createNodeField({node, name: `age`, value: parseFloat(age_str[0])+parseFloat((age_str[1])*0.25) })
         }
+        else {
+            createNodeField({node, name: `type`, value: "characteristics"})
+            createNodeField({node, name: `name`, value: path[0]})
+            createNodeField({node, name: `field`, value: path[1]})
+        }
+
+
     }
 }

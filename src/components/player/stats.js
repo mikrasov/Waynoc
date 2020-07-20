@@ -1,34 +1,39 @@
 import React from "react"
 import {GiAwareness, GiBeamsAura, GiBowman, GiBrain, GiEyeTarget, GiLungs, GiMuscleUp, GiRun} from "react-icons/gi";
-import {Table} from "react-bootstrap";
+import {Table} from "react-bootstrap"
+import Info from "../info";
 
-export default ({className, player}) => <Table striped bordered hover>
+export default function({className, player}){
 
-    <tbody>
-    <tr>
-        <td><GiBrain/> Int: {player.intelligence}</td>
-    </tr>
-    <tr>
-        <td><GiEyeTarget /> Per: {player.perception}</td>
-    </tr>
-    <tr>
-        <td><GiBeamsAura/> Cha: {player.charisma}</td>
-    </tr>
-    <tr>
-        <td><GiAwareness /> Com: {player.communication}</td>
-    </tr>
-    <tr>
-        <td><GiMuscleUp /> Str: {player.strength}</td>
-    </tr>
-    <tr>
-        <td><GiLungs/> Sta: {player.stamina}</td>
-    </tr>
-    <tr>
-        <td><GiBowman/> Dex: {player.dexterity}</td>
-    </tr>
-    <tr>
-        <td><GiRun/> Spd: {player.speed}</td>
-    </tr>
-    </tbody>
-</Table>
+
+    return <Table striped bordered hover>
+
+        <tbody>
+        <tr>
+            <td><GiBrain/> <Info name="stat" field="intelligence" />: {player.intelligence}</td>
+        </tr>
+        <tr>
+            <td><GiEyeTarget /> <Info name="stat" field="perception" />: {player.perception}</td>
+        </tr>
+        <tr>
+            <td><GiBeamsAura/> <Info name="stat" field="charisma" />: {player.charisma}</td>
+        </tr>
+        <tr>
+            <td><GiAwareness /> <Info name="stat" field="communication" />: {player.communication}</td>
+        </tr>
+        <tr>
+            <td><GiMuscleUp /> <Info name="stat" field="strength" />: {player.strength}</td>
+        </tr>
+        <tr>
+            <td><GiLungs/> <Info name="stat" field="stamina" />: {player.stamina}</td>
+        </tr>
+        <tr>
+            <td><GiBowman/> <Info name="stat" field="dexterity" />: {player.dexterity}</td>
+        </tr>
+        <tr>
+            <td><GiRun/> <Info name="stat" field="speed" />: {player.speed}</td>
+        </tr>
+        </tbody>
+    </Table>
+}
 

@@ -3,7 +3,7 @@ import React from "react"
 import {graphql, useStaticQuery} from "gatsby"
 import {nextGameSeason, setActiveEvent, gameOver} from "../state"
 import {resolveEvent, resolveChoice} from "../transformer"
-
+import Info from "../components/info"
 
 export default class EventDirector {
 
@@ -41,7 +41,7 @@ export default class EventDirector {
         //Can use this to map html tags to ReactComponents
         this.generateHtml = new rehypeReact({
             createElement: React.createElement,
-            components: {    },
+            components: { info: Info,   },
         }).Compiler
 
     }

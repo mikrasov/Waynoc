@@ -1,5 +1,6 @@
 import React from "react"
 import {Table} from "react-bootstrap"
+import Info from "../info";
 
 
 export default ({className, items}) => {
@@ -11,8 +12,8 @@ export default ({className, items}) => {
 
         <tbody>
 
-            {Object.entries(items).map(([key, value]) =>
-                <tr key={key}><td>{key}</td></tr>
+            {Object.entries(items).map(([item, value]) =>
+                <tr key={item}><td><Info name="item" field={item} /></td></tr>
             )}
 
         </tbody>
