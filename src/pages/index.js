@@ -2,9 +2,18 @@ import React  from "react"
 import { connect } from 'react-redux'
 
 import Layout from "../components/layout"
+import LevelUp from "../components/level-up"
 import GameControls from "../components/controls/control_bar"
 
-function IndexPage({ game, dispatch} ) {
+function IndexPage({ game, player, dispatch} ) {
+
+
+    if(player.actions > 0) {
+
+        return <Layout active={"game"}>
+            <LevelUp/>
+        </Layout>
+    }
 
     return (
         <Layout active={"game"}>
@@ -20,6 +29,7 @@ function IndexPage({ game, dispatch} ) {
 }
 
 export default connect(state => ({
+        player: state.player,
         game: state.game,
     }), null)(IndexPage)
 

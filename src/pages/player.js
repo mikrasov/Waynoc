@@ -32,7 +32,7 @@ function PlayerPage({player, dispatch}) {
                     <PlayerStats player={player.stats}/>
 
                     <h3>Characteristics:</h3>
-                    <PlayerItems tags={player.tags}/>
+                    <PlayerTags tags={player.tags}/>
 
                     <h3>Possessions:</h3>
                     <PlayerItems jobs={player.items}/>

@@ -2,7 +2,7 @@ import {ACTIONS} from './'
 
 const firstEvent = {
     id: "",
-    parts: ["You are born. It is only downhill from here."],
+    parts: ["You are Born!"],
     title: "Welcome to Waynoc",
     age: 0
 }

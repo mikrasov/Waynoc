@@ -14,8 +14,11 @@ export default class EventDirector {
 
         const data  = useStaticQuery( graphql`{
             events: allMarkdownRemark(
+                filter: { 
+                    fields: {type: {eq: "events"}}
+                },
                 sort: {
-                  fields: [frontmatter___age]
+                  fields: [fields___age]
                   order: ASC
                 }
             ){
@@ -25,6 +28,9 @@ export default class EventDirector {
                     fileAbsolutePath
                     frontmatter {
                       title
+                    }        
+                    fields {
+                      event_category
                       age
                     }
                 }
@@ -51,6 +57,7 @@ export default class EventDirector {
             const event = {
                 id: nextEvent.id,
                 path: nextEvent.fileAbsolutePath,
+                ...nextEvent.fields,
                 ...nextEvent.frontmatter,
                 ...resolveEvent(this.playerState, nextEvent.htmlAst, this.generateHtml)
             }

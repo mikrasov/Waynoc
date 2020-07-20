@@ -12,7 +12,7 @@ export default ({className, jobs}) => {
         <tbody>
 
             {Object.entries(jobs).map(([key, value]) =>
-                <tr key={key}><td>{key}: {value}</td></tr>
+                <tr key={key}><td>{key}</td></tr>
             )}
 
         </tbody>
