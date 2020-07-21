@@ -43,9 +43,18 @@ const characteristic = {
             lodash.set(copy, this.path(), newVal)
             this.sideEffect(copy, newVal)
         }
-        if(this.clearOnMin && newVal === this.min && lodash.has(copy, this.path())){
+        if(this.clearOnMin && newVal <= this.min && lodash.has(copy, this.path())){
             lodash.unset(copy,this.rootPath()) // removes the object entirely
         }
+        return copy
+    },
+
+    setVal(player, value) {
+        const copy = lodash.cloneDeep(player)
+
+        lodash.set(copy, this.path(), value)
+        this.sideEffect(copy, value)
+
         return copy
     }
 
@@ -53,6 +62,17 @@ const characteristic = {
 
 export default function(props) {
 
+    if("name" in props) return {
+        ...characteristic,
+        name: "name",
+        field: "name",
+    }
+
+    if("gender" in props) return {
+        ...characteristic,
+        name: "gender",
+        field: "gender",
+    }
 
     if("money" in props) return {
         ...characteristic,

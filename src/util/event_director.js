@@ -44,6 +44,11 @@ export default class EventDirector {
             components: { info: Info,   },
         }).Compiler
 
+        // Load the first event
+        if(this.gameState.activeEvent.id === ""){
+            this.dispatch(setActiveEvent(this.nextEvent(-1)))
+        }
+
     }
 
     rollDice() {
@@ -51,17 +56,22 @@ export default class EventDirector {
     }
 
 
-    nextSeason() {
-        const nextEvent = this.events[this.playerState.age / 0.25]
-        if (nextEvent) {
-            const event = {
-                id: nextEvent.id,
-                path: nextEvent.fileAbsolutePath,
-                ...nextEvent.fields,
-                ...nextEvent.frontmatter,
-                ...resolveEvent(this.playerState, nextEvent.htmlAst, this.generateHtml)
-            }
+    nextEvent(mod=0){
+        const nextEvent = this.events[(this.playerState.age  / 0.25) + mod + 1]
 
+        if(!nextEvent) return null
+        return {
+            id: nextEvent.id,
+            path: nextEvent.fileAbsolutePath,
+            ...nextEvent.fields,
+            ...nextEvent.frontmatter,
+            ...resolveEvent(this.playerState, nextEvent.htmlAst, this.generateHtml)
+        }
+    }
+
+    nextSeason() {
+        const event = this.nextEvent()
+        if (event) {
             this.dispatch(setActiveEvent(event))
             event.effects.forEach((e) => {
                 this.dispatch(e)

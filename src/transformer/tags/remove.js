@@ -1,5 +1,5 @@
 import {ACTIONS} from "../../state"
-import {infoNode} from "../ast_util"
+import {basicAstNode, infoNode} from "../ast_util"
 import playerMeta from "../../state/player_meta";
 
 
@@ -16,6 +16,7 @@ export default function Remove (node, scope) {
     })
 
 
-    return infoNode(meta.name, meta.field, props.value, meta.isBinary())
-
+    if(! ("silent" in props) )
+        return infoNode(meta.name, meta.field, props.value, meta.isBinary())
+    else return basicAstNode()
 }

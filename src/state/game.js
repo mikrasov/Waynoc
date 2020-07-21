@@ -2,8 +2,8 @@ import {ACTIONS} from './'
 
 const firstEvent = {
     id: "",
-    parts: ["You are Born!"],
-    title: "Welcome to Waynoc",
+    parts: [],
+    title: "",
     age: 0
 }
 
@@ -18,7 +18,7 @@ const lastEvent = {
 
 const initialState = {
     activeEvent: firstEvent,
-    log: [firstEvent],
+    log: [],
     season: 0
 }
 

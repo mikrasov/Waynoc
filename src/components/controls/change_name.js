@@ -16,7 +16,7 @@ function ChangeName({dispatch, game}) {
 
     function submit() {
         dispatch(changePlayerName(name))
-        dispatch(setActiveEvent(resolveInput(game.activeEvent, `Your parents seem to call you <strong>${name}</strong>`)))
+        dispatch(setActiveEvent(resolveInput(game.activeEvent, `Your parents seem to call you ${name}`)))
     }
 
     return <Form inline>

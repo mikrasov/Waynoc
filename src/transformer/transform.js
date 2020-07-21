@@ -31,6 +31,8 @@ function secondPassReplacer(node, scope, player){
             return Add(node, scope)
         case "remove":
             return Remove(node, scope)
+        case "set":
+            return Remove(node, scope)
         case "choice":
             return Choice(scope, node, player)
         case "prompt":

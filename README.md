@@ -70,15 +70,20 @@ We extend markdown functionality with some additional tags:
 Adds a specified player characteristic
     - *money and morale*: do not need an argument, just the property
     - *stat or skill or relationship or item or tag or flag or job*: The stat to modify 
-    - *value*: amount to increase the characteristic by(defaults to +1)
+    - *value*: amount to increase the characteristic.
     
 - &lt;**Remove** *[money|morale|stat|skill|relationship|item|tag|flag|job] [value]*&gt;&lt;/**Mod**&gt; <br>
 Removes a specified player characteristic
     - *money and morale*: do not need an argument, just the property
     - *stat or skill or relationship or item or tag or flag or job*: The stat to modify 
-    - *value*: amount to decrease the characteristic by. (defaults to -1)
+    - *value*: amount to decrease the characteristic. 
 
-
+- &lt;**Set** *[name|gender|money|morale|stat|skill|relationship|item|tag|flag|job] [value]*&gt;&lt;/**Mod**&gt; <br>
+Sets a specified player characteristic
+    - *name, gender, money, morale*: do not need an argument, just the property
+    - *stat or skill or relationship or item or tag or flag or job*: The stat to modify 
+    - *value*: to set characteristic to.
+     
 - &lt;**Prompt**&gt;*body*&lt;/**Prompt**&gt; <br>
 Displays text in the user controls. 
     - *body*: Everything in the body will be shown to the user in the controls. **But Not Evaluated** (mds tags in this section will be ignored)

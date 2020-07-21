@@ -4,6 +4,7 @@ const initialState = {
     name: "",
     age: 0,
     actions: 0,
+    gender: "",
     money: 0,
     morale: 50,
     stats: {
@@ -41,8 +42,8 @@ export default (player = initialState, action) => {
         case ACTIONS.PLAYER_MOD:
             return action.modVal(player, action.value)
 
-        case ACTIONS.PLAYER_CHANGE_NAME:
-            return { ...player, name: action.value }
+        case ACTIONS.PLAYER_SET:
+            return action.setVal(player, action.value)
 
         case ACTIONS.NEXT_SEASON:
             let actions = 0

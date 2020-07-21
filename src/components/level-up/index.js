@@ -9,8 +9,8 @@ const childhood = {
     self: {
         title: "Practice on Your Own",
         activities: [
-            {label: `Practice Athletics`, effect: modifyPlayer("skills.athletics", 15)},
-            {label: `Practice Concentration`, effect: modifyPlayer("skills.concentration", 15)},
+            {label: `Practice Athletics`,       effect: modifyPlayer({skill:"athletics"})},
+            {label: `Practice Concentration`,   effect: modifyPlayer({skill:"concentration"})},
         ]
     },
     mom: {
@@ -20,10 +20,10 @@ const childhood = {
             value: 60
         },
         activities: [
-            {label: `Learn Literature`, effect: modifyPlayer("skills.literature", 15)},
-            {label: `Learn Charm`, effect: modifyPlayer("skills.charm", 15)},
-            {label: `Learn Worldliness`, effect: modifyPlayer("skills.worldliness", 15)},
-            {label: `Learn Etiquette`, effect: modifyPlayer("skills.etiquette", 15)},
+            {label: `Learn Literature`,         effect: modifyPlayer({skill:"literature"})},
+            {label: `Learn Charm`,              effect: modifyPlayer({skill:"charm"})},
+            {label: `Learn Worldliness`,        effect: modifyPlayer({skill:"worldliness"})},
+            {label: `Learn Etiquette`,          effect: modifyPlayer({skill:"etiquette"})},
         ]
     },
     dad: {
@@ -33,10 +33,10 @@ const childhood = {
             value: 60
         },
         activities: [
-            {label: `Learn Mechanics`, effect: modifyPlayer("skills.mechanics", 15)},
-            {label: `Learn Awareness`, effect: modifyPlayer("skills.awareness", 15)},
-            {label: `Learn Bargain`, effect: modifyPlayer("skills.bargain", 15)},
-            {label: `Learn Survival`, effect: modifyPlayer("skills.survival", 15)},
+            {label: `Learn Mechanics`,          effect: modifyPlayer({skill:"mechanics"})},
+            {label: `Learn Awareness`,          effect: modifyPlayer({skill:"awareness"})},
+            {label: `Learn Bargain`,            effect: modifyPlayer({skill:"bargain"})},
+            {label: `Learn Survival`,           effect: modifyPlayer({skill:"survival"})},
         ]
     }
 }
