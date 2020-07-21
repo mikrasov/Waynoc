@@ -32,9 +32,6 @@ const initialState = {
     flags: {}
 }
 
-
-
-
 export default (player = initialState, action) => {
 
     switch (action.type) {

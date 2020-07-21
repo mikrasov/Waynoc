@@ -7,14 +7,15 @@ export default function Set (node, scope) {
     const props = node.properties
     const meta =  playerMeta(props)
 
-    props.value = props.value? props.value : meta.step
+    if(meta.isNumeric)
+        props.value = props.value? parseInt(props.value) : meta.step
+    else if( !("value" in props) ) throw new Error("No value passed to SET tag for non numeric field")
 
     scope.effects.push({
         ...meta,
         type: ACTIONS.PLAYER_SET,
-        value: parseInt(props.value)
+        value: props.value
     })
-
 
     if(! ("silent" in props) )
         return infoNode(meta.name, meta.field, props.value, true)

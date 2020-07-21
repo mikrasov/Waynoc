@@ -18,14 +18,10 @@ const query = graphql`{
     }
 }`
 
-
-
-
 export default function ({name, field, value=0, binary}) {
     const car  = useStaticQuery(query).characteristics.nodes.find(
         (c)=> c?.fields.name === name && c?.fields.field === field
     )
-
 
     const tagInfo = !car? {title: lodash.upperFirst(field), __html:"No details"}:{
         ...car.frontmatter,

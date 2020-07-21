@@ -7,14 +7,15 @@ export default function Remove (node, scope) {
     const props = node.properties
     const meta =  playerMeta(props)
 
-    props.value = props.value? -props.value: -meta.step
+    if(!meta.isNumeric) throw new Error("Attempting to Subtract from non numeric field.")
+
+    props.value = props.value? -parseInt(props.value): -meta.step
 
     scope.effects.push({
         ...meta,
         type: ACTIONS.PLAYER_MOD,
-        value: parseInt(props.value)
+        value: props.value
     })
-
 
     if(! ("silent" in props) )
         return infoNode(meta.name, meta.field, props.value, meta.isBinary())

@@ -4,7 +4,8 @@ import Else from "./tags/else"
 import Input from "./tags/input"
 import Add from "./tags/add"
 import Prompt from "./tags/prompt"
-import Remove from "./tags/remove";
+import Remove from "./tags/remove"
+import Set from "./tags/set"
 
 function firstPassReplacer(node, scope){
     //note all nodes are lowercase
@@ -32,7 +33,7 @@ function secondPassReplacer(node, scope, player){
         case "remove":
             return Remove(node, scope)
         case "set":
-            return Remove(node, scope)
+            return Set(node, scope)
         case "choice":
             return Choice(scope, node, player)
         case "prompt":

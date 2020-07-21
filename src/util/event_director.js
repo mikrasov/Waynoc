@@ -84,8 +84,6 @@ export default class EventDirector {
         }
     }
 
-
-
     makeChoice(choice) {
         const diceRoll = this.rollDice()
         console.log("Rolled a " + diceRoll)

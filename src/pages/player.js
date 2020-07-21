@@ -9,23 +9,27 @@ import PlayerTags from "../components/player/tags"
 import PlayerJobs from "../components/player/jobs"
 import PlayerItems from "../components/player/items"
 import PlayerRelationships from "../components/player/relationships"
-
+const lodash = require("lodash")
 
 function PlayerPage({player, dispatch}) {
 
     return (
         <Layout active={"player"}>
             <Row>
-                <Col lg={2} xs={3}> <strong>Name:</strong> </Col>
-                <Col lg={4} xs={9}> {player.name?player.name:"Unknown"}</Col>
+                <Col xs={12}><h3>{player.name?player.name:"Unknown Name"}</h3><br/></Col>
+
                 <Col lg={2} xs={3}> <strong>Age:</strong></Col>
                 <Col lg={4} xs={9}> <AgeYMD age={player.age} /></Col>
-                <Col lg={2} xs={3}> <strong>Morale:</strong></Col>
-                <Col lg={4} xs={9}> {player.morale}</Col>
+                <Col lg={2} xs={3}> <strong>Gender:</strong></Col>
+                <Col lg={4} xs={9}> {lodash.upperFirst(player.gender)} </Col>
+
+
                 <Col lg={2} xs={3}> <strong>Money:</strong></Col>
                 <Col lg={4} xs={9}> ${player.money}</Col>
+                <Col lg={2} xs={3}> <strong>Morale:</strong></Col>
+                <Col lg={4} xs={9}> {player.morale}</Col>
             </Row>
-            <br/>
+            <br/><br/>
             <Row>
                 <Col lg={4} sm={6} xs={12}>
                     <h3>Abilities:</h3>

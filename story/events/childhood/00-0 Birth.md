@@ -34,7 +34,7 @@ You must hurry. Choose!
 
 <Choice label="The Girl">
     
-You focus on the **girl** and the light fills your vision.  <Set silent gender="female"></Set>
+You focus on the **girl** and the light fills your vision.  <Set silent gender value="female"></Set>
 
 A sudden burst of pressure all around feels like it is about to crush you.
 The pressure comes in rapid waves, propelling your frail body forward.
@@ -52,7 +52,7 @@ You scream.
 
 <Choice label="The Boy">
     
-You focus on the boy and the light fills your vision. <Set silent gender="male"></Set>
+You focus on the boy and the light fills your vision. <Set silent gender value="male"></Set>
     
 A sudden burst of pressure all around feels like it is about to crush you.
 The pressure comes in rapid waves, propelling your frail body forward.

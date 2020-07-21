@@ -1,9 +1,9 @@
 import React from "react"
 
 import Activity from "./activity"
-import {modifyPlayer} from "../../state";
-import {Col, Row} from "react-bootstrap";
-import {connect} from "react-redux";
+import {modifyPlayer} from "../../state"
+import {Container, Row, Col} from "react-bootstrap"
+import {connect} from "react-redux"
 
 const childhood = {
     self: {
@@ -48,11 +48,13 @@ function LevelUp({player}) {
 
         <strong>Available Actions</strong>: {player.actions}<br/><br/>
 
+        <Container fluid >
         <Row>
             {Object.entries(childhood).map(([key, training]) =>
                 <Col lg={6} sm={12} key={key}><Activity source={key} training={training}/></Col>
             )}
         </Row>
+        </Container>
     </>
 }
 

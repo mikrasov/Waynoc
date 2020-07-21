@@ -1,7 +1,7 @@
 import { combineReducers } from 'redux'
 import player from './player'
 import game from './game'
-import playerMeta from "./player_meta";
+import playerMeta from "./player_meta"
 
 export const ACTIONS = {
     GAME_RESET: "game/reset",

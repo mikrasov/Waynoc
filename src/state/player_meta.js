@@ -26,6 +26,7 @@ const characteristic = {
     min: 0,
     max: Number.MAX_VALUE,
     clearOnMin: true,
+    isNumeric: true,
 
     //Note has to be in this notation, arrow notation will cause error when using "this" keyword
     rootPath(){return this.pathPrefix + this.field},
@@ -43,7 +44,7 @@ const characteristic = {
             lodash.set(copy, this.path(), newVal)
             this.sideEffect(copy, newVal)
         }
-        if(this.clearOnMin && newVal <= this.min && lodash.has(copy, this.path())){
+        if( this.clearOnMin && newVal <= this.min && lodash.has(copy, this.path())){
             lodash.unset(copy,this.rootPath()) // removes the object entirely
         }
         return copy
@@ -51,10 +52,8 @@ const characteristic = {
 
     setVal(player, value) {
         const copy = lodash.cloneDeep(player)
-
         lodash.set(copy, this.path(), value)
         this.sideEffect(copy, value)
-
         return copy
     }
 
@@ -66,12 +65,14 @@ export default function(props) {
         ...characteristic,
         name: "name",
         field: "name",
+        isNumeric: false
     }
 
     if("gender" in props) return {
         ...characteristic,
         name: "gender",
         field: "gender",
+        isNumeric: false
     }
 
     if("money" in props) return {
@@ -86,7 +87,6 @@ export default function(props) {
         field: "morale",
         max: 100
     }
-
 
     if(props.stat) return {
         ...characteristic,

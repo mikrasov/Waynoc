@@ -12,6 +12,14 @@ const siteUrl = isNetlifyProduction ? NETLIFY_SITE_URL : NETLIFY_DEPLOY_URL;
 module.exports = {
   siteMetadata: {
     title: 'Waynoc',
+    twitterUser: '@ignobelman',
+    authors: "George Khaburzaniya & Michael Nekrasov",
+    description: 'A browser game that takes you through the life of a mage.',
+    keywords: 'RPG, Game, Online Game, Free, Magic, Story, Browser Game',
+    featuredImageURL:'',
+    googleAppName: '',
+    googleAppId: '',
+    googleAppURL: '',
     siteUrl
   },
   plugins: [

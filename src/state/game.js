@@ -15,7 +15,6 @@ const lastEvent = {
 
 }
 
-
 const initialState = {
     activeEvent: firstEvent,
     log: [],
@@ -24,7 +23,6 @@ const initialState = {
 
 
 export default (state = initialState, action) => {
-
 
     switch (action.type) {
 
@@ -38,26 +36,18 @@ export default (state = initialState, action) => {
                 log: [lastEvent, ...state.log]
             }
 
-
         case ACTIONS.SET_EVENT:
-
             console.log("Active event ["+action.event.age+"]: "+action.event.path+"\n", action.event)
-
             const updatedLog = [...state.log]
-            console.log(updatedLog)
-            if (state.activeEvent.id !== action.event.id){
-                updatedLog.unshift(action.event)
-            }
-            else {
-                updatedLog[0] = action.event
-            }
 
+            if (state.activeEvent.id !== action.event.id) updatedLog.unshift(action.event)  //Push to front
+            else updatedLog[0] = action.event                                               //Update existing log entry
 
             return {
                 ...state,
                 activeEvent: action.event,
-                log: updatedLog}
-
+                log: updatedLog
+            }
 
         default:
             return state

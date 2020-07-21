@@ -38,5 +38,4 @@ export function infoNode(name, field, value, binary){
         children: [ {type: "text",  value: ""} ]
     }
 
-
 }

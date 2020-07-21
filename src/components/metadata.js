@@ -2,56 +2,55 @@ import React from 'react'
 import Helmet from 'react-helmet'
 import { graphql, StaticQuery } from 'gatsby'
 
-const Metadata = (props) => (
+export default (props) => (
   <StaticQuery
       query={graphql`
-      query {
-        site {
-          siteMetadata {
-            title
-            siteUrl
+        query {
+          site {
+            siteMetadata {
+              title
+              twitterUser
+              authors
+              description
+              keywords
+              featuredImageURL
+              googleAppName
+              googleAppId
+              googleAppURL
+              siteUrl
+            }
           }
         }
-      }
     `}
       render={function(data){
         const meta = data.site.siteMetadata;
-        const title =  props.pageTitle? (props.pageTitle+" – "+meta.title): meta.title
 
-      return (
-        <Helmet
-          title={ title}
-        >
-          <meta name="keywords"           content={props.pageKeywords || props.siteKeywords} />
-          <meta name="description"        content={props.description} />
-          <meta name="twitter:card"       content={props.pageType} />
-          <meta name="twitter:site"       content={meta.siteUrl} />
-          <meta name="twitter:creator"    content={"@mikrasov"} />
-          <meta property="twitter:title"  content={title} />
-          <meta property="og:site_name"   content={props.siteName} />
-          <meta property="og:url"         content={meta.siteUrl+props.pageUrl} />
-          <meta property="og:title"       content={title} />
-          <meta property="og:description" content={props.description} />
-          <meta property="og:image"       content={meta.siteUrl+props.featuredImage} />
-          <meta property="og:image:secure_url" content={meta.siteUrl+props.featuredImage} />
+        return (
+          <Helmet
+            title={ meta.title}
+          >
+            <meta name="keywords"           content={meta.keywords} />
+            <meta name="description"        content={meta.description} />
+            <meta name="authors"            content={meta.authors} />
+            <meta name="twitter:card"       content={"app"} />
+            <meta name="twitter:site"       content={meta.siteUrl} />
+            <meta name="twitter:creator"    content={meta.twitterUser} />
+            <meta name="twitter:description" content={meta.description} />
+            <meta name="twitter:title"      content={meta.title} />
 
-          <html lang="en" />
-        </Helmet>
-      )}}
+            {meta.googleAppName &&  <meta name="twitter:app:name:googleplay"  content={meta.googleAppName} /> }
+            {meta.googleAppId &&    <meta name="twitter:app:id:googleplay"    content={meta.googleAppId} /> }
+            {meta.googleAppURL &&   <meta name="twitter:app:url:googleplay"   content={meta.googleAppURL} /> }
+
+            <meta property="og:site_name"   content={meta.title} />
+            <meta property="og:url"         content={meta.siteUrl} />
+            <meta property="og:title"       content={meta.title} />
+            <meta property="og:description" content={meta.description} />
+            <meta property="og:image"       content={meta.featuredImageURL} />
+            <meta property="og:image:secure_url" content={meta.featuredImageURL} />
+
+            <html lang="en" />
+          </Helmet>
+        )}}
     />
-
   )
-
-
-Metadata.defaultProps = {
-  description: '',
-  siteKeywords:'',
-  pageTitle: undefined,
-  pageUrl: "",
-  pageType: "summary",
-  pageKeywords: undefined,
-  featuredImage: "",
-
-};
-
-export default Metadata
