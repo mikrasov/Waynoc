@@ -18,6 +18,7 @@ const lastEvent = {
 const initialState = {
     activeEvent: firstEvent,
     log: [],
+    levelUpChoices: {},
     season: 0
 }
 
@@ -37,7 +38,7 @@ export default (state = initialState, action) => {
             }
 
         case ACTIONS.SET_EVENT:
-            console.log("Active event ["+action.event.age+"]: "+action.event.path+"\n", action.event)
+            console.log("Active event [" + action.event.age + "]: " + action.event.path + "\n", action.event)
             const updatedLog = [...state.log]
 
             if (state.activeEvent.id !== action.event.id) updatedLog.unshift(action.event)  //Push to front
@@ -48,6 +49,39 @@ export default (state = initialState, action) => {
                 activeEvent: action.event,
                 log: updatedLog
             }
+
+
+        case ACTIONS.LEVEL_UP_CHOICE_ADD:
+            return {
+                ...state,
+                levelUpChoices:{
+                    ...state.levelUpChoices,
+                    [action.key]: action.activity
+                }
+            }
+
+        case ACTIONS.LEVEL_UP_CHOICE_REMOVE: {
+            const updatedChoices = { ...state.levelUpChoices}
+            delete updatedChoices[action.key]
+            return {...state, levelUpChoices: updatedChoices}
+        }
+
+        case ACTIONS.LEVEL_UP_COMPLETE:
+            return {...state, levelUpChoices: []}
+
+
+        case ACTIONS.LOG_LINE: {
+            const updatedLog = [...state.log]
+            updatedLog.splice(1,0,{
+                title: action.title,
+                parts: [action.content]
+            })
+            console.log(updatedLog)
+            return {
+                ...state,
+                log: updatedLog
+            }
+        }
 
         default:
             return state

@@ -1,0 +1,18 @@
+
+.characteristic-info{
+    color: #005cbf;
+    display: inline-block;
+}
+
+.characteristic-info.positive{
+    color: #1c7430;
+
+}
+.characteristic-info.negative{
+    color: #a71d2a;
+}
+
+.characteristic-info:hover {
+    color: #ba8b00;
+    cursor: help ;
+}

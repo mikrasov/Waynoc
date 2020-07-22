@@ -1,6 +1,7 @@
 import React from "react"
 import {graphql, StaticQuery} from "gatsby"
 import Img from "gatsby-image"
+import "./season.css"
 
 export default (props) => <StaticQuery
     query={graphql`{

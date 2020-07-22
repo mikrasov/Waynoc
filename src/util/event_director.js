@@ -1,9 +1,10 @@
 import rehypeReact from "rehype-react"
 import React from "react"
 import {graphql, useStaticQuery} from "gatsby"
-import {nextGameSeason, setActiveEvent, gameOver} from "../state"
+import {nextGameSeason, setActiveEvent, gameOver, levelUpComplete, modifyPlayer, addLogEntry} from "../state"
 import {resolveEvent, resolveChoice} from "../transformer"
-import Info from "../components/info"
+import Info, {fromMeta} from "../components/info"
+
 
 export default class EventDirector {
 
@@ -53,6 +54,25 @@ export default class EventDirector {
 
     rollDice() {
         return (1 + Math.floor(Math.random() * 6)) + (1 + Math.floor(Math.random() * 6))
+    }
+
+    levelUp(activities){
+        const logLines = []
+
+        for (const activity of Object.values(activities)) {
+
+            const logEffects = []
+            for (const effect of activity.effects) {
+                this.dispatch( modifyPlayer(effect) )
+
+                logEffects.push( fromMeta(effect) )
+            }
+            logLines.push(<p>{activity.label} {logEffects} </p>)
+        }
+
+        const logContent = <>{logLines}</>
+        this.dispatch(addLogEntry("You Set Time Aside for Training", logContent))
+        this.dispatch( levelUpComplete() )
     }
 
 

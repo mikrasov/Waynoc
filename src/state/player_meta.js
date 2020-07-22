@@ -1,7 +1,7 @@
 /*
  * Translates between MDS tag props and Player characteristics
  */
-const lodash = require("lodash")
+const _ = require("lodash")
 
 const STATS_MAP = {
     INT: "intelligence",
@@ -14,7 +14,6 @@ const STATS_MAP = {
     SPD: "speed"
 
 }
-
 
 const characteristic = {
     name:"",
@@ -34,25 +33,25 @@ const characteristic = {
     isBinary(){return (this.max - this.min) ===1 },
     sideEffect(player, value){},
 
-    getVal(player) {return lodash.get(player, this.path(), this.initial)},
+    getVal(player) {return _.get(player, this.path(), this.initial)},
 
     modVal(player, value) {
-        const copy = lodash.cloneDeep(player)
-        const newVal = lodash.get(copy, this.path(), 0) + value
+        const copy = _.cloneDeep(player)
+        const newVal = _.get(copy, this.path(), 0) + value
 
         if( newVal >= this.min && newVal <= this.max ){
-            lodash.set(copy, this.path(), newVal)
+            _.set(copy, this.path(), newVal)
             this.sideEffect(copy, newVal)
         }
-        if( this.clearOnMin && newVal <= this.min && lodash.has(copy, this.path())){
-            lodash.unset(copy,this.rootPath()) // removes the object entirely
+        if( this.clearOnMin && newVal <= this.min && _.has(copy, this.path())){
+            _.unset(copy,this.rootPath()) // removes the object entirely
         }
         return copy
     },
 
     setVal(player, value) {
-        const copy = lodash.cloneDeep(player)
-        lodash.set(copy, this.path(), value)
+        const copy = _.cloneDeep(player)
+        _.set(copy, this.path(), value)
         this.sideEffect(copy, value)
         return copy
     }
@@ -106,7 +105,7 @@ export default function(props) {
         sideEffect(copy, xp){
             // quadratic formula for each level costing 1 xp more than previous
             const newVal = Math.floor((Math.sqrt(8 * xp + 1) - 1)/2)
-            lodash.set(copy, this.rootPath()+".value", newVal)
+            _.set(copy, this.rootPath()+".value", newVal)
         },
     }
 

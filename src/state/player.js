@@ -29,7 +29,7 @@ const initialState = {
     items: {},
     tags: {},
     jobs: {},
-    flags: {}
+    flags: {},
 }
 
 export default (player = initialState, action) => {
@@ -44,8 +44,14 @@ export default (player = initialState, action) => {
 
         case ACTIONS.NEXT_SEASON:
             let actions = 0
-            //if(player.age >= 0){actions = 3}
+            if(player.age >= 5){actions = 3}
             return { ...player, age: player.age + .25, actions: actions }
+
+        case ACTIONS.LEVEL_UP_COMPLETE:
+            return {
+                ...player,
+                actions: 0
+            }
 
         case ACTIONS.GAME_RESET:
             return initialState

@@ -4,8 +4,8 @@ import {connect} from "react-redux"
 import {Button, Modal, Nav, Navbar} from 'react-bootstrap'
 import BackgroundImage from 'gatsby-background-image'
 
-import '../css/bootstrap.min.css'
-import '../css/layout.css'
+import './bootstrap.min.css'
+import './layout.css'
 
 import Metadata from "./metadata"
 import {resetGame} from "../state"

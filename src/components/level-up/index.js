@@ -1,64 +1,60 @@
 import React from "react"
-
-import Activity from "./activity"
-import {modifyPlayer} from "../../state"
 import {Container, Row, Col} from "react-bootstrap"
-import {connect} from "react-redux"
+
+
+import Source from "./source"
 
 const childhood = {
     self: {
         title: "Practice on Your Own",
+        max: 100,
         activities: [
-            {label: `Practice Athletics`,       effect: modifyPlayer({skill:"athletics"})},
-            {label: `Practice Concentration`,   effect: modifyPlayer({skill:"concentration"})},
+            {label: `Read a Book`, effects: [{skill:"literature", value:5}]},
+            {label: `Play Outside`, effects: [{skill:"athletics", value:5}]},
+            {label: `Build a Model`, effects: [{skill:"concentration", value:5}]},
         ]
     },
     mom: {
         title: "Training From Mom",
+        max: 1,
         require: {
             path: "relationship.mom",
             value: 60
         },
         activities: [
-            {label: `Learn Literature`,         effect: modifyPlayer({skill:"literature"})},
-            {label: `Learn Charm`,              effect: modifyPlayer({skill:"charm"})},
-            {label: `Learn Worldliness`,        effect: modifyPlayer({skill:"worldliness"})},
-            {label: `Learn Etiquette`,          effect: modifyPlayer({skill:"etiquette"})},
+            {label: `Do errands around Town`, effects: [{skill:"charm"}] },
+            {label: `Listen to Stories`, effects: [{skill:"worldliness"}] },
+            {label: `Go to a Restaurant`, effects: [{skill:"etiquette"}] },
         ]
     },
     dad: {
         title: "Training From Dad",
+        max: 1,
         require: {
             path: "relationship.dad",
             value: 60
         },
         activities: [
-            {label: `Learn Mechanics`,          effect: modifyPlayer({skill:"mechanics"})},
-            {label: `Learn Awareness`,          effect: modifyPlayer({skill:"awareness"})},
-            {label: `Learn Bargain`,            effect: modifyPlayer({skill:"bargain"})},
-            {label: `Learn Survival`,           effect: modifyPlayer({skill:"survival"})},
+            {label: `Work on The Car`, effects: [{skill:"mechanics"}] },
+            {label: `Go Shopping`, effects: [{skill:"bargain"}] },
+            {label: `Go Camping`, effects: [{skill:"survival"}] },
         ]
     }
 }
 
-function LevelUp({player}) {
+export default function LevelUp(props) {
 
     return <>
         <h1> Time to Level Up! </h1>
 
-        <strong>Available Actions</strong>: {player.actions}<br/><br/>
-
         <Container fluid >
-        <Row>
-            {Object.entries(childhood).map(([key, training]) =>
-                <Col lg={6} sm={12} key={key}><Activity source={key} training={training}/></Col>
-            )}
-        </Row>
+            <Row>
+                {Object.entries(childhood).map(([key, training]) =>
+                    <Col lg={6} sm={12} key={key}>
+                        <Source source={key} training={training}/>
+                    </Col>
+                )}
+            </Row>
         </Container>
     </>
 }
-
-export default connect(state => ({
-    player: state.player,
-}), null)(LevelUp)
-

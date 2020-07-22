@@ -1,0 +1,34 @@
+
+.training-source{
+    margin: 15px 5px;
+}
+
+.training-source .activities{
+    border: solid 1px #EEE;
+}
+
+.activity{
+    display: block;
+    padding: 10px;
+    cursor: pointer;
+}
+
+.activity:hover{
+    background-color: rgba(128, 189, 255, 0.13);
+}
+.activity.selected{
+    background-color: #80bdff;
+}
+.activity.disabled{
+    background-color: #EEE;
+    color: #999;
+    cursor: default;
+}
+
+.activity .label{
+    display: inline-block;
+    color: #005cbf;
+    font-weight: bold;
+    min-width: 30%;
+    margin-right: 5px;
+}

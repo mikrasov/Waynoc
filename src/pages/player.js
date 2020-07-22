@@ -44,7 +44,7 @@ function PlayerPage({player, dispatch}) {
                     <PlayerRelationships relationships={player.relationships}/>
                 </Col>
                 <Col lg={4} sm={6} xs={12}>
-                    <h3>Characteristics:</h3>
+                    <h3>Tags:</h3>
                     <PlayerTags tags={player.tags}/>
                 </Col>
                 <Col lg={4} sm={6} xs={12}>

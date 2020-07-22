@@ -1,0 +1,14 @@
+
+.event-body h1{
+    font-size: 1.3rem;
+}
+
+.event-log .card-header{
+    font-weight: bold;
+    font-size: 115%;
+}
+
+.event-log .card-header .age-ymd{
+    color: #999;
+    font-size: 90%;
+}
