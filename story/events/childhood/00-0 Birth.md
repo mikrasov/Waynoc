@@ -33,14 +33,13 @@ You must hurry. Choose!
 <Prompt> Which light do you focus on? </Prompt>
 
 <Choice label="The Girl">
-    
+
 You focus on the **girl** and the light fills your vision.  <Set silent gender value="female"></Set>
 
 A sudden burst of pressure all around feels like it is about to crush you.
 The pressure comes in rapid waves, propelling your frail body forward.
 Then suddenly the pressure is gone and your senses are flooded with light, sound, touch and smell.
 Its oh so cold and you feel at once as if you made a terrible mistake. 
-
 
 Behind you screaming fills the room. As powerful hands lift you up you see the silent form of a baby boy, blue, unmoving, 
 covered in blood, thrown out into the arms of a giant.
@@ -51,14 +50,13 @@ You scream.
 
 
 <Choice label="The Boy">
-    
-You focus on the boy and the light fills your vision. <Set silent gender value="male"></Set>
-    
+
+You focus on the **boy** and the light fills your vision. <Set silent gender value="male"></Set>
+
 A sudden burst of pressure all around feels like it is about to crush you.
 The pressure comes in rapid waves, propelling your frail body forward.
 Then suddenly the pressure is gone and your senses are flooded with light, sound, touch and smell.
-Its oh so cold and you feel at once as if you made a terrible mistake. 
-
+Its oh so cold and you feel at once as if you made a terrible mistake.
 
 As powerful hands lift you up you see the form of a baby girl, silent, blue and unmoving laying in the arms of a giant man.
 
