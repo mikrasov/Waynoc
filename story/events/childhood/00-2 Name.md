@@ -12,5 +12,6 @@ To crawl. <Add stat="SPD"></Add>
 
 You realized that your parents call you a distinct name.
 
-<Prompt>What name did your parents call you?</Prompt>
+
+**What name did your parents call you?**
 <Input type="name"></Input>

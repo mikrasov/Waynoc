@@ -9,7 +9,8 @@ Well whatever it was, its impact can still reach you. Even here in the encompass
 
 You have to go back. But how?
 
-<Prompt> What do you do? </Prompt>
+    
+**What do you do?**
 
 <Choice label="Examine The Darkness">
 
@@ -17,7 +18,8 @@ You search, without eyes. You scan the great void, across towns, and history, lo
 
 At last, you see it! A light! Familiar. Beckoning.
 
-<Prompt> What do you do? </Prompt>
+
+**What do you do?**
 
 <Choice label="Move towards the light">
 
@@ -30,7 +32,7 @@ As you observe, the lights seem to dim with every flicker.
 You must hurry. Choose!
 
 
-<Prompt> Which light do you focus on? </Prompt>
+**Which light do you focus on?**
 
 <Choice label="The Girl">
 

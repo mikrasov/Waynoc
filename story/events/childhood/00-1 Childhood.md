@@ -18,7 +18,8 @@ To suck on your hand. <Add stat="DEX"></Add>
 
 To swing at dangling toys. <Add stat="SPD"></Add>
 
-<Prompt> What kind of childhood did you have? </Prompt>
+
+**What kind of childhood did you have?**
 
 <Choice label="Athletic">
 

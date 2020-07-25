@@ -7,7 +7,8 @@ To stand while holding on to something. <Add stat="STR"></Add>
 
 To understand simple sentences. <Add stat="COM"></Add>
 
-<Prompt> What language are your parents speaking? </Prompt>
+
+**What language are your parents speaking?**
 
 <Choice label="Mandarin">
 
