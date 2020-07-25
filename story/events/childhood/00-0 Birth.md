@@ -24,7 +24,7 @@ At last, you see it! A light! Familiar. Beckoning.
 As you get closer, what you thought was one light is in fact two distinct points.
 Packed so closely together, and so faint and flickering you couldn't tell them apart.
 
-While you lack anything one could call a sense, you know that one of the light belongs to a girl, the other a boy.
+While you lack anything one could call a sense, you know that one light belongs to a girl, the other a boy.
 As you observe, the lights seem to dim with every flicker. 
 
 You must hurry. Choose!
