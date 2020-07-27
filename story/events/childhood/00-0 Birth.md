@@ -32,7 +32,7 @@ As you observe, the lights seem to dim with every flicker.
 You must hurry. Choose!
 
 
-**Which light do you focus on?**
+<Prompt>Which light do you focus on?</Prompt>
 
 <Choice label="The Girl">
 
