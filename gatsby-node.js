@@ -16,6 +16,7 @@ exports.onCreateNode = ({ node, getNode, actions }) => {
         if(path[0] === "events") {
             age_str = path[2].slice(0,4).split("-")
 
+            createNodeField({node, name: `file`, value: path[2] })
             createNodeField({node, name: `type`, value: "events" })
             createNodeField({node, name: `event-category`, value: path[1]  })
             createNodeField({node, name: `age`, value: parseFloat(age_str[0])+parseFloat((age_str[1])*0.25) })

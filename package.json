@@ -1,8 +1,8 @@
 {
-  "name": "waynoc",
-  "description": "Waynoc Game",
+  "name": "index.js",
+  "description": "Malastra",
   "version": "0.0.3",
-  "author": "George",
+  "author": "Michael Nekrasov",
   "dependencies": {
     "gatsby": "^2.x",
     "gatsby-background-image": "^1.x",
@@ -22,6 +22,7 @@
     "react": "^16.x",
     "react-bootstrap": "^1.x",
     "react-dom": "^16.x",
+    "react-graph-vis": "^1.0.5",
     "react-helmet": "^6.x",
     "react-icons": "^3.x",
     "react-redux": "^7.x",

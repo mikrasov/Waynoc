@@ -11,11 +11,11 @@ const siteUrl = isNetlifyProduction ? NETLIFY_SITE_URL : NETLIFY_DEPLOY_URL;
 
 module.exports = {
   siteMetadata: {
-    title: 'Waynoc',
-    twitterUser: '@ignobelman',
-    authors: "George Khaburzaniya & Michael Nekrasov",
-    description: 'A browser game that takes you through the life of a mage.',
-    keywords: 'RPG, Game, Online Game, Free, Magic, Story, Browser Game',
+    title: 'Malastra',
+    twitterUser: '@mikrasov',
+    authors: "Michael Nekrasov",
+    description: 'A space opera role playing browser game.',
+    keywords: 'RPG, Game, Online Game, Free, Space, Story, Browser Game',
     featuredImageURL:'',
     googleAppName: '',
     googleAppId: '',
@@ -28,8 +28,8 @@ module.exports = {
     {
       resolve: 'gatsby-plugin-manifest',
       options: {
-        name: 'Waynoc',
-        short_name: 'Waynoc',
+        name: 'Malastra',
+        short_name: 'Malastra',
         start_url: '/',
         background_color: '#0277bd',
         theme_color: '#0277bd',

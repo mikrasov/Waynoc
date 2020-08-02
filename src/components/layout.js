@@ -38,17 +38,19 @@ function Layout({dispatch, player, active, className, children}) {
             <BackgroundImage
                 fluid={data.background.childImageSharp.fluid}
                 className={"background-image"}
-                backgroundColor={`#1e6f00`}
+                backgroundColor={`#000`}
             >
                 <div className={'container'}>
-                    <Navbar className="navbar-dark sticky-top" expand="sm" style={{backgroundColor: "#5e4523"}}>
-                        <Navbar.Brand href="/">Waynoc</Navbar.Brand>
+                    <Navbar className="navbar-dark sticky-top" expand="sm" >
+                        <Navbar.Brand href="/">Malastra</Navbar.Brand>
                         <Navbar.Toggle aria-controls="basic-navbar-nav"/>
                         <Navbar.Collapse id="basic-navbar-nav" className="justify-content-end">
                             <Nav className="mr-auto">
                                 <Nav.Link href="/" className={(active === "game") ? "active" : ""}>Game</Nav.Link>
                                 <Nav.Link href="/player" className={(active === "player") ? "active" : ""}>{player?.name?player.name:"Player"}</Nav.Link>
                                 <Nav.Link href="/log" className={(active === "log") ? "active" : ""}>Log</Nav.Link>
+                                <Nav.Link href="/admin" className={(active === "amin") ? "active" : ""}>Admin</Nav.Link>
+
                                 <Nav.Link onClick={()=>setShowReset(true)}>Reset</Nav.Link>
                             </Nav>
 
@@ -67,7 +69,7 @@ function Layout({dispatch, player, active, className, children}) {
                         </Modal.Footer>
                     </Modal>
 
-                    <Season season={player?.age  * 4}/>
+
                     <div className='content'>
                         <div  className={className}>{children}</div>
                     </div>
