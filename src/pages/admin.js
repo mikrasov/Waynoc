@@ -9,19 +9,22 @@ import { Col, Row} from "react-bootstrap/"
 
 function SelectedNode({node}) {
 
+    if(!node) return <></>
     return <>
-        {node}
+        {node.title}
     </>
 }
 
 function SelectedEdge({edge}){
-
+    if(!edge) return <></>
     return <>
-        {edge}
+?
     </>
 }
 
 export default function AdminPage({ player} ) {
+    const nodes = {}
+    const edges = {}
 
     const [selected, setSelected] = useState( {nodes:[], edges:[]})
 
@@ -49,50 +52,34 @@ export default function AdminPage({ player} ) {
                     }
                 }
             }
-        }`)?.events?.nodes
+        }`)
 
-    const graph = {
-        nodes: data.map((e)=>{
-            return {
-                id: e.id,
-                label: e.fields.file,
-                title: e.frontmatter.title
-            }
-        }),
-        edges:  data.map((e)=>{
-            return {
-                from: e.id,
-                to: e.id,
-            }
-        }),
-    }
-
-    const options = {
-        edges: {
-            color: "#000000"
-        },
-    }
-
-    const events = {
-        select: function(event) {
-            setSelected(event)
-            console.log(event)
+    //load events into nodes and edges
+    data.events.nodes.forEach( (e)=> {
+        nodes[e.id] = {
+            id: e.id,
+            label: e.fields.file,
+            title: e.frontmatter.title
         }
-    }
+
+        edges[e.id+"-"+e.id] = {
+            from: e.id,
+            to: e.id,
+        }
+    })
 
     return <>
 
         <Row>
             <Col xs={3} className={"admin-side"}>
-                {selected.nodes.map( (node)=><SelectedNode node={node}/>)}
-                {selected.edges.map( (edge)=><SelectedNode edge={edge}/>)}
+                {selected.nodes.map( (nodeId)=><SelectedNode node={nodes[nodeId]}/>)}
+                {selected.edges.map( (edgeId)=><SelectedNode edge={edges[edgeId]}/>)}
                 <SelectedEdge sel={selected}/>
             </Col>
             <Col xs={9}>
                 <Graph
-                    graph={graph}
-                    options={options}
-                    events={events}
+                    graph={ {nodes: Object.values(nodes), edges: Object.values(edges)} }
+                    events={ { select: setSelected }}
                 />
             </Col>
 
