@@ -3,14 +3,13 @@ const recommended = require('remark-preset-lint-recommended')
 const _ = require(`lodash`)
 const visit = require(`unist-util-visit`)
 const toHAST = require(`mdast-util-to-hast`)
-const hastToHTML = require(`hast-util-to-html`)
-const Promise = require(`bluebird`)
+
 const stripPosition = require(`unist-util-remove-position`)
 const hastReparseRaw = require(`hast-util-raw`)
-const remark2react = require( 'remark-react')
-const remark2html = require( 'remark-html')
+const unified = require( 'unified')
 
-function buildNode({ type, basePath, cache}, pluginOptions){
+
+function setFieldsOnGraphQLNode({ type, basePath, cache}, pluginOptions){
 
   if (type.name !== `MarkdownStorybook`) { return {} }
 
@@ -18,46 +17,38 @@ function buildNode({ type, basePath, cache}, pluginOptions){
   const htmlAstCacheKey = node => `transformer-markdown-storybook-hast-${node.internal.contentDigest}-${pathPrefixCacheStr}`
 
 
+  // Takes some markdown and transform it into an HTML AST
+  async function getHTMLAst(markdownNode) {
+    const cachedAst = await cache.get(htmlAstCacheKey(markdownNode))
 
-  return new Promise((resolve, reject) => {
+    //If in Cache return it
+    if (cachedAst) return cachedAst
 
-    async function getHTMLAst(markdownNode) {
-      const cachedAst = await cache.get(htmlAstCacheKey(markdownNode))
+    const mdAst = remark()
+        .use(recommended)
+        .parse(markdownNode.internal.content)
 
-      //If in Cache return it
-      if (cachedAst) return cachedAst
 
-      const mdAst = remark()
-          .use(recommended)
-          //.use(remark2html)
-          .parse(markdownNode.internal.content)
+    const htmlAst = toHAST(mdAst, { allowDangerousHTML: true}) // Save new HTML AST to cache and return
+    const strippedHAST = hastReparseRaw(stripPosition(_.clone(htmlAst), true))
 
-      //const htmlAst = mdAst
+    cache.set(htmlAstCacheKey(markdownNode), strippedHAST)
+    return strippedHAST
 
-      const htmlAst = toHAST(mdAst, { allowDangerousHTML: true}) // Save new HTML AST to cache and return
+  }
 
-      cache.set(htmlAstCacheKey(markdownNode), htmlAst)
-      return htmlAst
 
+  return {
+    ast: {
+      type: `JSON`,
+      resolve(markdownNode) {
+        return getHTMLAst(markdownNode)
+      }
     }
 
-    //      const html = hastToHTML(ast, {allowDangerousHTML: true}) // Save new HTML to cache
+  }
 
-    return resolve({
-      ast: {
-        type: `JSON`,
-        resolve(markdownNode) {
-          return getHTMLAst(markdownNode).then(ast => {
-
-            const strippedAst = stripPosition(_.clone(ast), true)
-            return hastReparseRaw(strippedAst)
-          })
-        }
-      }
-
-    })
-  })
 }
 
 
-module.exports = buildNode
+module.exports = setFieldsOnGraphQLNode
