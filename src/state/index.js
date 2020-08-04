@@ -1,10 +1,9 @@
-export const ACTIONS = {
-    GAME_RESET: "game/reset",
-}
+import {transform} from "../../plugins/gatsby-markdown-storybook"
+import {ACTIONS} from "./actions"
 
-export function resetGame(){ return  {type: ACTIONS.GAME_RESET} }
 
 const initialState = {
+    dataLoaded: false,
     activeEvent: null,
     player:{
         name: "",
@@ -38,6 +37,7 @@ const initialState = {
 }
 
 
+
 export default (state = initialState, action) => {
 
     switch (action.type) {
@@ -45,6 +45,13 @@ export default (state = initialState, action) => {
         case ACTIONS.GAME_RESET:
             return initialState
 
+        case ACTIONS.LOAD_DATA:
+            return {
+                ...state,
+                dataLoaded: true,
+                meta: action.meta,
+                events: action.events
+            }
 
         default:
             return state

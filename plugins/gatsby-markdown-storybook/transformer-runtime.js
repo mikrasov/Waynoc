@@ -19,7 +19,7 @@ function visit(ast, state, scope={}){
 
 }
 
-export default function secondPass(ast, state) {
+export default function (ast, state) {
     const scope = {prompt:null, effects:[], choices:[]}
 
     return {

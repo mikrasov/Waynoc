@@ -28,6 +28,7 @@
     "react-graph-vis": "^1.0.5",
     "react-helmet": "^6.x",
     "react-icons": "^3.x",
+    "react-json-view": "^1.19.1",
     "react-redux": "^7.x",
     "redux": "^4.x",
     "redux-persist": "^6.x",

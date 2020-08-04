@@ -8,3 +8,8 @@
     border-right: solid 2px #666;
     padding: 25px;
 }
+
+
+.container.admin{
+    min-width: 100%;
+}

@@ -1,10 +1,10 @@
 import React, {useState}  from "react"
 import Graph from "react-graph-vis"
 
-import '../components/bootstrap.min.css'
-import '../components/admin.css'
+import './admin.css'
 import {graphql, useStaticQuery} from "gatsby"
 import { Col, Row} from "react-bootstrap/"
+import Layout from "../../components/layout";
 
 
 function SelectedNode({node}) {
@@ -68,7 +68,7 @@ export default function AdminPage({ player} ) {
         }
     })
 
-    return <>
+    return <Layout active={"admin"}>
 
         <Row>
             <Col xs={3} className={"admin-side"}>
@@ -85,7 +85,7 @@ export default function AdminPage({ player} ) {
 
         </Row>
 
-    </>
+    </Layout>
 }
 
 
