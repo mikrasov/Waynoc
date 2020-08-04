@@ -29,37 +29,22 @@ export default function AdminPage({ player} ) {
     const [selected, setSelected] = useState( {nodes:[], edges:[]})
 
     const data  = useStaticQuery( graphql`{
-            events: allMarkdownRemark(
-                filter: { 
-                    fields: {type: {eq: "events"}}
-                },
-                sort: {
-                  fields: [fields___age]
-                  order: ASC
-                }
-            ){
-                nodes {
-                    id
-                    htmlAst
-                    fileAbsolutePath
-                    frontmatter {
-                      title
-                    }        
-                    fields {
-                      event_category
-                      age
-                      file
-                    }
-                }
+        events: allMarkdownStorybook {
+            nodes {
+              id
+              filename
+              title
+              hast
             }
-        }`)
+          }
+      }`)
 
     //load events into nodes and edges
     data.events.nodes.forEach( (e)=> {
         nodes[e.id] = {
             id: e.id,
-            label: e.fields.file,
-            title: e.frontmatter.title
+            label: e.filename,
+            title: e.title
         }
 
         edges[e.id+"-"+e.id] = {

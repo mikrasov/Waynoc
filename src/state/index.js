@@ -1,5 +1,6 @@
+import _ from "lodash"
 import {ACTIONS} from "./actions"
-import {firstEvent} from "./story_manager"
+import {firstEvent, nextEvent} from "./story_manager"
 
 const initialState = {
     dataLoaded: false,
@@ -44,17 +45,19 @@ export default (state = initialState, action) => {
         case ACTIONS.GAME_RESET:
             return initialState
 
-        case ACTIONS.LOAD_DATA: {
-            const loadedState = {
+        case ACTIONS.LOAD_DATA:
+            return firstEvent({
                 ...state,
                 dataLoaded: true,
                 meta: action.meta,
-                events: action.events
-            }
-            loadedState.activeEvent = firstEvent(loadedState)
+                events: _.keyBy(action.events, 'filename')
+            })
 
-            return loadedState
-        }
+
+
+        case ACTIONS.EVENT_NEXT:
+            return  nextEvent(state)
+
 
         default:
             return state

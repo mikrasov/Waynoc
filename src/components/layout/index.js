@@ -23,6 +23,7 @@ function Index({dispatch, game, active, className, children}) {
           events: allMarkdownStorybook {
             nodes {
               id
+              next
               filename
               title
               hast
