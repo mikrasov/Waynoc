@@ -1,6 +1,6 @@
 import React from "react"
 import {Table} from "react-bootstrap"
-import Info from "../info";
+import Info from "../story-tags/info";
 
 export default ({className, relationships}) => {
 

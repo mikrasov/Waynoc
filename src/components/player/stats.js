@@ -1,7 +1,7 @@
 import React from "react"
 import {GiAwareness, GiBeamsAura, GiBowman, GiBrain, GiEyeTarget, GiLungs, GiMuscleUp, GiRun} from "react-icons/gi";
 import {Table} from "react-bootstrap"
-import Info from "../info";
+import Info from "../story-tags/info";
 
 export default function({className, player}){
 

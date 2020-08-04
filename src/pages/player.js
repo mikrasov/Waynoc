@@ -2,7 +2,7 @@ import React  from "react"
 import { connect } from 'react-redux'
 import {Row, Col} from "react-bootstrap"
 import Layout from "../components/layout"
-import AgeYMD from "../components/age_ymd"
+
 import PlayerStats from "../components/player/stats"
 import PlayerSkills from "../components/player/skills"
 import PlayerTags from "../components/player/tags"
@@ -19,7 +19,7 @@ function PlayerPage({player, dispatch}) {
                 <Col xs={12}><h3>{player.name?player.name:"Unknown Name"}</h3><br/></Col>
 
                 <Col lg={2} xs={3}> <strong>Age:</strong></Col>
-                <Col lg={4} xs={9}> <AgeYMD age={player.age} /></Col>
+                <Col lg={4} xs={9}> player.age /></Col>
                 <Col lg={2} xs={3}> <strong>Gender:</strong></Col>
                 <Col lg={4} xs={9}> {lodash.upperFirst(player.gender)} </Col>
 

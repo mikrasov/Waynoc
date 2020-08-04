@@ -8,10 +8,10 @@ import './bootstrap.min.css'
 import './layout.css'
 
 import Metadata from "./metadata"
-import {resetGame, loadData} from "../state/actions"
+import {resetGame, loadData} from "../../state/actions"
 
 
-function Layout({dispatch, game, active, className, children}) {
+function Index({dispatch, game, active, className, children}) {
     const [showReset, setShowReset] = useState(false)
 
     function triggerReset(){
@@ -97,5 +97,5 @@ function Layout({dispatch, game, active, className, children}) {
 }
 
 
-export default connect(state => ({game: state}), null)(Layout)
+export default connect(state => ({game: state}), null)(Index)
 

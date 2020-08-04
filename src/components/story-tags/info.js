@@ -4,7 +4,6 @@ import "./story-tags.css"
 
 export default function ({stat, value}){
 
-    const binary = false
 
     function renderTooltip(props) {
 
@@ -17,11 +16,6 @@ export default function ({stat, value}){
     }
 
     //Do we show a value with the characteristic
-    let valueTag = ""
-    if(value && !binary){
-        if(value > 0) valueTag = `+${value}`
-        else valueTag = `${value}`
-    }
 
     let modClass = ""
     if(value>0) modClass ="positive"
@@ -30,7 +24,7 @@ export default function ({stat, value}){
 
     return <>
         <OverlayTrigger overlay={renderTooltip} placement="auto" trigger={['hover', 'focus']}>
-            <span className={"characteristic-info "+modClass}>{valueTag} {stat}</span>
+            <span className={"characteristic-info "+modClass}>{value} {stat}</span>
         </OverlayTrigger>
     </>
 }
