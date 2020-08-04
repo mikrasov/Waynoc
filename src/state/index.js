@@ -1,6 +1,5 @@
-import {transform} from "../../plugins/gatsby-markdown-storybook"
 import {ACTIONS} from "./actions"
-
+import {firstEvent} from "./story_manager"
 
 const initialState = {
     dataLoaded: false,
@@ -45,13 +44,17 @@ export default (state = initialState, action) => {
         case ACTIONS.GAME_RESET:
             return initialState
 
-        case ACTIONS.LOAD_DATA:
-            return {
+        case ACTIONS.LOAD_DATA: {
+            const loadedState = {
                 ...state,
                 dataLoaded: true,
                 meta: action.meta,
                 events: action.events
             }
+            loadedState.activeEvent = firstEvent(loadedState)
+
+            return loadedState
+        }
 
         default:
             return state

@@ -22,6 +22,9 @@ function Layout({dispatch, game, active, className, children}) {
     const data  = useStaticQuery( graphql`{
           events: allMarkdownStorybook {
             nodes {
+              id
+              filename
+              title
               hast
             }
           },

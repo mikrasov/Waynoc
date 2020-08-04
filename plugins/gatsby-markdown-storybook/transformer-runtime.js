@@ -22,9 +22,12 @@ function visit(ast, state, scope={}){
 export default function (ast, state) {
     const scope = {prompt:null, effects:[], choices:[]}
 
+
     return {
-        ast: visit(ast,state,scope),
+        parts:[ visit(ast,state,scope) ],
         ...scope
     }
+
+
 }
 

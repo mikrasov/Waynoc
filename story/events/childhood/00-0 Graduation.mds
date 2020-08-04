@@ -1,6 +1,8 @@
 ---
 title: Graduation
 ---
+
+Some content
 <check stat="rep" value="100">
 <mod stat="money" value="7"></mod> g
 </check>
