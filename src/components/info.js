@@ -1,14 +1,14 @@
 import React from "react"
 import {Popover, OverlayTrigger  } from "react-bootstrap"
 import {graphql, useStaticQuery} from "gatsby"
-import playerMeta from "../state/player_meta"
+
 import "./info.css"
 
 const lodash = require("lodash")
 
 
 const query = graphql`{
-    characteristics: allMarkdownRemark( filter: { fields: {type: {eq: "characteristics"}}},){
+    stats: allMarkdownRemark( filter: { fields: {type: {eq: "characteristics"}}},){
         nodes {
             excerpt
             frontmatter {
@@ -22,15 +22,10 @@ const query = graphql`{
     }
 }`
 
-export function fromMeta(props) {
-    const meta = playerMeta(props)
-    if(!props.value) props.value = meta.step
 
-    return <Info name={meta.name} field={meta.field} value={props.value} binary={meta.isBinary()}/>
-}
 
 export default function Info({name, field, value=0, binary=false}) {
-    const car  = useStaticQuery(query).characteristics.nodes.find(
+    const car  = useStaticQuery(query).stats.nodes.find(
         (c)=> c?.fields.name === name && c?.fields.field === field
     )
 

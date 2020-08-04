@@ -1,42 +1,34 @@
 import React  from "react"
 import { Button} from "react-bootstrap"
 import {connect} from "react-redux"
-import EventDirector from "../../util/event_director"
-import ChangeName from "./change_name";
+
 import "./control_bar.css"
 
-function GameControls({dispatch, game, player}) {
+function GameControls({dispatch, game}) {
 
-    const director = new EventDirector(dispatch, game, player)
     const activeEvent = game.activeEvent
 
     function showControls(){
 
-        if(player.actions > 0) {
-            const availableActions = player.actions - Object.keys(game.levelUpChoices).length
+        if(game.levelUp) {
+            const availableActions = game.actions - Object.keys(game.levelUpChoices).length
             return <>
-                <strong>Available Actions</strong>: {availableActions} of {player.actions}
+                <strong>Available Actions</strong>: {availableActions} of {game.actions}
 
-                <Button type="button" disabled={availableActions>0} className="finalChoice" size="lg" onClick={() => {
-                    director.levelUp(game.levelUpChoices)
-                }}>Confirm</Button>
+                <Button type="button" disabled={availableActions>0} className="finalChoice" size="lg" onClick={() => {}}>Confirm</Button>
             </>
         }
 
 
-        else if(activeEvent?.input === "name") return <>
-            {activeEvent.prompt && <h3>{activeEvent.prompt}</h3>}
-            <ChangeName/>
-        </>
 
         else if(activeEvent?.choices?.length) return <>
             { activeEvent.choices.map((choice,index) =>
-                <Button type="button" key={index} size="lg"  onClick={ ()=>{director.makeChoice(index)} } >{choice.label}</Button>
+                <Button type="button" key={index} size="lg"  onClick={ ()=>{} } >{choice.label}</Button>
             )}
         </>
 
         else return <>
-            <Button type="button"  className="finalChoice" size="lg"  onClick={ ()=>{director.nextSeason()} }>Next Season</Button>
+            <Button type="button"  className="finalChoice" size="lg"  onClick={ ()=>{} }>Next Season</Button>
         </>
 
     }
@@ -45,5 +37,5 @@ function GameControls({dispatch, game, player}) {
 
 }
 export default connect(state => ({
-    game: state.game, player: state.player,
+    game: state.game
 }), null)(GameControls)

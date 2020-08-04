@@ -5,15 +5,28 @@ import Layout from "../components/layout"
 import DisplayEvent from "../components/display_event";
 import LevelUp from "../components/level-up/"
 import GameControls from "../components/controls/control_bar"
+import {graphql, useStaticQuery} from "gatsby"
+
+import {transform} from "../../plugins/gatsby-markdown-storybook"
+
 
 function IndexPage({ player} ) {
 
-    const timeToLevelUp = player.actions > 0
+    const data  = useStaticQuery( graphql`{
+          events: allMarkdownStorybook {
+            nodes {
+              hast
+              
+            }
+          }
+        }`).events.nodes[0].hast
 
+
+
+    const transformed = transform(data)
     return (
         <Layout active={"game"}>
-            {timeToLevelUp?<LevelUp/>:<DisplayEvent/>}
-            <GameControls/>
+            <pre>{JSON.stringify(transformed, null, 2)}</pre>
         </Layout>
     )
 }

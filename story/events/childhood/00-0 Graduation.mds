@@ -1,9 +1,9 @@
 ---
 title: Graduation
 ---
-
-# Hello World!
-
-Its graduation day!
-
-<Choice> some text </Choice>
+<check stat="rep" value="100">
+<mod stat="money" value="7"></mod> g
+</check>
+<else>
+ Other stuff
+</else>

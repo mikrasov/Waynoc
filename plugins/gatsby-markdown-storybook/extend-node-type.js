@@ -1,54 +1,49 @@
-const remark = require(`remark`)
-const recommended = require('remark-preset-lint-recommended')
 const _ = require(`lodash`)
-const visit = require(`unist-util-visit`)
-const toHAST = require(`mdast-util-to-hast`)
-
+const remark = require(`remark`)
+const mdast2hast = require(`mdast-util-to-hast`)
 const stripPosition = require(`unist-util-remove-position`)
 const hastReparseRaw = require(`hast-util-raw`)
-const unified = require( 'unified')
+const mdsTransform = require(`./transformer-firstpass`)
 
 
-function setFieldsOnGraphQLNode({ type, basePath, cache}, pluginOptions){
+module.exports = function({ type, basePath, cache}, pluginOptions){
 
   if (type.name !== `MarkdownStorybook`) { return {} }
 
   const pathPrefixCacheStr = basePath || ``
-  const htmlAstCacheKey = node => `transformer-markdown-storybook-hast-${node.internal.contentDigest}-${pathPrefixCacheStr}`
-
+  const htmlAstCacheKey = (node) => `transformer-markdown-storybook-hast-${node.internal.contentDigest}-${pathPrefixCacheStr}`
 
   // Takes some markdown and transform it into an HTML AST
-  async function getHTMLAst(markdownNode) {
+  async function getAst(markdownNode) {
     const cachedAst = await cache.get(htmlAstCacheKey(markdownNode))
 
     //If in Cache return it
     if (cachedAst) return cachedAst
 
-    const mdAst = remark()
-        .use(recommended)
-        .parse(markdownNode.internal.content)
 
-
-    const htmlAst = toHAST(mdAst, { allowDangerousHTML: true}) // Save new HTML AST to cache and return
+    // Markdown -> MD AST
+    const mdAst = remark().parse(markdownNode.internal.content)
+    // MD AST -> HTML AST
+    const htmlAst = mdast2hast(mdAst, { allowDangerousHTML: true})
+    // HTML AST -> Cleaned HTML AST
     const strippedHAST = hastReparseRaw(stripPosition(_.clone(htmlAst), true))
 
-    cache.set(htmlAstCacheKey(markdownNode), strippedHAST)
-    return strippedHAST
+    const msAst = mdsTransform(strippedHAST)
 
+    cache.set(htmlAstCacheKey(markdownNode), msAst)
+    return msAst
   }
 
 
+
   return {
-    ast: {
+    hast: {
       type: `JSON`,
       resolve(markdownNode) {
-        return getHTMLAst(markdownNode)
+        return getAst(markdownNode)
       }
     }
 
   }
 
 }
-
-
-module.exports = setFieldsOnGraphQLNode
