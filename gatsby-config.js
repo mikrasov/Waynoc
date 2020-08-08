@@ -72,11 +72,18 @@ module.exports = {
     {
       resolve: `gatsby-source-filesystem`,
       options: {
-        name: `story`,
-        path: `${__dirname}/story/`,
+        name: `events`,
+        path: `${__dirname}/story/events`,
       },
     },
-    `gatsby-transformer-remark`,
+    {
+      resolve: `gatsby-source-filesystem`,
+      options: {
+        name: `stats`,
+        path: `${__dirname}/story/stats`,
+      },
+    },
+    `gatsby-transformer-json`,
     `gatsby-markdown-storybook`,
     `gatsby-transformer-sharp`,
     `gatsby-plugin-sharp`,

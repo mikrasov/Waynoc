@@ -1,0 +1,23 @@
+{
+  "key": "skills",
+  "title": "Skill",
+  "initial": 0,
+  "step": 5,
+  "min": 0,
+  "max": 100,
+  "isNumeric": true,
+  "description": "Your innate physical and mental characteristics.",
+
+  "sub": [
+    {
+      "key": "mechanics",
+      "title": "Mechanics",
+      "description": "How adapt you are at mechanical systems."
+    },
+    {
+      "key": "physics",
+      "title": "Physics",
+      "description": "How ."
+    }
+  ]
+}

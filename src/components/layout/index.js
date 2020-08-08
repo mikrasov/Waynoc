@@ -4,11 +4,12 @@ import {connect} from "react-redux"
 import {Button, Modal, Nav, Navbar, NavDropdown} from 'react-bootstrap'
 import BackgroundImage from 'gatsby-background-image'
 
+import DataLoader from "./data_loader"
 import './bootstrap.min.css'
 import './layout.css'
 
 import Metadata from "./metadata"
-import {resetGame, loadData} from "../../state/actions"
+import {resetGame} from "../../state/actions"
 
 
 function Index({dispatch, game, active, className, children}) {
@@ -20,15 +21,6 @@ function Index({dispatch, game, active, className, children}) {
     }
 
     const data  = useStaticQuery( graphql`{
-          events: allMarkdownStorybook {
-            nodes {
-              id
-              next
-              filename
-              title
-              hast
-            }
-          },
           background: file(relativePath: { eq: "background.jpg" }) {
             childImageSharp {
               fluid(maxWidth: 6000) {
@@ -39,14 +31,9 @@ function Index({dispatch, game, active, className, children}) {
         }`)
 
 
-
-
-
-    if(!game.dataLoaded) dispatch(loadData(data.events.nodes,{}))
-
     return <>
+        <DataLoader/>
         <Metadata/>
-
         <BackgroundImage
             fluid={data.background.childImageSharp.fluid}
             className={"background-image"}

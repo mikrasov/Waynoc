@@ -1,9 +1,14 @@
 const util = require(`./ast-util`)
 
+let globals
 
 function firstPassReplacer(node, scope){
     //note all nodes are lowercase
     switch (node.tagName) {
+        case "next":
+            globals.links.push(node.properties.event)
+            return node
+
         case "choice":
         case "check":
             scope.lastBranch = node
@@ -39,5 +44,13 @@ function visit(ast, scope={}){
 
 }
 
+function firstPass(node, ast){
+    let globals =  {links: [node.next]}
+    return {
+        ...visit(ast),
+        ...globals
+    }
+}
 
-module.exports = visit
+
+module.exports = firstPass

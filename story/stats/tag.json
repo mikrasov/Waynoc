@@ -1,0 +1,11 @@
+{
+  "key": "tags",
+  "title": "Tag",
+  "initial": 0,
+  "step": 1,
+  "min": 0,
+  "max": 1,
+  "isNumeric": true,
+  "description": "Your accomplishments.",
+  "sub": []
+}

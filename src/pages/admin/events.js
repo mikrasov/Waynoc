@@ -5,21 +5,15 @@ import './admin.css'
 import {graphql, useStaticQuery} from "gatsby"
 import { Col, Row} from "react-bootstrap/"
 import Layout from "../../components/layout";
+import ReactJson from "react-json-view";
+
+function NodeInfo({node}){
 
 
-function SelectedNode({node}) {
-
-    if(!node) return <></>
     return <>
-        {node.title}
-    </>
-}
-
-function SelectedEdge({edge}){
-    if(!edge) return <></>
-    return <>
-?
-    </>
+        <h4>{node.title}</h4>
+        <ReactJson src={node} />
+        </>
 }
 
 export default function AdminPage({ player} ) {
@@ -41,26 +35,28 @@ export default function AdminPage({ player} ) {
 
     //load events into nodes and edges
     data.events.nodes.forEach( (e)=> {
-        nodes[e.id] = {
-            id: e.id,
+        nodes[e.filename] = {
+            ...e,
+            id: e.filename,
             label: e.filename,
-            title: e.title
+            title: e.title,
         }
 
-        edges[e.id+"-"+e.id] = {
-            from: e.id,
-            to: e.id,
-        }
+        e.hast.links.forEach( link =>{
+            edges[e.filename+"-"+link] = {
+                from: e.filename,
+                to: link,
+            }
+        })
+
     })
 
     return <Layout active={"admin"}>
 
         <Row>
             <Col xs={3} className={"admin-side"}>
-                {selected.nodes.map( (nodeId)=><SelectedNode node={nodes[nodeId]}/>)}
-                {selected.edges.map( (edgeId)=><SelectedNode edge={edges[edgeId]}/>)}
-                <SelectedEdge sel={selected}/>
-            </Col>
+                {selected.nodes.map(nId=> <NodeInfo key={nId} node={nodes[nId]} />)}
+                </Col>
             <Col xs={9}>
                 <Graph
                     graph={ {nodes: Object.values(nodes), edges: Object.values(edges)} }

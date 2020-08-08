@@ -28,7 +28,7 @@ module.exports = function({ type, basePath, cache}, pluginOptions){
     // HTML AST -> Cleaned HTML AST
     const strippedHAST = hastReparseRaw(stripPosition(_.clone(htmlAst), true))
 
-    const msAst = mdsTransform(strippedHAST)
+    const msAst = mdsTransform(markdownNode, strippedHAST)
 
     cache.set(htmlAstCacheKey(markdownNode), msAst)
     return msAst
