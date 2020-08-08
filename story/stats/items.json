@@ -1,11 +1,12 @@
 {
   "key": "items",
-  "title": "Item",
+  "title": "Items",
+  "format": "{NAME}",
+  "format_value": "{NAME}",
   "initial": 0,
-  "step": 1,
   "min": 0,
   "max": 1,
-  "isNumeric": true,
+  "secret": false,
   "description": "Your belongings.",
   "sub": []
 }

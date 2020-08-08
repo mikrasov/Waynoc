@@ -1,11 +1,12 @@
 {
   "key": "money",
-  "title": "€arth ₦otes",
+  "title": "Money",
+  "format": "{VALUE} €₦",
+  "format_value": "{VALUE} €₦",
   "initial": 300,
-  "step": 1,
   "min": 0,
   "max": 1e16,
-  "isNumeric": true,
+  "secret": false,
   "description": "Your wealth."
 
 }

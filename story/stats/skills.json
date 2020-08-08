@@ -1,11 +1,12 @@
 {
   "key": "skills",
-  "title": "Skill",
+  "title": "Skills",
+  "format": "{VALUE} in {NAME}",
+  "format_value": "{VALUE}",
   "initial": 0,
-  "step": 5,
   "min": 0,
   "max": 100,
-  "isNumeric": true,
+  "secret": false,
   "description": "Your innate physical and mental characteristics.",
 
   "sub": [

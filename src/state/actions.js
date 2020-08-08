@@ -8,4 +8,4 @@ export const ACTIONS = {
 export function resetGame(){ return  {type: ACTIONS.GAME_RESET} }
 export function nextEvent(){ return  {type: ACTIONS.EVENT_NEXT} }
 export function makeChoice(choiceNum){ return  {type: ACTIONS.EVENT_CHOICE, num:choiceNum} }
-export function loadData(events, initStats, statsMeta){ return  {type: ACTIONS.LOAD_DATA, events, initStats, statsMeta} }
+export function loadData(events, statsMeta){ return  {type: ACTIONS.LOAD_DATA, events, statsMeta} }
