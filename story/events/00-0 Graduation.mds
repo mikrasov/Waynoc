@@ -5,7 +5,8 @@ next: 00-1 Summer
 
 Some content
 <check stat="rep" value="100">
-<mod stat="money" value="7"></mod> g
+<mod stat="money" value="7" silent></mod> g
+<mod stat="money" value="8" ></mod> g
 </check>
 <else>
  Other stuff

@@ -10,6 +10,7 @@ import './admin.css'
 
 function AdminPage({ game} ) {
 
+    delete game.events //Don't show these as it would be too large
 
     return <Layout active={"admin"}>
         <ReactJson src={game} />

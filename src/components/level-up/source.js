@@ -1,7 +1,7 @@
 import React, { useState }  from "react"
 import {connect} from "react-redux"
 import {levelUpChoiceAdd, levelUpChoiceRemove} from "../../state"
-import {fromMeta} from "../player/statInfo"
+import {fromMeta} from "../story-tags/stat"
 import './source.css'
 
 function Source({dispatch, source, training, actions, choices}) {

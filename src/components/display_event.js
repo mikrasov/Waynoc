@@ -4,7 +4,10 @@ import {Spinner} from "react-bootstrap"
 import rehypeReact from "rehype-react"
 
 import Mod from "../components/story-tags/mod"
+import Stat from "../components/story-tags/stat"
+import Set from "../components/story-tags/set"
 import Check from "../components/story-tags/check"
+
 
 function DisplayEvent({activeEvent}) {
 
@@ -15,6 +18,8 @@ function DisplayEvent({activeEvent}) {
         createElement: React.createElement,
         components: {
             mod: Mod,
+            stat: Stat,
+            set: Set,
             check: Check,
         },
     }).Compiler

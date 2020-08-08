@@ -1,6 +1,6 @@
 import React from "react"
 import { Table} from "react-bootstrap"
-import StatInfo from "./statInfo";
+import StatInfo from "../story-tags/stat";
 import {connect} from "react-redux";
 
 const _ = require("lodash")

@@ -1,7 +1,8 @@
 import React from "react"
 
 
-export default function ({stat, value, children}){
+export default function ({stat, value, children, silent}){
+    if(silent || silent==="") return <></>//Don't print nodes with silent flag
 
     return <>
 
