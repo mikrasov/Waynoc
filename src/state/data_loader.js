@@ -1,7 +1,7 @@
 import React from 'react'
 import {graphql, useStaticQuery} from 'gatsby'
 import {connect} from "react-redux"
-import {loadData} from "../../state/actions"
+import {loadData} from "./actions"
 
 
 function DataLoader ({dataLoaded, dispatch}) {

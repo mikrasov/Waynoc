@@ -4,7 +4,6 @@ import {connect} from "react-redux"
 import {Button, Modal, Nav, Navbar, NavDropdown} from 'react-bootstrap'
 import BackgroundImage from 'gatsby-background-image'
 
-import DataLoader from "./data_loader"
 import './bootstrap.min.css'
 import './layout.css'
 
@@ -21,18 +20,27 @@ function Index({dispatch, game, active, className, children}) {
     }
 
     const data  = useStaticQuery( graphql`{
-          background: file(relativePath: { eq: "background.jpg" }) {
-            childImageSharp {
-              fluid(maxWidth: 6000) {
-                ...GatsbyImageSharpFluid_withWebp
-              }
-            }
+       config:  site {
+        siteMetadata {
+          title
+          twitterUser
+          activeEnv
+        }
+      },
+      background: file(relativePath: { eq: "background.jpg" }) {
+        childImageSharp {
+          fluid(maxWidth: 6000) {
+            ...GatsbyImageSharpFluid_withWebp
           }
-        }`)
+        }
+      }
+    }`)
 
+    const config = data.config.siteMetadata
+
+    if(active==="admin" && config.activeEnv !== "development") return <>ACCESS DENIED</>
 
     return <>
-        <DataLoader/>
         <Metadata/>
         <BackgroundImage
             fluid={data.background.childImageSharp.fluid}
@@ -41,7 +49,7 @@ function Index({dispatch, game, active, className, children}) {
         >
             <div className={'container '+(active==="admin"?"admin":"")}>
                 <Navbar className="navbar-dark sticky-top" expand="sm" >
-                    <Navbar.Brand href="/">Malastra</Navbar.Brand>
+                    <Navbar.Brand href="/">{config.title}</Navbar.Brand>
                     <Navbar.Toggle aria-controls="basic-navbar-nav"/>
                     <Navbar.Collapse id="basic-navbar-nav" className="justify-content-end">
                         <Nav className="mr-auto">
@@ -49,11 +57,13 @@ function Index({dispatch, game, active, className, children}) {
                             <Nav.Link href="/player" className={(active === "player") ? "active" : ""}>{game?.name?game.name:"Player"}</Nav.Link>
                             <Nav.Link href="/log" className={(active === "log") ? "active" : ""}>Log</Nav.Link>
 
-
-                            <NavDropdown title="Admin" className={(active === "admin") ? "active" : ""}>
-                                <NavDropdown.Item href="/admin/">Game State</NavDropdown.Item>
-                                <NavDropdown.Item href="/admin/events">Event Graph</NavDropdown.Item>
-                            </NavDropdown>
+                            {
+                                config.activeEnv === "development" &&
+                                <NavDropdown title="Admin" className={(active === "admin") ? "active" : ""}>
+                                    <NavDropdown.Item href="/admin/">Game State</NavDropdown.Item>
+                                    <NavDropdown.Item href="/admin/events">Event Graph</NavDropdown.Item>
+                                </NavDropdown>
+                            }
 
                             <Nav.Link onClick={()=>setShowReset(true)}>Reset</Nav.Link>
                         </Nav>
@@ -79,11 +89,8 @@ function Index({dispatch, game, active, className, children}) {
             </div>
 
         </BackgroundImage>
-
     </>
-
 }
-
 
 export default connect(state => ({game: state}), null)(Index)
 

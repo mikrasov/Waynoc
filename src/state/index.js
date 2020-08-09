@@ -6,7 +6,8 @@ import {readyStats} from "./stats_manager"
 const initialState = {
     dataLoaded: false,
     activeEvent: null,
-    stats: {}
+    stats: {},
+    log:[]
 }
 
 
@@ -18,7 +19,6 @@ export default (state = initialState, action) => {
             return initialState
 
         case ACTIONS.LOAD_DATA: {
-            console.log(action)
             const {stats, stats_meta} = readyStats(action.statsMeta)
 
             return firstEvent({

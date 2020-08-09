@@ -28,6 +28,6 @@ function LogPage({log, dispatch}) {
 
 
 export default connect(state => ({
-        log: state.game.log
+        log: state.log
     }), null)(LogPage)
 

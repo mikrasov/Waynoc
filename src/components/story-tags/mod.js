@@ -1,5 +1,4 @@
 import React from "react"
-import {OverlayTrigger, Popover} from "react-bootstrap"
 import "./story-tags.css"
 import {connect} from "react-redux";
 import Stat from "./stat";

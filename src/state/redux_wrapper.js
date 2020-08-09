@@ -3,6 +3,7 @@ import { Provider } from 'react-redux'
 import { createStore} from 'redux'
 import { persistStore, persistReducer } from 'redux-persist'
 import { PersistGate } from 'redux-persist/integration/react'
+import DataLoader from "./data_loader"
 
 import storage from 'redux-persist/lib/storage' // defaults to localStorage for web
 import rootReducer from '.'
@@ -21,6 +22,7 @@ export const persistentStore = ({ element }) => {
 
     return <Provider store={store}>
         <PersistGate loading={null} persistor={persistor}>
+            <DataLoader/>
             {element}
         </PersistGate>
     </Provider>
@@ -29,8 +31,8 @@ export const persistentStore = ({ element }) => {
 export const temporaryStore = ({ element }) => {
     let store = createStore(rootReducer)
 
-
     return <Provider store={store}>
-            {element}
+        <DataLoader/>
+        {element}
     </Provider>
 }

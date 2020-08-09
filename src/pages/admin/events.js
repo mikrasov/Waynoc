@@ -5,11 +5,12 @@ import './admin.css'
 import {graphql, useStaticQuery} from "gatsby"
 import { Col, Row} from "react-bootstrap/"
 import Layout from "../../components/layout";
-import ReactJson from "react-json-view";
+
 
 function NodeInfo({node}){
 
 
+    const ReactJson = require("react-json-view")
     return <>
         <h4>{node.title}</h4>
         <ReactJson src={node} />
@@ -17,9 +18,6 @@ function NodeInfo({node}){
 }
 
 export default function AdminPage({ player} ) {
-    const nodes = {}
-    const edges = {}
-
     const [selected, setSelected] = useState( {nodes:[], edges:[]})
 
     const data  = useStaticQuery( graphql`{
@@ -32,6 +30,10 @@ export default function AdminPage({ player} ) {
             }
           }
       }`)
+
+    const nodes = {}
+    const edges = {}
+    if (typeof window === 'undefined') return <></>
 
     //load events into nodes and edges
     data.events.nodes.forEach( (e)=> {
@@ -52,7 +54,6 @@ export default function AdminPage({ player} ) {
     })
 
     return <Layout active={"admin"}>
-
         <Row>
             <Col xs={3} className={"admin-side"}>
                 {selected.nodes.map(nId=> <NodeInfo key={nId} node={nodes[nId]} />)}
@@ -65,8 +66,5 @@ export default function AdminPage({ player} ) {
             </Col>
 
         </Row>
-
     </Layout>
 }
-
-
