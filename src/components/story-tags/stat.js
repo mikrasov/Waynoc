@@ -14,7 +14,7 @@ import {connect} from "react-redux";
             <Popover.Content>{meta.description}</Popover.Content>
         </Popover>
 
-console.log(children)
+
     return <OverlayTrigger overlay={renderTooltip} placement="auto" trigger={['hover', 'focus']}>
         {
             children?   <span>{children}</span>

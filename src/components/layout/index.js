@@ -8,14 +8,14 @@ import './bootstrap.min.css'
 import './layout.css'
 
 import Metadata from "./metadata"
-import {resetGame} from "../../state/actions"
+import {ACTIONS} from "../../state"
 
 
 function Index({dispatch, game, active, className, children}) {
     const [showReset, setShowReset] = useState(false)
 
     function triggerReset(){
-        dispatch(resetGame())
+        dispatch(ACTIONS.resetGame())
         setShowReset(false)
     }
 
@@ -37,8 +37,6 @@ function Index({dispatch, game, active, className, children}) {
     }`)
 
     const config = data.config.siteMetadata
-
-    if(active==="admin" && config.activeEnv !== "development") return <>ACCESS DENIED</>
 
     return <>
         <Metadata/>

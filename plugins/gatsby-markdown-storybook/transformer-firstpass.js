@@ -19,8 +19,8 @@ function firstPassReplacer(node, scope){
                 scope.lastBranch.otherwise = node.children
                 return util.textNode()
             }
-
             return util.textNode("!!! Else statement with no clear associated node !!!")
+
         default:
             return node
     }

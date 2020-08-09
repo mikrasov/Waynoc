@@ -34,7 +34,5 @@ export function readyStats(loadedMeta){
             _.set(stats, statPath, meta.initial)
     }
 
-
-
     return {stats, stats_meta}
 }

@@ -1,8 +1,7 @@
 import React from 'react'
 import {graphql, useStaticQuery} from 'gatsby'
 import {connect} from "react-redux"
-import {loadData} from "./actions"
-
+import {ACTIONS} from "./"
 
 function DataLoader ({dataLoaded, dispatch}) {
     const data = useStaticQuery(graphql`{
@@ -36,7 +35,7 @@ function DataLoader ({dataLoaded, dispatch}) {
          
         }`)
 
-    if (!dataLoaded) dispatch(loadData(data.events.nodes,  data.meta.nodes ) )
+    if (!dataLoaded) dispatch(ACTIONS.loadData(data.events.nodes,  data.meta.nodes ) )
 
     return <></>
 }

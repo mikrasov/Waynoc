@@ -1,9 +1,14 @@
 const util = require(`./ast-util`)
-
+const _ = require("lodash")
 
 module.exports = {
+    next (node, scope, state) {
+        scope.next = node.properties.event
+        return util.textNode()
+    },
+
     prompt (node, scope, state) {
-        scope.prompt = util.wrapIntoTree(node.children)
+        scope.prompt = node.properties.text
         return util.textNode()
     },
 
@@ -31,7 +36,15 @@ module.exports = {
 
     check (node, scope, state) {
 
-        return util.htmlNode("check",node.properties, node.children)
+        const stat = node.properties.stat
+        const value = node.properties.value
+
+        if(_.get(state.stats, stat) >= value) {
+            return util.htmlNode("check", node.properties, node.children)
+        }
+        else{
+            return util.htmlNode("check", node.properties, node.otherwise)
+        }
     },
 
 

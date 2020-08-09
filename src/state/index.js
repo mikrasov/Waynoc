@@ -1,7 +1,18 @@
-import _ from "lodash"
-import {ACTIONS} from "./actions"
-import {firstEvent, nextEvent} from "./story_manager"
-import {readyStats} from "./stats_manager"
+import {firstEvent, nextEvent, makeChoice} from "./story_manager"
+
+const ACTION_TAG = {
+    LOAD_DATA: "game/load",
+    EVENT_NEXT: "event/next",
+    EVENT_CHOICE: "event/choice",
+    GAME_RESET: "game/reset",
+}
+
+export const ACTIONS = {
+    resetGame: () => ({type: ACTION_TAG.GAME_RESET}),
+    nextEvent: () => ({type: ACTION_TAG.EVENT_NEXT}),
+    makeChoice: (choiceNum,diceRoll) => ( {type: ACTION_TAG.EVENT_CHOICE, choiceNum, diceRoll}),
+    loadData: (events, statsMeta) => ({type: ACTION_TAG.LOAD_DATA, events, statsMeta})
+}
 
 const initialState = {
     dataLoaded: false,
@@ -10,27 +21,20 @@ const initialState = {
     log:[]
 }
 
-
 export default (state = initialState, action) => {
 
     switch (action.type) {
 
-        case ACTIONS.GAME_RESET:
+        case ACTION_TAG.GAME_RESET:
             return initialState
 
-        case ACTIONS.LOAD_DATA: {
-            const {stats, stats_meta} = readyStats(action.statsMeta)
+        case ACTION_TAG.LOAD_DATA:
+            return firstEvent(state, action.events, action.statsMeta)
 
-            return firstEvent({
-                ...state,
-                dataLoaded: true,
-                stats,
-                stats_meta,
-                events: _.keyBy(action.events, 'filename')
-            })
-        }
+        case ACTION_TAG.EVENT_CHOICE:
+            return makeChoice(state, action.choiceNum, action.diceRoll)
 
-        case ACTIONS.EVENT_NEXT:
+        case ACTION_TAG.EVENT_NEXT:
             return  nextEvent(state)
 
         default:
