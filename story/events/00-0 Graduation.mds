@@ -1,0 +1,19 @@
+---
+title: Graduation
+next: 00-1 Summer
+---
+
+Some content
+<check stat="money" value="200">
+<mod stat="money" value="7" silent></mod> g
+<mod stat="money" value="8" ></mod> g
+</check>
+<else>
+ Other stuff
+</else>
+
+<prompt text="What do you do next?"></prompt>
+<choice label="Throw a Party!">
+Yay Party
+<mod stat="money" value="20" ></mod> g
+</choice>

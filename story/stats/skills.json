@@ -1,0 +1,24 @@
+{
+  "key": "skills",
+  "title": "Skills",
+  "format": "{VALUE} in {NAME}",
+  "format_value": "{VALUE}",
+  "initial": 0,
+  "min": 0,
+  "max": 100,
+  "secret": false,
+  "description": "Your innate physical and mental characteristics.",
+
+  "sub": [
+    {
+      "key": "mechanics",
+      "title": "Mechanics",
+      "description": "How adapt you are at mechanical systems."
+    },
+    {
+      "key": "physics",
+      "title": "Physics",
+      "description": "How ."
+    }
+  ]
+}

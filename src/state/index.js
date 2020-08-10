@@ -1,36 +1,47 @@
-import { combineReducers } from 'redux'
-import player from './player'
-import game from './game'
-import playerMeta from "./player_meta"
+import {firstEvent, nextEvent, makeChoice} from "./story_manager"
+
+const ACTION_TAG = {
+    LOAD_DATA: "game/load",
+    EVENT_NEXT: "event/next",
+    EVENT_CHOICE: "event/choice",
+    GAME_RESET: "game/reset",
+}
 
 export const ACTIONS = {
-    GAME_RESET: "game/reset",
-    GAME_OVER: "game/loose",
-    NEXT_SEASON: "game/next-season",
-    LOG_LINE: "log/add-line",
-    LEVEL_UP_CHOICE_ADD: "game/level-up-choice-add",
-    LEVEL_UP_CHOICE_REMOVE: "game/level-up-choice-remove",
-    LEVEL_UP_COMPLETE: "game/level-up-complete",
-    SET_EVENT: "event/set-active",
-    PLAYER_MOD: "player/mod-characteristic",
-    PLAYER_SET: "player/set-characteristic",
+    resetGame: () => ({type: ACTION_TAG.GAME_RESET}),
+    nextEvent: () => ({type: ACTION_TAG.EVENT_NEXT}),
+    makeChoice: (choiceNum,diceRoll) => ( {type: ACTION_TAG.EVENT_CHOICE, choiceNum, diceRoll}),
+    loadData: (events, statsMeta) => ({type: ACTION_TAG.LOAD_DATA, events, statsMeta})
 }
 
-export function gameOver(){ return  {type: ACTIONS.GAME_OVER} }
-export function resetGame(){ return  {type: ACTIONS.GAME_RESET} }
-export function nextGameSeason(){ return  {type: ACTIONS.NEXT_SEASON} }
-
-export function addLogEntry(title, content){ return  {type: ACTIONS.LOG_LINE, title, content} }
-export function levelUpChoiceAdd(key,activity){ return  {type: ACTIONS.LEVEL_UP_CHOICE_ADD, key, activity} }
-export function levelUpChoiceRemove(key){ return  {type: ACTIONS.LEVEL_UP_CHOICE_REMOVE, key} }
-export function levelUpComplete(){ return  {type: ACTIONS.LEVEL_UP_COMPLETE} }
-export function setActiveEvent(event){return  {type: ACTIONS.SET_EVENT, event}}
-
-export function changePlayerName(name){return  {...playerMeta({name:true}), type: ACTIONS.PLAYER_SET, value: name}}
-export function modifyPlayer(props){
-    const meta = playerMeta(props)
-    const value = (props.value) ? props.value : meta.step
-    return  {...meta, type: ACTIONS.PLAYER_MOD, value}
+const initialState = {
+    dataLoaded: false,
+    activeEvent: null,
+    stats: {},
+    log:[]
 }
 
-export default combineReducers({ player, game })
+export default (state = initialState, action) => {
+
+    switch (action.type) {
+
+        case ACTION_TAG.GAME_RESET:
+            return initialState
+
+        case ACTION_TAG.LOAD_DATA:
+            return firstEvent(state, action.events, action.statsMeta)
+
+        case ACTION_TAG.EVENT_CHOICE:
+            return makeChoice(state, action.choiceNum, action.diceRoll)
+
+        case ACTION_TAG.EVENT_NEXT:
+            return  nextEvent(state)
+
+        default:
+            return state
+    }
+}
+
+
+
+

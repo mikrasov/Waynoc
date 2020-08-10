@@ -3,6 +3,8 @@ You need [Node.js](https://nodejs.org) installed on your machine. Simply downloa
 
 Once Node.js is installed, open your command prompt or terminal and run `sudo npm i -g gatsby-cli`. This installs [Gatsby](https://www.gatsbyjs.org/) command line tools.
 
+This project uses the [yarn](https://classic.yarnpkg.com/en/docs/install/) package manager. Please install it.
+
  ---
 # Development Build
 The development build is unoptimized and ideal for testing new features and hunting down bugs. The server tracks file changes and forces a refresh in the browser when a change has been detected.
@@ -50,15 +52,16 @@ They are then accessible by url.
 This is where the [Redux](https://react-redux.js.org/) actions and reducers reside. All application wide state changes
 are handled via Redux.
 
-*./src/transformer*<br>
-Contains code for a two pass transpiler that transforms MardownStorybook, 
-an extension to markdown that is described bellow, into HTML + Javscript.
-
-*./src/util/*<br>
-A dumping ground for application wide code that doesn't fit anywhere else.
 
 *./story/events*<br>
 On build, events are automatically pulled from this folder by Gatsby and loaded into [GraphQL](https://www.gatsbyjs.org/docs/graphql/).  The files are transformed into an Abstract Syntax Tree by *gatsby-transformer-remark*. At run time active events are sent to the two-pass transpiler along with the application state to generate a React Component plus JSON metadata such as available choices, prompts, etc... that are propagated through the game controls.
+
+*./story/stats*<br>
+Provides meta data on all the stats in the game.
+
+*./plugins/gatsby-markdown-storybook*<br>
+Contains code for a two pass transpiler that transforms MardownStorybook, 
+an extension to markdown that is described bellow, into HTML + Javscript.
 
 ## Making New Events
 Events are stored in the *./story/events/* folder and are coded in an extended form of markdown, we call **MarkdownStorybook (mds)**.
@@ -66,53 +69,44 @@ This supports all the [usual syntax of markdown](https://www.markdownguide.org/b
 
 We extend markdown functionality with some additional tags:
 
-- &lt;**Add** *[money|morale|stat|skill|relationship|item|tag|flag|job] [value]*&gt;&lt;/**Mod**&gt; <br>
-Adds a specified player characteristic
-    - *money and morale*: do not need an argument, just the property
-    - *stat or skill or relationship or item or tag or flag or job*: The stat to modify 
-    - *value*: amount to increase the characteristic.
-    
-- &lt;**Remove** *[money|morale|stat|skill|relationship|item|tag|flag|job] [value]*&gt;&lt;/**Mod**&gt; <br>
-Removes a specified player characteristic
-    - *money and morale*: do not need an argument, just the property
-    - *stat or skill or relationship or item or tag or flag or job*: The stat to modify 
-    - *value*: amount to decrease the characteristic. 
+- &lt;**Mod** *stat value*&gt;&lt;/**Mod**&gt; <br>
+Modifies a specified game statistic relative to existing value
+    - *stat*: The path of the stat to modify 
+    - *value*: amount to increase/decrease the stat.
 
-- &lt;**Set** *[name|gender|money|morale|stat|skill|relationship|item|tag|flag|job] [value]*&gt;&lt;/**Mod**&gt; <br>
-Sets a specified player characteristic
+- &lt;**Set** *stat value*&gt;&lt;/**Set**&gt; <br>
+Sets a specified statistic to set value
     - *name, gender, money, morale*: do not need an argument, just the property
-    - *stat or skill or relationship or item or tag or flag or job*: The stat to modify 
-    - *value*: to set characteristic to.
+    - *stat*: The path to the stat to modify 
+    - *value*: to set stat to.
      
-- &lt;**Prompt**&gt;*body*&lt;/**Prompt**&gt; <br>
+- &lt;**Prompt** *text* &gt;&lt;/**Prompt**&gt; <br>
 Displays text in the user controls. 
-    - *body*: Everything in the body will be shown to the user in the controls. **But Not Evaluated** (mds tags in this section will be ignored)
+    - *text*: What will be shown to the user in the controls. 
+    - Note: The last usage of the tag is the only one shown to the user
+
+- &lt;**Next** *event* &gt;&lt;/**Prompt**&gt; <br>
+Sets the next event that will procceed this one.
+    - *event*: Filename of next event
     - Note: The last usage of the tag is the only one shown to the user
     
 
-    
-- &lt;**Check** *[money|morale|stat|skill|relationship|item|tag|flag|job]  [value]**&gt;*body*&lt;/**Check**&gt; <br>
-Passive characteristic check, used for rendering event
-    - *money and morale*: do not need an argument, just the property
-    - *stat or skill or relationship or item or tag or flag or job*: The stat to check. 
+- &lt;**Check** *stat value* &gt;*body*&lt;/**Check**&gt; <br>
+Passive statistic check, used for rendering event
+    - *stat*: The stat to check. 
     - *value*: minimum value 
     - *body* if check passes the body is evaluated, otherwise body is skipped
     
 
-- &lt;**Choice** *label [money|morale|stat|skill|relationship|item|tag|flag|job]  [value]*&gt;*body*&lt;/**Choice**&gt; <br>
+- &lt;**Choice** *label [stat value]* &gt;*body*&lt;/**Choice**&gt; <br>
 Displays a story choice in the user controls. Body of the choice is only evaluated on click.
     - *title*: Label associated with choice, placed on buttons
     - *body*: Everything in the body will be evaluated and shown when the choice is selected <br>
     If you want a roll the dice skill check
-    - *money and morale*: do not need an argument, just the property
-    - *stat or skill or relationship or item or tag or flag or job*: The stat to check.
-    - *value*: minimum value 
+    - *stat*: The stat to check.
+    - *value*: Minimum value 
         
 - &lt;**Else**&gt;*body*&lt;/**Else**&gt; <br>
 Evaluated on failing to pass check on branching statments such as **Check** and **Choice**
     - *body*: Evaluated on failure to pass check
     
-- &lt;**Input** *type*&gt;&lt;/**Input**&gt; <br>
-Call for specialized user input such as text input
-    - *type*: special user input prompt to show to the user (takes precedence over choice, until resolved)
-        - "name" : Prompts player name 

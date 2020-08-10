@@ -2,7 +2,7 @@ import React  from "react"
 import { connect } from 'react-redux'
 import {Accordion, Card} from "react-bootstrap"
 import Layout from "../components/layout"
-import AgeYMD from "../components/age_ymd"
+
 
 import "./log.css"
 
@@ -13,7 +13,6 @@ function LogPage({log, dispatch}) {
             { log.map((event,index) => <Card>
                     <Accordion.Toggle as={Card.Header} eventKey={index}>
                         {event.title}
-                        {event.age?(<span className={"age-ymd"}> - Age: <AgeYMD age={event.age}/></span>):""}
                     </Accordion.Toggle>
                     <Accordion.Collapse eventKey={index}>
                         <Card.Body className={"event-body"}>
@@ -29,6 +28,6 @@ function LogPage({log, dispatch}) {
 
 
 export default connect(state => ({
-        log: state.game.log
+        log: state.log
     }), null)(LogPage)
 

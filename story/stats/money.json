@@ -1,0 +1,12 @@
+{
+  "key": "money",
+  "title": "Money",
+  "format": "{VALUE} €₦",
+  "format_value": "{VALUE} €₦",
+  "initial": 300,
+  "min": 0,
+  "max": 1e16,
+  "secret": false,
+  "description": "Your wealth."
+
+}

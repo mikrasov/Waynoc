@@ -7,6 +7,8 @@ const {
 const isNetlifyProduction = NETLIFY_ENV === 'production';
 const siteUrl = isNetlifyProduction ? NETLIFY_SITE_URL : NETLIFY_DEPLOY_URL;
 
+const activeEnv =  process.env.GATSBY_ACTIVE_ENV || process.env.NODE_ENV || "development"
+
 
 
 module.exports = {
@@ -20,7 +22,8 @@ module.exports = {
     googleAppName: '',
     googleAppId: '',
     googleAppURL: '',
-    siteUrl
+    siteUrl,
+    activeEnv
   },
   plugins: [
     'gatsby-plugin-react-helmet',
@@ -72,11 +75,19 @@ module.exports = {
     {
       resolve: `gatsby-source-filesystem`,
       options: {
-        name: `story`,
-        path: `${__dirname}/story/`,
+        name: `events`,
+        path: `${__dirname}/story/events`,
       },
     },
-    `gatsby-transformer-remark`,
+    {
+      resolve: `gatsby-source-filesystem`,
+      options: {
+        name: `stats`,
+        path: `${__dirname}/story/stats`,
+      },
+    },
+    `gatsby-transformer-json`,
+    `gatsby-markdown-storybook`,
     `gatsby-transformer-sharp`,
     `gatsby-plugin-sharp`,
     'gatsby-plugin-catch-links',

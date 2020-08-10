@@ -1,0 +1,15 @@
+.vis-network, .vis-network canvas {
+    min-height: 100vh;
+    min-width: 100vw;
+    border: none;
+}
+
+.admin-side {
+    border-right: solid 2px #666;
+    padding: 25px;
+}
+
+
+.container.admin{
+    min-width: 100%;
+}
