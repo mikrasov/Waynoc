@@ -36,11 +36,16 @@ function readyEvent(state, filename){
     event.effects.forEach(e=> processEffect(modifiedStats,state.stats_meta,e))
     delete event.effects
 
+    const log = [...state.log]
+
+    if(state.activeEvent)
+        log.unshift(state.activeEvent)
 
     return {
         ...state,
         stats: modifiedStats,
-        activeEvent: event
+        activeEvent: event,
+        log
     }
 }
 

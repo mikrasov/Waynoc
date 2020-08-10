@@ -9,7 +9,11 @@ function IndexPage({ game} ) {
 
     return (
         <Layout active={"game"}>
-            <DisplayEvent/>
+
+            <div className={"event-body"}>
+                <h1>{game.activeEvent.title}</h1>
+                <DisplayEvent event={game.activeEvent}/>
+            </div>
             <ControlBar/>
         </Layout>
     )

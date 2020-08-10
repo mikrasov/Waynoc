@@ -29,7 +29,11 @@
     "react-redux": "^7.x",
     "redux": "^4.x",
     "redux-persist": "^6.x",
-    "rehype-react": "^6.x"
+    "rehype-react": "^6.x",
+    "gray-matter": "^4.0.2",
+    "hast-util-raw": "^6.0.0",
+    "mdast-util-to-hast": "^9.1.0",
+    "remark": "^10.0.1"
   },
   "keywords": [
     "Game"

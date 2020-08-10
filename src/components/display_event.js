@@ -1,5 +1,5 @@
 import React from "react"
-import {connect} from "react-redux"
+
 import {Spinner} from "react-bootstrap"
 import rehypeReact from "rehype-react"
 
@@ -9,10 +9,10 @@ import Set from "../components/story-tags/set"
 import Check from "../components/story-tags/check"
 
 
-function DisplayEvent({activeEvent}) {
+export default function DisplayEvent({event}) {
 
     //Show loading if no event
-    if(!activeEvent) return <Spinner animation="border" variant="primary" />
+    if(!event) return <Spinner animation="border" variant="primary" />
 
     const generateHtml = new rehypeReact({
         createElement: React.createElement,
@@ -25,12 +25,9 @@ function DisplayEvent({activeEvent}) {
     }).Compiler
 
     return <>
-        <h1>{activeEvent.title}</h1>
-        <div className={"event-body"}>
-            {activeEvent.parts.map((part,index) => <div key={index}>{index>0?<hr/>:""}{generateHtml(part) }</div>)}
-        </div>
+        {event.parts.map((part, index) => <div key={index}>{index>0?<hr/>:""}{generateHtml(part) }</div>)}
     </>
 }
 
-export default connect(state => ({activeEvent: state.activeEvent}), null)(DisplayEvent)
+
 
