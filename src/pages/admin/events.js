@@ -1,6 +1,5 @@
 import React, {useState}  from "react"
 import Graph from "react-graph-vis"
-import ReactJson from "react-json-view"
 import './admin.css'
 import {graphql, useStaticQuery} from "gatsby"
 import { Col, Row} from "react-bootstrap/"
@@ -8,8 +7,7 @@ import Layout from "../../components/layout"
 
 
 function NodeInfo({node}){
-
-
+    const ReactJson = require( "react-json-view").default
 
     return <>
         <h4>{node.title}</h4>
