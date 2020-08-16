@@ -2,7 +2,7 @@ import React  from "react"
 import { connect } from 'react-redux'
 import Layout from "../components/layout"
 
-import PlayerStats from "../components/player/playerStats"
+import PlayerStats from "../components/playerStats"
 
 const _ = require("lodash")
 

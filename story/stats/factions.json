@@ -1,0 +1,34 @@
+{
+  "key": "Factions",
+  "title": "Factions",
+  "format": "{VALUE} relation with {NAME}",
+  "format_value": "{VALUE}",
+  "initial": 0,
+  "min": 0,
+  "max": 100,
+  "secret": false,
+  "description": "Your affinity with local factions.",
+
+  "sub": [
+    {
+      "key": "npu",
+      "title": "New Pompeii University",
+      "description": "The university is a political power of its own employing some of the most influential movers of the colony."
+    },
+    {
+      "key": "earth",
+      "title": "United Earth",
+      "description": "Earth retains a strong political hold on all the colonies."
+    },
+    {
+      "key": "mars",
+      "title": "Mars",
+      "description": "Mars."
+    },
+    {
+      "key": "revs",
+      "title": "Revs",
+      "description": "The revolutionary party calling for independence from the UE government"
+    }
+  ]
+}

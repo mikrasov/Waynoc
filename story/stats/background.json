@@ -1,0 +1,78 @@
+{
+  "key": "tags",
+  "title": "Accomplishments",
+  "format": "{NAME}",
+  "format_value": "{NAME}",
+  "initial": 0,
+  "min": 0,
+  "max": 1,
+  "secret": false,
+  "description": "Your accomplishments.",
+  "sub": [
+
+    {
+      "key": "ugrad-npu",
+      "category": "undergrad",
+      "title": "Undergrad: NPU",
+      "long": "New Pompeii University",
+      "description": "You completed your undergraduate degree at New Pompeii University.",
+      "sideEffects": [
+        {"stat": "factions.npu", "value": 15 }
+      ]
+    },
+    {
+      "key": "ugrad-uerc",
+      "category": "undergrad",
+      "title": "Undergrad: UERC",
+      "long": "United Earth Remote College",
+      "description": "You completed your undergraduate degree remotely at United Earth Remote College.",
+      "sideEffects": [
+        {"stat": "factions.earth", "value": 15 }
+      ]
+    },
+    {
+      "key": "ugrad-omu",
+      "category": "undergrad",
+      "title": "Undergrad: OMU",
+      "long": "Olympus Mons University",
+      "description": "You completed your undergraduate degree remotely at Mars's Olympus Mons University.",
+      "sideEffects": [
+        {"stat": "factions.mars", "value": 15 }
+      ]
+    },
+    {
+      "key": "ugrad-riu",
+      "category": "undergrad",
+      "title": "Undergrad: RIU",
+      "long": "Rigil Interstellar University",
+      "description": "You completed your undergraduate degree remotely at Alpha Centauri's Rigil University.",
+      "sideEffects": [
+        {"stat": "factions.revs", "value": 15 }
+      ]
+    },
+
+    {
+      "key": "bachelors-computer-science",
+      "category": "bachelors",
+      "title": "BS: Computer Science",
+      "long": "Computer Science",
+      "description": "Studied computer programing, systems design, computer architecture. "
+    },
+    {
+      "key": "bachelors-philosophy",
+      "category": "bachelors",
+      "title": "BA: Philosophy",
+      "long": "Philosophy",
+      "description": "Studied philosophy including epistemology, ethics, and metaphysics. "
+    },
+    {
+      "key": "bachelors-mechanical-engineering",
+      "category": "bachelors",
+      "title": "BS: Interstellar Engineering",
+      "long": "Interstellar Engineering",
+      "description": "Studied modern space technologies.",
+
+    }
+
+  ]
+}

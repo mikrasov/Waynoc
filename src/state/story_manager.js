@@ -7,8 +7,6 @@ function processEffect(stats, statsMeta, {type, stat, value}){
     const currentVal = _.get(stats, stat)
     const statMeta = _.get(statsMeta, stat)
 
-    console.log(type, stat, value)
-
     value = parseInt(value)
 
     if (type === "mod")  value =  currentVal + value
@@ -80,7 +78,7 @@ export function makeChoice(state, choiceNum, diceRoll)  {
     const modifiedStats = _.cloneDeep(state.stats)
     parsedChoice.effects.forEach(e=> processEffect(modifiedStats,state.stats_meta,e))
 
-    const res = {
+    return {
         ...state,
         stats: modifiedStats,
         activeEvent: {
@@ -90,9 +88,6 @@ export function makeChoice(state, choiceNum, diceRoll)  {
             choices: parsedChoice.choices
         }
     }
-
-    console.log(res)
-    return res
 }
 
 
