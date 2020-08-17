@@ -7,6 +7,8 @@ import Mod from "../components/story-tags/mod"
 import Stat from "../components/story-tags/stat"
 import Set from "../components/story-tags/set"
 import Check from "../components/story-tags/check"
+import Value from "../components/story-tags/value"
+
 
 
 export default function DisplayEvent({event}) {
@@ -21,6 +23,7 @@ export default function DisplayEvent({event}) {
             stat: Stat,
             set: Set,
             check: Check,
+            value: Value
         },
     }).Compiler
 

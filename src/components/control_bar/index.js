@@ -23,9 +23,7 @@ function GameControls({dispatch, game}) {
         </>
 
         else if(activeEvent?.next) return <>
-
             <Button type="button"  className="finalChoice" size="lg"  onClick={ ()=>{dispatch(ACTIONS.nextEvent())} }>Next</Button>
-
         </>
 
         else return <>

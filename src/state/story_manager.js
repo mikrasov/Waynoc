@@ -1,9 +1,8 @@
 import {transform} from "../../plugins/gatsby-markdown-storybook"
+import {readyStats} from "./stats_manager"
 import _ from "lodash"
-import {readyStats} from "./stats_manager";
 
 function processEffect(stats, statsMeta, {type, stat, value}){
-
     const currentVal = _.get(stats, stat)
     const statMeta = _.get(statsMeta, stat)
 
@@ -15,7 +14,17 @@ function processEffect(stats, statsMeta, {type, stat, value}){
     value = Math.min(statMeta.max, value)
 
     _.set(stats, stat, value)
+}
 
+function processAllEffect(state, event){
+    if(!event.effects) return state.stats
+
+    //Process Effects
+    const modifiedStats = _.cloneDeep(state.stats)
+    event.effects.forEach(e=> processEffect(modifiedStats,state.stats_meta,e))
+    delete event.effects
+
+    return modifiedStats
 }
 
 function readyEvent(state, filename){
@@ -28,11 +37,7 @@ function readyEvent(state, filename){
     }
     delete event.hast
 
-
-    //Process Effects
-    const modifiedStats = _.cloneDeep(state.stats)
-    event.effects.forEach(e=> processEffect(modifiedStats,state.stats_meta,e))
-    delete event.effects
+    const modifiedStats = processAllEffect(state, event)
 
     const log = [...state.log]
 
@@ -57,9 +62,20 @@ export function firstEvent(state, events, statsMeta)  {
     return readyEvent(loadedState,"index")
 }
 
-
 export function nextEvent(state)  {
     return readyEvent(state, state.activeEvent.next)
+}
+
+
+export function resolveUI(state)  {
+
+    return {
+        ...state,
+        activeEvent: {
+            ...state.activeEvent,
+            ui: null
+        }
+    }
 }
 
 export function makeChoice(state, choiceNum, diceRoll)  {
@@ -75,17 +91,15 @@ export function makeChoice(state, choiceNum, diceRoll)  {
     const parsedChoice = transform(ast)
 
     //Process Effects
-    const modifiedStats = _.cloneDeep(state.stats)
-    parsedChoice.effects.forEach(e=> processEffect(modifiedStats,state.stats_meta,e))
+    const modifiedStats = processAllEffect(state, currentEvent)
 
     return {
         ...state,
         stats: modifiedStats,
         activeEvent: {
             ...state.activeEvent,
-            parts: [...state.activeEvent.parts, ...parsedChoice.parts],
-            prompt: parsedChoice.prompt,
-            choices: parsedChoice.choices
+            ...parsedChoice,
+            parts: [...state.activeEvent.parts, ...parsedChoice.parts]
         }
     }
 }

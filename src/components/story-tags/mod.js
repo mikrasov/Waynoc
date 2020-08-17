@@ -1,7 +1,7 @@
 import React from "react"
 import "./story-tags.css"
-import {connect} from "react-redux";
-import Stat from "./stat";
+import {connect} from "react-redux"
+import Stat from "./stat"
 
 function Mod({stat, value, stats_meta, silent}){
     if(silent || silent==="") return <></>//Don't print nodes with silent flag

@@ -16,4 +16,5 @@ Some content
 <choice label="Throw a Party!">
 Yay Party
 <mod stat="money" value="20" ></mod> g
+<ui type="create"></ui>
 </choice>

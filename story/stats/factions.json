@@ -1,5 +1,5 @@
 {
-  "key": "Factions",
+  "key": "factions",
   "title": "Factions",
   "format": "{VALUE} relation with {NAME}",
   "format_value": "{VALUE}",

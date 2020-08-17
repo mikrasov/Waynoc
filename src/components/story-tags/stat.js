@@ -1,9 +1,9 @@
 import React from "react"
 import {OverlayTrigger, Popover} from "react-bootstrap"
 import "./story-tags.css"
-import {connect} from "react-redux";
+import {connect} from "react-redux"
 
- function Stat({stats_meta, stat, children, silent}){
+function Stat({stats_meta, stat, children, silent}){
      if(silent || silent==="") return <></>//Don't print nodes with silent flag
 
     const meta = stats_meta[stat]
@@ -13,7 +13,6 @@ import {connect} from "react-redux";
             <Popover.Title as="h3">{meta.title}</Popover.Title>
             <Popover.Content>{meta.description}</Popover.Content>
         </Popover>
-
 
     return <OverlayTrigger overlay={renderTooltip} placement="auto" trigger={['hover', 'focus']}>
         {

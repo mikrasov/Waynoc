@@ -4,20 +4,30 @@ import { connect } from 'react-redux'
 import Layout from "../components/layout"
 import DisplayEvent from "../components/display_event"
 import ControlBar from "../components/control_bar"
+import CharacterCreator from "../components/createCharacter"
 
-function IndexPage({ game} ) {
+function IndexPage( { event} ) {
 
-    return (
-        <Layout active={"game"}>
+    function display(){
 
-            <div className={"event-body"}>
-                <h1>{game.activeEvent.title}</h1>
-                <DisplayEvent event={game.activeEvent}/>
-            </div>
-            <ControlBar/>
-        </Layout>
-    )
+        switch (event?.ui) {
+
+            case "create":
+                return <CharacterCreator/>
+
+            default:
+                return <>
+                    <div className={"event-body"}>
+                        <h1>{event.title}</h1>
+                        <DisplayEvent event={event}/>
+                    </div>
+                    <ControlBar/>
+                </>
+        }
+    }
+
+    return <Layout active={"game"}> {display()}</Layout>
+
 }
 
-export default connect(state => ({game: state}), null)(IndexPage)
-
+export default connect(state => ({event: state.activeEvent}), null)(IndexPage)

@@ -10,6 +10,7 @@ function processMeta(loadedMeta, parent){
             ...parent,
             ...stat,
             parent: parent?.key,
+            path: prefix+stat.key,
             isBinary: (stat.max - stat.min === 1),
             leaf: !stat?.sub,
             sub: stat.sub?stat.sub.map(s=>stat.key+"."+s.key):[]

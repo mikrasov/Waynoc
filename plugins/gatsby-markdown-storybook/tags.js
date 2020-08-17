@@ -7,6 +7,11 @@ module.exports = {
         return util.textNode()
     },
 
+    ui (node, scope, state) {
+        scope.ui = node.properties.type
+        return util.textNode()
+    },
+
     prompt (node, scope, state) {
         scope.prompt = node.properties.text
         return util.textNode()

@@ -1,12 +1,13 @@
 import React from "react"
-import { Row, Col, Form} from "react-bootstrap"
+import {Row, Col, Form, Button, FormGroup} from "react-bootstrap"
 import {connect} from "react-redux"
 import {graphql, useStaticQuery} from "gatsby"
 import Img from "gatsby-image"
-
+import {ACTIONS} from "../state"
+import Stat from "./story-tags/stat"
 const _ = require("lodash")
 
-function CharacterCreator( {stats, stats_meta}){
+function CharacterCreator( {dispatch, stats, stats_meta}){
 
     const data  = useStaticQuery( graphql`{
       logo: file(relativePath: { eq: "NPU-shield.png" }) {
@@ -19,9 +20,12 @@ function CharacterCreator( {stats, stats_meta}){
     }`)
 
 
+
+    const background = _.filter(stats_meta,{parent: 'background'})
+
     //If the stat has sub stats
     return <>
-
+<Form>
         <Row>
             <Col>
                 <h2>New Pompeii University</h2>
@@ -46,27 +50,33 @@ function CharacterCreator( {stats, stats_meta}){
             </Row>
 
             <Row>
-                <Col>
-                    <Form.Control as="select" size="lg">
-                        <option>Earth Galactic Remote University</option>
-                        <option>Ross Planetary University</option>
-                        <option>Trinity Christian College</option>
-                    </Form.Control>
-                </Col>
-                <Col>
-                    <Form.Control as="select" size="lg">
-                        <option>Political Science</option>
-                        <option>Computer Science</option>
-                        <option>Religious Studies</option>
-                        <option>Philosophy</option>
-                        <option>Mechanical Engineering</option>
-                        <option>Psychology</option>
-                    </Form.Control>
-                </Col>
-            </Row>
+                <FormGroup>{
+                    _.filter(background,{ category:'undergrad'}).map( v => <>
 
+                        <Form.Check type="radio">
+        <Form.Check.Input type="radio"  />
+        <Form.Check.Label><Stat stat={v.path}>{v.long}</Stat></Form.Check.Label>
+        <Form.Control.Feedback type="valid">You did it!</Form.Control.Feedback>
+      </Form.Check>
+
+
+                        </>
+                    )}
+                </FormGroup>
+
+            </Row>
+<Col>
+                    <Form.Control as="select" size="lg">
+                        { _.filter(background,{ category:'bachelors'}).map(v => <option>{v.long}</option>) }
+                    </Form.Control>
+                </Col>
 
         </Form.Group>
+</Form>
+
+        <div className="gamecontrols">
+            <Button type="button"  className="finalChoice" size="lg"  onClick={ ()=>{dispatch(ACTIONS.resolveUI())} }>Submit</Button>
+        </div>
     </>
 }
 

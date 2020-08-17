@@ -28,6 +28,8 @@ function DataLoader ({dataLoaded, dispatch}) {
               sub {
                 key
                 title
+                long
+                category
                 description
               }
             }

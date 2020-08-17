@@ -1,8 +1,9 @@
-import {firstEvent, nextEvent, makeChoice} from "./story_manager"
+import {firstEvent, nextEvent, resolveUI, makeChoice} from "./story_manager"
 
 const ACTION_TAG = {
     LOAD_DATA: "game/load",
     EVENT_NEXT: "event/next",
+    EVENT_RESOLVE_UI: "event/resolve-ui",
     EVENT_CHOICE: "event/choice",
     GAME_RESET: "game/reset",
 }
@@ -10,6 +11,7 @@ const ACTION_TAG = {
 export const ACTIONS = {
     resetGame: () => ({type: ACTION_TAG.GAME_RESET}),
     nextEvent: () => ({type: ACTION_TAG.EVENT_NEXT}),
+    resolveUI: () => ({type: ACTION_TAG.EVENT_RESOLVE_UI}),
     makeChoice: (choiceNum,diceRoll) => ( {type: ACTION_TAG.EVENT_CHOICE, choiceNum, diceRoll}),
     loadData: (events, statsMeta) => ({type: ACTION_TAG.LOAD_DATA, events, statsMeta})
 }
@@ -34,6 +36,9 @@ export default (state = initialState, action) => {
         case ACTION_TAG.EVENT_CHOICE:
             return makeChoice(state, action.choiceNum, action.diceRoll)
 
+        case ACTION_TAG.EVENT_RESOLVE_UI:
+            return resolveUI(state)
+
         case ACTION_TAG.EVENT_NEXT:
             return  nextEvent(state)
 
@@ -41,7 +46,3 @@ export default (state = initialState, action) => {
             return state
     }
 }
-
-
-
-
